@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney Trip Reveal Preview Video @connectingwarmhearts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind Config
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1612d3', // BRAND COLOR 1: Deep Blue/Indigo
+                        'background': '#efebe2', // BRAND COLOR 2: Light Beige/Off-White
+                        'card': '#ebedf8', // BRAND COLOR 3: New Block Background (Light Blue derived from primary)
+                    },
+                    fontFamily: {
+                        // 모든 텍스트를 Arial로 설정
+                        sans: ['Arial', 'sans-serif'], 
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 기본 스타일 및 애니메이션 정의 */
+        body::-webkit-scrollbar { display: none; }
+        body { -ms-overflow-style: none; scrollbar-width: none; min-height: 100vh; }
+        #app { min-height: 100vh; }
+        .diffs-hidden { display: none; }
+        .diffs-visible { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* 유튜브 썸네일 컨테이너 스타일 */
+        .thumbnail-container {
+            position: relative;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .play-button {
+            position: absolute;
+            width: 70px;
+            height: 50px;
+            background: rgba(255, 0, 0, 0.8);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .play-button:hover {
+            background: rgba(255, 0, 0, 1);
+        }
+        .play-button::before {
+            content: '▶';
+            color: white;
+            font-size: 24px;
+            line-height: 1;
+            margin-left: 5px; /* 삼각형 모양 보정 */
+        }
+    </style>
+</head>
+<body class="bg-background text-gray-800 font-sans p-4 md:p-8 flex items-start justify-center">
+
+    <div id="app" class="w-full max-w-xl mx-auto">
+        
+        <!-- Title & Description 영역 -->
+        <header class="text-center mb-8">
+            <h1 id="header-title" class="text-3xl font-extrabold text-primary mb-1">Preview Video List</h1>
+            <p id="header-description" class="text-lg text-gray-500">Disney Trip Reveal Video</p>
+        </header>
+
+        <!-- 동적 콘텐츠 제어 패널 (스케치의 유일한 블록) -->
+        <main class="bg-card p-6 rounded-xl shadow-2xl border border-primary/20">
+            <h2 class="text-xl font-bold text-primary mb-4 border-b pb-2">
+                Please select your preferred theme and park button to watch the preview video.
+            </h2>
+
+            <div class="space-y-6">
+                
+                <!-- 1. 카테고리 버튼 그룹 (버튼형태) -->
+                <div class="space-y-3">
+                    <h3 class="text-lg font-semibold text-gray-700">Theme</h3>
+                    <div id="category-buttons" class="flex flex-wrap gap-3 pb-3 border-b border-gray-300">
+                        <!-- Category buttons injected by JS -->
+                    </div>
+                </div>
+
+                <!-- 2. 중간 카테고리 그룹 (Everyday, Christmas 선택 시 활성화) -->
+                <div id="intermediate-section" class="space-y-3 hidden">
+                    <h3 class="text-lg font-semibold text-gray-700"><span id="intermediate-section-title">Version</span> (<span id="active-category-name-intermediate" class="text-primary font-bold"></span>)</h3>
+                    <div id="intermediate-buttons" class="flex flex-wrap gap-3">
+                        <!-- Intermediate buttons injected by JS -->
+                    </div>
+                    
+                    <!-- Everyday Version Differences (표 형식으로 변경) -->
+                    <div id="everyday-version-diffs" class="p-4 rounded-lg bg-primary/10 border border-primary/30 text-gray-800 diffs-hidden">
+                        <h4 class="text-lg font-bold text-primary mb-2">Everyday Version Differences</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm border-collapse">
+                                <thead>
+                                    <tr class="bg-primary/20 text-primary">
+                                        <th class="p-2 border border-primary/30 text-left rounded-tl-lg">Version</th>
+                                        <th class="p-2 border border-primary/30 text-left">Intro/Structure</th>
+                                        <th class="p-2 border border-primary/30 text-left rounded-tr-lg">Mickey & Minnie</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white">
+                                        <td class="p-2 border border-primary/30 font-bold">Everyday 1</td>
+                                        <td class="p-2 border border-primary/30">Same structure as Everyday 2</td>
+                                        <td class="p-2 border border-primary/30">Outfit A + Script A</td>
+                                    </tr>
+                                    <tr class="bg-white/50">
+                                        <td class="p-2 border border-primary/30 font-bold">Everyday 2</td>
+                                        <td class="p-2 border border-primary/30">Same structure as Everyday 1</td>
+                                        <td class="p-2 border border-primary/30">Outfit B + Script B</td>
+                                    </tr>
+                                    <tr class="bg-white">
+                                        <td class="p-2 border border-primary/30 font-bold">Everyday 3</td>
+                                        <td class="p-2 border border-primary/30">Different intro / Different video flow</td>
+                                        <td class="p-2 border border-primary/30">Outfit C + Script C</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- NEW: Christmas Version Differences (표 형식) -->
+                    <div id="christmas-version-diffs" class="p-4 rounded-lg bg-primary/10 border border-primary/30 text-gray-800 diffs-hidden">
+                        <h4 class="text-lg font-bold text-primary mb-2">Christmas Version Differences</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm border-collapse">
+                                <thead>
+                                    <tr class="bg-primary/20 text-primary">
+                                        <th class="p-2 border border-primary/30 text-left rounded-tl-lg">Version</th>
+                                        <th class="p-2 border border-primary/30 text-left rounded-tr-lg">Theme / Travel</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white">
+                                        <td class="p-2 border border-primary/30 font-bold">Christmas 1</td>
+                                        <td class="p-2 border border-primary/30">Christmas reveal + non-Christmas travel</td>
+                                    </tr>
+                                    <tr class="bg-white/50">
+                                        <td class="p-2 border border-primary/30 font-bold">Christmas 2</td>
+                                        <td class="p-2 border border-primary/30">Christmas reveal + Christmas travel</td>
+                                    </tr>
+                                    <tr class="bg-white">
+                                        <td class="p-2 border border-primary/30 font-bold">Christmas 3</td>
+                                        <td class="p-2 border border-primary/30">Same as 2, but different intro, outro, and outfits</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Cruise Version Differences (표 형식) -->
+                    <div id="cruise-version-diffs" class="p-4 rounded-lg bg-primary/10 border border-primary/30 text-gray-800 diffs-hidden">
+                        <h4 class="text-lg font-bold text-primary mb-2">Cruise Version Differences</h4>
+                        <div class="overflow-x-auto mb-3">
+                            <table class="w-full text-sm border-collapse border border-primary/30">
+                                <thead>
+                                    <tr class="bg-primary/20 text-primary">
+                                        <th class="p-2 border border-primary/30 text-left rounded-tl-lg">Version</th>
+                                        <th class="p-2 border border-primary/30 text-left rounded-tr-lg">Difference</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white">
+                                        <td class="p-2 border border-primary/30 font-bold">Everyday 1 vs Everyday 2</td>
+                                        <td class="p-2 border border-primary/30">The difference is the background music used during the cruise footage.</td>
+                                    </tr>
+                                    <tr class="bg-white/50">
+                                        <td class="p-2 border border-primary/30 font-bold">Christmas Cruise</td>
+                                        <td class="p-2 border border-primary/30">Christmas-season video reveal + Cruise trip during a non-Christmas season</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-sm space-y-1 p-2 bg-red-50 rounded-lg border border-red-400 font-medium text-red-800">
+                            <p class="font-bold text-red-700">Videos can be customized for both non-Christmas reveals and Christmas-season trips.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3. 상세 버튼 그룹 (Park) - 3단계가 있는 경우에만 표시됨 -->
+                <div id="park-section" class="space-y-3 hidden">
+                    <h3 class="text-lg font-semibold text-gray-700"><span id="park-section-title">Park</span> (<span id="active-category-name" class="text-primary font-bold"></span>)</h3>
+                    <div id="detail-buttons" class="flex flex-wrap gap-3"></div>
+                </div>
+
+                <!-- 4. 콘텐츠 설명 상세 설명 -->
+                <div id="detailed-description-section" class="space-y-3">
+                    <h3 class="text-lg font-semibold text-gray-700">Description</h3>
+                    <div id="description-display" class="min-h-16 p-4 bg-gray-50 border border-gray-200 rounded-lg whitespace-pre-wrap text-gray-800 transition duration-300 shadow-inner">
+                        (좌측의 선택에 따른 상세 설명이 여기에 표시됩니다.)
+                    </div>
+                </div>
+
+                <!-- 5. YouTube 영상 배치 영역 (임베딩) -->
+                <div class="space-y-3 pt-3 border-t border-gray-300">
+                    <h3 class="text-lg font-semibold text-gray-700">YouTube</h3>
+                    <div id="youtube-video-section" class="aspect-video bg-gray-900 flex items-center justify-center rounded-lg text-white text-sm font-medium">
+                        <p>선택된 항목에 해당하는 YouTube 영상이 여기에 표시됩니다.</p>
+                    </div>
+                </div>
+                
+                <!-- NEW: Payment Button Section (수정된 Payment 버튼) -->
+                <div class="space-y-3 pt-3 border-t border-gray-300 text-center">
+                    <a href="https://www.connectingwarmhearts.com/collections/frontpage" target="_blank" 
+                       class="inline-block px-8 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition duration-200 uppercase tracking-wider">
+                        💰 Website
+                    </a>
+                </div>
+
+                <!-- NEW: 추가 장소 및 캐릭터 옵션 블록 (제목 변경 및 문구 삭제 반영) -->
+                <div class="space-y-3 pt-3 border-t border-gray-300">
+                    <!-- 강조 안내 블록 (빨간색) -->
+                    <div class="p-4 rounded-lg bg-red-100 border border-red-400 font-medium text-red-700">
+                        <p class="font-bold"> 🔔 For previews of the parks or characters listed below, please reach out via 💌 Email (connectingwarmheart@gmail.com) or through 🗨️ Chat with us.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Other Parks (이전: Additional Locations Available) -->
+                        <div id="additional-locations" class="p-4 rounded-lg bg-gray-100 border border-gray-300">
+                            <h4 class="text-lg font-bold text-gray-700 mb-2">⭐ Other Parks</h4>
+                            <ul class="list-disc list-inside ml-2 text-sm space-y-1">
+                                <li>Aulani (Hawaii)</li>
+                                <li>Tokyo Disneyland</li>
+                                <li>Universal Studios</li>
+                                <li>Epic Universe</li>
+                                <li>And more!</li>
+                            </ul>
+                        </div>
+
+                        <!-- Other Characters (이전: Character Options) -->
+                        <div id="character-options" class="p-4 rounded-lg bg-gray-100 border border-gray-300">
+                            <h4 class="text-lg font-bold text-gray-700 mb-2">⭐ Other Characters</h4>
+                            <ul class="list-disc list-inside ml-2 text-sm space-y-1">
+                                <li>Mickey</li>
+                                <li>Minnie</li>
+                                <li>Mickey & Minnie together</li>
+                                <li>Donald</li>
+                                <li>Daisy</li>
+                                <li>Spider-Man</li>
+                                <li>Woody & Buzz</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // =========================================================================
+        // START: 전역 상수 및 데이터 선언
+        // =========================================================================
+        
+        const globalConfig = {
+            title: "Preview Video List",
+            description: "Disney Trip Reveal Video" 
+        };
+
+        const categoryStyleMap = {
+            'Everyday': { emoji: '☀️', active: 'bg-yellow-500 text-white hover:bg-yellow-600', inactive: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200' },
+            'Christmas': { emoji: '🎄', active: 'bg-red-600 text-white hover:bg-red-700', inactive: 'bg-red-100 text-red-800 hover:bg-red-200' },
+            'Cruise': { emoji: '🚢', active: 'bg-blue-600 text-white hover:bg-blue-700', inactive: 'bg-blue-100 text-blue-800 hover:bg-blue-200' },
+            'Halloween': { emoji: '🎃', active: 'bg-purple-600 text-white hover:bg-purple-700', inactive: 'bg-purple-100 text-purple-800 hover:bg-purple-200' },
+        };
+
+        const contentData = {
+            'Everyday': {
+                'Everyday 1': { 
+                    'Disney World': { description: "✅ Structure:<br>Castle Outside ▶️ Castle Inside ▶️ Park Footage 1 ▶️ Mickey & Minnie Announcement ▶️ Park Footage 2 ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/pXMnyfMysCg" },
+                    'Disneyland Paris': { description: "✅ Structure:<br>Castle Outside ▶️ Castle Inside ▶️ Park Footage 1 ▶️ Mickey & Minnie Announcement ▶️ Park Footage 2 ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/qg4nwayjAP4" },
+                    'Disneyland CA': { description: "✅ Structure:<br>Castle Outside ▶️ Castle Inside ▶️ Park Footage 1 ▶️ Mickey & Minnie Announcement ▶️ Park Footage 2 ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/Thij8oALoB4" }
+                },
+                'Everyday 2': { 
+                    'Disney World': { description: "✅ Structure:<br>Castle Outside ▶️ Castle Inside ▶️ Park Footage 1 ▶️ Mickey & Minnie Announcement ▶️ Park Footage 2 ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/TxKMW-TOaXw" },
+                    'Disneyland Paris': { description: "✅ Structure:<br>Castle Outside ▶️ Castle Inside ▶️ Park Footage 1 ▶️ Mickey & Minnie Announcement ▶️ Park Footage 2 ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/zhaCO8cz0wM" },
+                    'Disneyland CA': { description: "✅ Structure:<br>Castle Outside ▶️ Castle Inside ▶️ Park Footage 1 ▶️ Mickey & Minnie Announcement ▶️ Park Footage 2 ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/t8kQnvsq8Ak" }
+                },
+                'Everyday 3': { 
+                    'Disney World': { description: "✅ Structure:<br>Castle with Train ▶️  Park Footage ▶️ Mickey & Minnie Announcement ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/fE1ycWGJb98" },
+                    'Disneyland Paris': { description: "✅ Structure:<br>Castle with Train ▶️  Park Footage ▶️ Mickey & Minnie Announcement ▶️ Park Footage 2 ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/jxXVKdjyyOU" },
+                    'Disneyland CA': { description: "✅ Structure:<br>Castle with Train ▶️  Park Footage ▶️ Mickey & Minnie Announcement ▶️ Park Footage 2 ▶️ Firework Castle Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/j07wlDn3Dxc" }
+                }
+            },
+            'Christmas': {
+                'Christmas 1': { 
+                    'Disney World': { description: "✅ Structure:<br>Castle with Santa ▶️ Non-Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Non-Christmas Park ▶️ Firework Castle<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/ElY5rRpHIVI" },
+                    'Disneyland Paris': { description: "✅ Structure:<br>Castle with Santa ▶️ Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Non-Christmas Park ▶️ Firework Castle<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/07TRTFFJY9E" },
+                    'Disneyland CA': { description: "✅ Structure:<br>Castle with Santa ▶️ Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Non-Christmas Park ▶️ Firework Castle<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/mgaxVEFsnxk" },
+                },
+                'Christmas 2': { 
+                    'Disney World': { description: "✅ Structure:<br>Castle with Santa ▶️ Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Christmas Park ▶️ Firework Castle<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/EUq6SOD3MK0" },
+                    'Disneyland Paris': { description: "✅ Structure:<br>Castle with Santa ▶️ Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Christmas Park ▶️ Firework Castle<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/EUq6SOD3MK0" },
+                    'Disneyland CA': { description: "✅ Structure:<br>Castle with Santa ▶️ Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Christmas Park ▶️ Firework Castle<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/EUq6SOD3MK0" },
+                },
+                'Christmas 3': { 
+                    'Disney World': { description: "✅ Structure:<br>Christmas Tree Intro ▶️ Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Christmas-style Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/qo_WDGrVHdM" },
+                    'Disneyland Paris': { description: "✅ Structure:<br>Christmas Tree Intro ▶️ Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Christmas-style Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/qo_WDGrVHdM" },
+                    'Disneyland CA': { description: "✅ Structure:<br>Christmas Tree Intro ▶️ Christmas Park ▶️ Christmas Mickey & Minnie ▶️ Christmas-style Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/qo_WDGrVHdM" },
+                },
+            },
+            'Cruise': {
+                'Everyday 1': { description: "✅ Structure:<br>Castle Outside ▶️ Castle Inside ▶️ Cruise Footage 1 ▶️ Cruise Mickey & Minnie ▶️ Cruise Footage 2 ▶️ Firework Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/qtw5sqTuK50" },
+                'Everyday 2': { description: "✅ Structure:<br>Castle Outside ▶️ Castle Inside ▶️ Cruise Footage 1 ▶️ Cruise Mickey & Minnie ▶️ Cruise Footage 2 ▶️ Firework Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/9yOKxjarpQA" },
+                'Christmas': { description: "✅ Structure:<br>Castle w/ Santa ▶️ Non-Christmas Cruise ▶️ Christmas Mickey & Minnie (on the ship) ▶️ Non-Christmas Cruise ▶️ Firework Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", youtubeLink: "https://youtu.be/s1JyWW_YQ4Q" },
+            },
+            'Halloween': {
+                'Disney World': { 
+                    description: "✅ Structure:<br>Halloween Castle ▶️ Halloween Park ▶️ Halloween Mickey & Minnie ▶️ Halloween Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", 
+                    youtubeLink: "https://youtu.be/-nNRE8aZe-k" 
+                },
+                'Disneyland Paris': { 
+                    description: "✅ Structure:<br>Halloween Castle ▶️ Halloween Park ▶️ Halloween Mickey & Minnie ▶️ Halloween Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", 
+                    youtubeLink: "https://youtu.be/-nNRE8aZe-k" 
+                },
+                'Disneyland CA': { 
+                    description: "✅ Structure:<br>Halloween Castle ▶️ Halloween Park ▶️ Halloween Mickey & Minnie ▶️ Halloween Outro<br><br>🎂 Birthday Option<br><br>Mickey and/or Minnie will say:<br>&quot;Happy Birthday!”, “Happy Xth Birthday, [Name]!”", 
+                    youtubeLink: "https://youtu.be/-nNRE8aZe-k" 
+                }
+            }
+        };
+        
+        let activeCategory = 'Everyday';
+        let activeSubCategory = null; 
+        let activeDetail = null;
+
+        // --- Core DOM Elements (할당은 window.onload에서 이루어집니다) ---
+        let categoryButtonsEl, intermediateSectionEl, intermediateButtonsEl, parkSectionEl, 
+            detailButtonsEl, descriptionDisplayEl, youtubeVideoSectionEl, 
+            activeCategoryNameEl, activeCategoryNameIntermediateEl, headerTitleEl, 
+            headerDescriptionEl, everydayVersionDiffsEl, christmasVersionDiffsEl, 
+            parkSectionTitleEl, cruiseVersionDiffsEl;
+
+        const baseCategoryClasses = 'py-2 px-4 rounded-full text-sm font-semibold transition duration-200 cursor-pointer whitespace-nowrap shadow-md flex items-center space-x-1';
+        const baseIntermediateClasses = 'py-2 px-4 rounded-full text-sm font-semibold transition duration-200 cursor-pointer shadow-md flex-grow';
+        const activeIntermediateClasses = 'bg-primary border-primary text-white hover:bg-primary/90'; 
+        const inactiveIntermediateClasses = 'bg-white border border-gray-300 text-gray-800 hover:border-primary hover:text-primary';
+        const baseDetailClasses = 'py-2 px-4 rounded-full text-sm font-semibold transition duration-200 cursor-pointer shadow-md flex-grow';
+        const activeDetailClasses = 'bg-primary text-white hover:bg-primary/90 transform scale-105'; 
+        const inactiveDetailClasses = 'bg-white border border-gray-300 text-gray-800 hover:border-primary hover:text-primary'; 
+
+        // --- 4. 헬퍼 함수 ---
+        function extractYoutubeId(url) {
+            if (!url) return null;
+            
+            // Final Robust Regex: Handles watch?v=ID, &v=ID, youtu.be/ID, /embed/ID (and ignores query parts after ID)
+            const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?#\/\s]{11})/;
+            const match = url.match(regex);
+            
+            if (match && match[1].length === 11) {
+                return match[1];
+            }
+            return null;
+        }
+
+        function getParkDisplayName(key) {
+            switch (key) {
+                case 'Disneyland Paris': return 'Disneyland <b>Paris</b>';
+                case 'Disneyland CA': return 'Disneyland <b>CA</b>';
+                default: return key; 
+            }
+        }
+        
+        function isThreeLevel(category) {
+            return category === 'Everyday' || category === 'Christmas';
+        }
+        
+        function getItemData(category, subCategory, detail) {
+            if (isThreeLevel(category)) {
+                return contentData[category]?.[subCategory]?.[detail];
+            }
+            return contentData[category]?.[subCategory];
+        }
+
+        // --- 5. 렌더링 함수 ---
+        function renderCategoryButtons() {
+            categoryButtonsEl.innerHTML = '';
+            Object.keys(contentData).forEach(category => {
+                const style = categoryStyleMap[category];
+                const button = document.createElement('button');
+                button.innerHTML = `<span class="mr-1">${style.emoji}</span> ${category}`;
+                const colorClasses = category === activeCategory ? style.active : style.inactive;
+                button.className = `${baseCategoryClasses} ${colorClasses} ${category === activeCategory ? 'transform scale-105' : ''}`;
+                button.setAttribute('data-category', category);
+                button.addEventListener('click', () => handleCategoryClick(category));
+                categoryButtonsEl.appendChild(button);
+            });
+        }
+
+        function renderIntermediateButtons() {
+            intermediateButtonsEl.innerHTML = '';
+            const intermediateItems = contentData[activeCategory];
+            activeCategoryNameIntermediateEl.textContent = activeCategory;
+            
+            // Set intermediate section title dynamically
+            var intermediateTitle = 'Version'; 
+            if (activeCategory === 'Halloween') {
+                intermediateTitle = 'Park';
+            }
+            document.getElementById('intermediate-section-title').textContent = intermediateTitle;
+
+
+            if (!activeSubCategory || !intermediateItems[activeSubCategory]) {
+                activeSubCategory = Object.keys(intermediateItems)[0];
+            }
+            
+            Object.keys(intermediateItems).forEach(subCategory => {
+                const button = document.createElement('button');
+                let displayName = subCategory;
+
+                button.innerHTML = getParkDisplayName(displayName); 
+                const isActive = subCategory === activeSubCategory;
+                button.className = baseIntermediateClasses + (isActive ? ' ' + activeIntermediateClasses : ' ' + inactiveIntermediateClasses);
+                button.setAttribute('data-sub-category', subCategory);
+                button.addEventListener('click', () => handleSubCategoryClick(subCategory));
+                intermediateButtonsEl.appendChild(button);
+            });
+
+            // Toggle Diffs Tables
+            var isEveryday = activeCategory === 'Everyday';
+            var isChristmas = activeCategory === 'Christmas';
+            var isCruise = activeCategory === 'Cruise';
+            
+            everydayVersionDiffsEl.classList.toggle('diffs-hidden', !isEveryday);
+            christmasVersionDiffsEl.classList.toggle('diffs-hidden', !isChristmas);
+            cruiseVersionDiffsEl.classList.toggle('diffs-hidden', !isCruise);
+
+            everydayVersionDiffsEl.classList.toggle('diffs-visible', isEveryday);
+            christmasVersionDiffsEl.classList.toggle('diffs-visible', isChristmas);
+            cruiseVersionDiffsEl.classList.toggle('diffs-visible', isCruise);
+
+            // Decision to Render Park Buttons or Update Display directly
+            if (isThreeLevel(activeCategory)) {
+                parkSectionEl.classList.remove('hidden');
+                renderParkButtons();
+            } else {
+                parkSectionEl.classList.add('hidden');
+                const itemData = contentData[activeCategory][activeSubCategory];
+                updateDisplaysDirect(itemData);
+            }
+        }
+
+        function renderParkButtons() {
+            detailButtonsEl.innerHTML = '';
+            activeDetail = null; 
+            
+            const detailItems = contentData[activeCategory][activeSubCategory];
+            const keys = Object.keys(detailItems);
+            
+            if (keys.length > 0) {
+                activeDetail = keys[0];
+            }
+            
+            parkSectionTitleEl.textContent = `Park`; 
+            activeCategoryNameEl.classList.add('text-primary');
+            activeCategoryNameEl.textContent = activeCategory + (activeSubCategory ? ` - ${activeSubCategory}` : '');
+
+            keys.forEach(detail => {
+                const button = document.createElement('button');
+                button.innerHTML = getParkDisplayName(detail); 
+                
+                const isActive = detail === activeDetail;
+                button.className = baseDetailClasses + (isActive ? ' ' + activeDetailClasses : ' ' + inactiveDetailClasses);
+                button.setAttribute('data-detail', detail);
+                button.addEventListener('click', () => handleDetailClick(detail));
+                detailButtonsEl.appendChild(button);
+            });
+
+            const itemData = detailItems[activeDetail];
+            updateDisplaysDirect(itemData);
+        }
+
+        function updateDisplaysDirect(itemData) {
+            const content = itemData ? itemData.description : "(선택된 콘텐츠의 상세 설명이 여기에 표시됩니다.)";
+            const youtubeLink = itemData ? itemData.youtubeLink : null;
+            const youtubeId = extractYoutubeId(youtubeLink);
+
+            headerTitleEl.textContent = globalConfig.title;
+            headerDescriptionEl.textContent = globalConfig.description;
+
+            descriptionDisplayEl.innerHTML = content;
+            
+            if (youtubeId) {
+                // *** iFrame 임베딩으로 복구 (이전 버전의 요청) ***
+                const iframeHtml = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/${youtubeId}?autoplay=0&rel=0" 
+                        title="YouTube video player"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        class="w-full h-full rounded-lg"
+                    ></iframe>
+                `;
+                youtubeVideoSectionEl.innerHTML = iframeHtml;
+                youtubeVideoSectionEl.classList.remove('bg-gray-900', 'flex', 'items-center', 'justify-center', 'text-white');
+            } else {
+                youtubeVideoSectionEl.innerHTML = `<p>선택된 항목에 해당하는 YouTube 영상이 여기에 표시됩니다. 유효한 YouTube 링크가 필요합니다.</p>`;
+                youtubeVideoSectionEl.classList.add('bg-gray-900', 'flex', 'items-center', 'justify-center', 'text-white');
+            }
+        }
+
+        function handleCategoryClick(category) {
+            if (activeCategory === category) return;
+            activeCategory = category;
+            activeSubCategory = null; 
+            intermediateSectionEl.classList.remove('hidden');
+            renderIntermediateButtons();
+        }
+
+        function handleSubCategoryClick(subCategory) {
+            if (activeSubCategory === subCategory) return;
+            activeSubCategory = subCategory;
+
+            Array.from(intermediateButtonsEl.children).forEach(button => {
+                const isSelected = button.getAttribute('data-sub-category') === subCategory;
+                if (isSelected) {
+                    button.className = baseIntermediateClasses + ' ' + activeIntermediateClasses;
+                } else {
+                    button.className = baseIntermediateClasses + ' ' + inactiveIntermediateClasses;
+                }
+            });
+
+            if (isThreeLevel(activeCategory)) {
+                renderParkButtons();
+            } else {
+                const itemData = contentData[activeCategory][activeSubCategory];
+                updateDisplaysDirect(itemData);
+            }
+        }
+
+        function handleDetailClick(detail) {
+            if (activeDetail === detail) return;
+            activeDetail = detail;
+
+            Array.from(detailButtonsEl.children).forEach(button => {
+                const isSelected = button.getAttribute('data-detail') === detail;
+                if (isSelected) {
+                    button.className = baseDetailClasses + ' ' + activeDetailClasses;
+                } else {
+                    button.className = baseDetailClasses + ' ' + inactiveDetailClasses;
+                }
+            });
+            
+            const itemData = contentData[activeCategory][activeSubCategory][activeDetail];
+            updateDisplaysDirect(itemData);
+        }
+
+        window.onload = function() {
+            // DOM 요소 할당
+            categoryButtonsEl = document.getElementById('category-buttons');
+            intermediateSectionEl = document.getElementById('intermediate-section');
+            intermediateButtonsEl = document.getElementById('intermediate-buttons');
+            parkSectionEl = document.getElementById('park-section');
+            detailButtonsEl = document.getElementById('detail-buttons');
+            descriptionDisplayEl = document.getElementById('description-display');
+            youtubeVideoSectionEl = document.getElementById('youtube-video-section');
+            activeCategoryNameEl = document.getElementById('active-category-name');
+            activeCategoryNameIntermediateEl = document.getElementById('active-category-name-intermediate');
+            headerTitleEl = document.getElementById('header-title');
+            headerDescriptionEl = document.getElementById('header-description');
+            everydayVersionDiffsEl = document.getElementById('everyday-version-diffs');
+            christmasVersionDiffsEl = document.getElementById('christmas-version-diffs');
+            parkSectionTitleEl = document.getElementById('park-section-title');
+            cruiseVersionDiffsEl = document.getElementById('cruise-version-diffs');
+
+            // 초기 렌더링
+            renderCategoryButtons();
+            intermediateSectionEl.classList.remove('hidden');
+            renderIntermediateButtons();
+        };
+    </script>
+</body>
+</html>
