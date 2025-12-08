@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Guide & Temporary Ordering Method</title>
+    <!-- Tailwind CSS CDN 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 기본 폰트 설정 및 스크롤바 숨기기 (깔끔한 UI를 위해) */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #1f2937; /* Dark Gray */
+        }
+        .container {
+            transition: all 0.3s ease;
+        }
+        .button-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .button-link:hover {
+            transform: translateY(-2px);
+            /* 버튼 색상에 맞춰 쉐도우 색상 변경 */
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+    </style>
+</head>
+<!-- min-h-screen과 items-center를 사용하여 콘텐츠를 세로 중앙에 배치 (모바일 친화적) -->
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-8">
+
+    <div class="container max-w-4xl w-full mx-auto">
+        <!-- 안내 카드 시작 -->
+        <div class="bg-white shadow-2xl rounded-3xl p-6 sm:p-10 lg:p-16 border border-red-200">
+            <!-- Header and Icon (Changed to Alert/Warning Tone) -->
+            <div class="text-center mb-10">
+                <!-- Warning Icon (Exclamation Triangle) -->
+                <svg class="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-red-700 leading-tight">
+                    Payment Guide
+                </h1>
+                <!-- ConnectingWarmHearts를 한 줄 아래, 글씨 크기를 text-2xl로 줄여 배치 -->
+                <p class="text-2xl font-bold text-red-600 mt-1">
+                    (ConnectingWarmHearts)
+                </p>
+                <p class="text-lg text-gray-500 mt-2">
+                    Important Notice Regarding Etsy Payment Issue
+                </p>
+            </div>
+
+            <!-- Link Button Section (MOVED UP: Placed here, before the main notice) -->
+            <div class="text-center pt-5 mb-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">
+                    Please choose your preferred payment method to proceed with your order.
+                </h3>
+                <!-- flex-col (모바일에서 세로 정렬) 및 w-full로 모바일 최적화 유지 -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    
+                    <!-- Button 1: Shopify Link (Green) -->
+                    <button id="shopifyButton"
+                            class="button-link w-full sm:w-auto px-8 py-3 bg-green-600 text-white font-bold rounded-full shadow-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transform hover:scale-105">
+                        ✅ Visit Shopify
+                    </button>
+
+                    <!-- Button 2: PayPal Payment (USD) (Indigo) -> 수정됨: with PayPal 문구 제거 -->
+                    <button id="paypalUsdButton"
+                            class="button-link w-full sm:w-auto px-8 py-3 bg-indigo-600 text-white font-bold rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transform hover:scale-105">
+                        $ Pay (USD)
+                    </button>
+
+                    <!-- Button 3: PayPal Payment (GBP) (Indigo) -> 수정됨: with PayPal 문구 제거 -->
+                    <button id="paypalGbpButton"
+                            class="button-link w-full sm:w-auto px-8 py-3 bg-indigo-600 text-white font-bold rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transform hover:scale-105">
+                        £ Pay (GBP)
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">If you have any questions, feel free to message me anytime here on Etsy. Thank absolutely much!</p>
+            </div>
+            <!-- End of Link Button Section -->
+
+            <!-- Main Guidance Message Section (Etsy Shop Temporarily Paused) -->
+            <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500 mb-8">
+                <h2 class="text-2xl font-bold text-red-700 mb-3">
+                    [URGENT] Etsy Shop Temporarily Paused & Alternative Ordering
+                </h2>
+                <p class="text-gray-700 leading-relaxed">
+                    Hi, This is Moon from ConnectingWarmHearts 😊
+                </p>
+                <p class="text-gray-700 leading-relaxed mt-3">
+                    Due to an issue with the third-party platform that processes payments for Etsy, my shop has been automatically and temporarily paused by the system. I did not turn on Vacation Mode myself — Etsy forced it due to their payment vendor issue.
+                </p>
+                <p class="text-gray-800 font-semibold mt-4">
+                    📢 Important: Video creation and delivery are still fully available.
+                </p>
+                <p class="text-gray-700 leading-relaxed mt-3">
+                    Even though payments cannot be made on Etsy at the moment, you can place your order through my Shopify website or the payment links **above**.
+                </p>
+                <p class="text-sm text-gray-600 italic mt-4">
+                    If placing an order on Shopify feels difficult, please try using the second payment option. You can complete the purchase even without a PayPal account by selecting the <strong class="text-red-500">“Debit or Credit Card”</strong> button.
+                </p>
+            </div>
+
+
+            <!-- Personalization Details Section -->
+            <div class="bg-yellow-50 p-6 rounded-xl border-l-4 border-yellow-500 mb-10">
+                <h3 class="text-xl font-bold text-yellow-700 mb-3">
+                    Personalization Details Submission Guide
+                </h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                    <li><strong>On Shopify:</strong> Please enter your information in the personalization boxes.</li>
+                    <li><strong>On the PayPal payment page:</strong> Please write it in the large blank field.</li>
+                    <li><strong>Alternatively:</strong> You may simply send your details here via Etsy message.</li>
+                </ul>
+            </div>
+            <!-- End of Personalization Details Section -->
+
+            <!-- Footer -->
+            <div class="mt-12 pt-6 border-t border-gray-200 text-center text-sm text-gray-500">
+                <p>&copy; 2025 ConnectingWarmHearts. All Rights Reserved.</p>
+            </div>
+        </div>
+        <!-- 안내 카드 끝 -->
+    </div>
+
+    <!-- JavaScript to handle button clicks and links -->
+    <script>
+        // This function handles the redirection to the actual link in a NEW TAB.
+        function redirectTo(url) {
+            console.log("Button clicked, opening URL in new tab: " + url);
+            window.open(url, '_blank');
+        }
+
+        document.getElementById('shopifyButton').addEventListener('click', function() {
+            // Shopify link
+            redirectTo('https://www.connectingwarmhearts.com');
+        });
+
+        document.getElementById('paypalUsdButton').addEventListener('click', function() {
+            // Payment link (USD)
+            redirectTo('https://www.paypal.com/ncp/payment/H4448NWFLDVCL');
+        });
+
+        document.getElementById('paypalGbpButton').addEventListener('click', function() {
+            // Payment link (GBP)
+            redirectTo('https://www.paypal.com/ncp/payment/UXAB8GC3RRCDC');
+        });
+    </script>
+</body>
+</html>
