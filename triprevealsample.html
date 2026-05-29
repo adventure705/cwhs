@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sample Video Preview Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:#efebe2;
+      --blue:#1612d3;
+      --ink:#151515;
+      --muted:#68645f;
+      --card:#fffdf8;
+      --line:rgba(22,18,211,.14);
+      --shadow:0 18px 45px rgba(22,18,211,.12);
+      --radius:26px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font-family:Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:radial-gradient(circle at top left, #fff9ea 0, var(--cream) 34%, #f8f3ea 100%);
+      color:var(--ink);
+    }
+    .wrap { width:min(1180px, calc(100% - 32px)); margin:0 auto; }
+    header { padding:44px 0 24px; }
+    .hero {
+      background:linear-gradient(135deg, #1612d3 0%, #2520ee 58%, #443ff8 100%);
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:32px;
+      padding:34px;
+      box-shadow:0 22px 54px rgba(22,18,211,.28);
+      color:#fff;
+    }
+    .eyebrow { color:rgba(255,255,255,.78); font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { margin:8px 0 10px; font-size:clamp(30px, 5vw, 58px); line-height:1.02; letter-spacing:-.04em; }
+    .hero h1 {
+      color:#fff;
+      text-shadow:0 3px 14px rgba(0,0,0,.22);
+    }
+    .hero p { margin:0; color:rgba(255,255,255,.86); font-size:16px; line-height:1.75; max-width:760px; }
+    .hero-note {
+      margin-top:20px;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:20px;
+      padding:18px 20px;
+      color:#26235f;
+      font-size:14px;
+      line-height:1.7;
+      box-shadow:0 14px 32px rgba(0,0,0,.12);
+    }
+    .inline-chat { color:var(--blue); text-decoration:underline; text-underline-offset:3px; font-weight:800; }
+    .chat-link {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:12px;
+      background:var(--blue);
+      color:#fff;
+      text-decoration:none;
+      border-radius:999px;
+      padding:11px 16px;
+      font-weight:800;
+      font-size:13px;
+      box-shadow:0 10px 24px rgba(22,18,211,.18);
+    }
+
+    .hero-actions {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:14px;
+    }
+    .hero-actions .chat-link,
+    .hero-actions .order-link { margin-top:0; }
+    .order-link {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      background:linear-gradient(135deg, #ff3b30 0%, #e11d48 52%, #b91c1c 100%);
+      color:#fff;
+      text-decoration:none;
+      border-radius:999px;
+      padding:12px 19px;
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.02em;
+      box-shadow:0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      animation:orderPulse 1.8s ease-in-out infinite;
+    }
+    .order-link:hover {
+      transform:translateY(-2px) scale(1.03);
+      box-shadow:0 16px 34px rgba(225,29,72,.48), 0 0 0 5px rgba(255,255,255,.28);
+      filter:saturate(1.08);
+    }
+    @keyframes orderPulse {
+      0%, 100% { box-shadow:0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22); }
+      50% { box-shadow:0 16px 36px rgba(225,29,72,.54), 0 0 0 7px rgba(255,255,255,.18); }
+    }
+    .filters {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:24px 0 10px;
+    }
+    .filter-btn {
+      border:1px solid rgba(22,18,211,.18);
+      background:rgba(255,255,255,.72);
+      color:var(--blue);
+      border-radius:999px;
+      padding:11px 17px;
+      font:700 13px/1 Poppins, sans-serif;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .filter-btn:hover, .filter-btn.active { background:var(--blue); color:#fff; transform:translateY(-1px); }
+    .filter-btn[data-cat="Christmas"] { color:#c82121; border-color:rgba(200,33,33,.28); }
+    .filter-btn[data-cat="Christmas"]:hover, .filter-btn[data-cat="Christmas"].active { background:#c82121; color:#fff; }
+    .filter-btn[data-cat="Halloween"] { color:#e87918; border-color:rgba(232,121,24,.32); }
+    .filter-btn[data-cat="Halloween"]:hover, .filter-btn[data-cat="Halloween"].active { background:#e87918; color:#fff; }
+    .category-info {
+      display:none;
+      margin:10px 0 8px;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(22,18,211,.12);
+      border-radius:22px;
+      padding:18px 20px;
+      box-shadow:0 10px 28px rgba(26,24,18,.07);
+    }
+    .category-info.show { display:block; }
+    .category-info h2 { margin:0 0 6px; font-size:18px; letter-spacing:-.02em; }
+    .category-info ul { margin:10px 0 0; padding-left:20px; color:var(--muted); font-size:14px; line-height:1.72; }
+    .category-info li { margin:5px 0; }
+    .category-info strong,
+    .category-info .em {
+      font-weight:800;
+      color:var(--blue);
+    }
+    .category-info.christmas { border-color:rgba(200,33,33,.22); }
+    .category-info.christmas h2,
+    .category-info.christmas strong,
+    .category-info.christmas .em { color:#c82121; }
+    .category-info.halloween { border-color:rgba(232,121,24,.25); }
+    .category-info.halloween h2,
+    .category-info.halloween strong,
+    .category-info.halloween .em { color:#e87918; }
+    .category-info.cruise strong,
+    .category-info.cruise .em { color:#1612d3; }
+    .category-info.universal strong,
+    .category-info.universal .em { color:#6f3ff5; }
+    .category-info.special strong,
+    .category-info.special .em { color:#0f7b5f; }
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:20px;
+      padding:22px 0 60px;
+    }
+    .card {
+      background:var(--card);
+      border:1px solid rgba(22,18,211,.12);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 12px 32px rgba(26,24,18,.08);
+      transition:.2s ease;
+    }
+    .card:hover { transform:translateY(-3px); box-shadow:0 18px 42px rgba(22,18,211,.14); }
+    .thumb {
+      position:relative;
+      aspect-ratio:4/3;
+      background:linear-gradient(135deg, #f6d9c8, #d9e6ff 48%, #fbf2c7);
+      overflow:hidden;
+      display:block;
+      text-decoration:none;
+      color:inherit;
+    }
+    .thumb-bg {
+      position:absolute;
+      inset:-14px;
+      background-size:cover;
+      background-position:center 35%;
+      filter:blur(14px);
+      transform:scale(1.08);
+      opacity:.46;
+    }
+    .thumb-main {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center center;
+      display:block;
+      padding:8px;
+      z-index:2;
+    }
+    .thumb::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:3;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.18) 100%);
+      pointer-events:none;
+    }
+    .placeholder {
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      padding:20px;
+      text-align:center;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(255,255,255,.78), transparent 22%),
+        radial-gradient(circle at 82% 22%, rgba(255,255,255,.62), transparent 18%),
+        linear-gradient(135deg, #f7d7c4, #dce9ff 50%, #fff0bc);
+    }
+    .placeholder::before {
+      content:"";
+      position:absolute; left:50%; top:18%; transform:translateX(-50%);
+      width:42%; height:52%;
+      background:rgba(255,255,255,.38);
+      clip-path:polygon(10% 100%, 20% 42%, 34% 42%, 43% 14%, 50% 42%, 65% 42%, 76% 0, 84% 42%, 92% 42%, 100% 100%);
+      filter:drop-shadow(0 12px 18px rgba(22,18,211,.14));
+    }
+    .placeholder span {
+      position:relative; z-index:1;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:12px 16px;
+      border-radius:999px;
+      background:rgba(255,255,255,.84);
+      color:var(--blue);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.02em;
+      box-shadow:0 8px 22px rgba(0,0,0,.08);
+    }
+
+    .bestseller-badge {
+      position:absolute;
+      top:14px;
+      left:14px;
+      z-index:7;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background:linear-gradient(135deg, #ffdf6e 0%, #ffb21f 100%);
+      color:#2d1b00;
+      border:2px solid rgba(255,255,255,.92);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+    }
+    .park-badge {
+      position:absolute;
+      left:14px;
+      bottom:14px;
+      z-index:6;
+      max-width:calc(100% - 28px);
+      background:rgba(22,18,211,.96);
+      color:#fff;
+      border:2px solid rgba(255,255,255,.9);
+      border-radius:999px;
+      padding:9px 15px;
+      font-size:14px;
+      font-weight:900;
+      line-height:1.2;
+      letter-spacing:-.01em;
+      text-shadow:0 2px 3px rgba(0,0,0,.45);
+      box-shadow:0 10px 24px rgba(0,0,0,.26);
+    }
+    .play {
+      position:absolute; right:14px; bottom:14px; z-index:6;
+      width:44px; height:44px; border-radius:50%;
+      background:#fff; color:var(--blue); display:grid; place-items:center;
+      box-shadow:0 10px 20px rgba(0,0,0,.18);
+      font-size:18px; font-weight:800;
+    }
+    .body { padding:18px 18px 20px; }
+    .tag { color:var(--blue); font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+    .tag.christmas { color:#c82121; }
+    .tag.halloween { color:#e87918; }
+    h2 { margin:6px 0 7px; font-size:20px; line-height:1.2; letter-spacing:-.02em; }
+    .meta { color:var(--muted); font-size:13px; font-weight:600; }
+    .watch {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:15px;
+      width:100%;
+      border-radius:16px;
+      background:var(--blue);
+      color:#fff;
+      text-decoration:none;
+      padding:13px 14px;
+      font-weight:800;
+      font-size:14px;
+    }
+    .hide { display:none !important; }
+    .top {
+      position:fixed; right:18px; bottom:18px; z-index:20;
+      width:46px; height:46px; border-radius:50%;
+      border:none; background:var(--blue); color:white;
+      box-shadow:0 12px 26px rgba(22,18,211,.26);
+      font-size:20px; cursor:pointer;
+    }
+    footer { text-align:center; padding:0 0 34px; color:var(--blue); font-size:13px; font-weight:800; letter-spacing:.02em; }
+    @media (max-width:940px) { .grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+    @media (max-width:640px) {
+      .wrap { width:min(100% - 22px, 1180px); }
+      header { padding-top:20px; }
+      .hero { padding:24px 20px; border-radius:24px; }
+      .grid { grid-template-columns:1fr; gap:16px; }
+  
+    .hero-actions {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:14px;
+    }
+    .hero-actions .chat-link,
+    .hero-actions .order-link { margin-top:0; }
+    .order-link {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      background:linear-gradient(135deg, #ff3b30 0%, #e11d48 52%, #b91c1c 100%);
+      color:#fff;
+      text-decoration:none;
+      border-radius:999px;
+      padding:12px 19px;
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.02em;
+      box-shadow:0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      animation:orderPulse 1.8s ease-in-out infinite;
+    }
+    .order-link:hover {
+      transform:translateY(-2px) scale(1.03);
+      box-shadow:0 16px 34px rgba(225,29,72,.48), 0 0 0 5px rgba(255,255,255,.28);
+      filter:saturate(1.08);
+    }
+    @keyframes orderPulse {
+      0%, 100% { box-shadow:0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22); }
+      50% { box-shadow:0 16px 36px rgba(225,29,72,.54), 0 0 0 7px rgba(255,255,255,.18); }
+    }
+    .filters { gap:8px; }
+      .filter-btn { flex:1 1 auto; padding:12px 12px; }
+  
+    .bestseller-badge {
+      position:absolute;
+      top:14px;
+      left:14px;
+      z-index:7;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background:linear-gradient(135deg, #ffdf6e 0%, #ffb21f 100%);
+      color:#2d1b00;
+      border:2px solid rgba(255,255,255,.92);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+    }
+    .park-badge { font-size:12px; padding:7px 11px; }
+    }
+  
+
+    /* Bestseller updates */
+    .filter-btn[data-cat="Bestseller"] {
+      color:#9a5b00;
+      border-color:rgba(255,178,31,.55);
+      background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,244,203,.98));
+      box-shadow:0 8px 20px rgba(255,178,31,.16);
+    }
+    .filter-btn[data-cat="Bestseller"]:hover,
+    .filter-btn[data-cat="Bestseller"].active {
+      background:linear-gradient(135deg, #ffe680 0%, #ffb21f 52%, #ff8f1f 100%);
+      color:#2d1b00;
+      border-color:rgba(255,255,255,.75);
+      box-shadow:0 12px 26px rgba(255,143,31,.34);
+    }
+    .category-info.bestseller {
+      border-color:rgba(255,178,31,.38);
+      background:linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,247,218,.94));
+    }
+    .category-info.bestseller h2,
+    .category-info.bestseller strong,
+    .category-info.bestseller .em { color:#b86a00; }
+    .bestseller-badge {
+      top:12px !important;
+      left:12px !important;
+      gap:7px !important;
+      background:linear-gradient(135deg, #fff5b8 0%, #ffd34d 34%, #ff9f1c 72%, #ff7a00 100%) !important;
+      color:#251400 !important;
+      border:2.5px solid rgba(255,255,255,.96) !important;
+      border-radius:999px !important;
+      padding:10px 15px !important;
+      font-size:13px !important;
+      font-weight:900 !important;
+      letter-spacing:.075em !important;
+      text-transform:uppercase !important;
+      box-shadow:0 12px 28px rgba(255,130,0,.42), 0 0 0 4px rgba(255,222,105,.22) !important;
+      transform:rotate(-2deg);
+    }
+    .bestseller-badge .badge-star {
+      display:inline-grid;
+      place-items:center;
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      background:#fff8d7;
+      color:#ff8a00;
+      font-size:14px;
+      line-height:1;
+      box-shadow:inset 0 0 0 1px rgba(255,154,0,.25);
+    }
+    @media (max-width:640px) {
+      .bestseller-badge { font-size:12px !important; padding:9px 13px !important; }
+      .bestseller-badge .badge-star { width:18px; height:18px; font-size:13px; }
+    }
+
+
+    /* Clean bestseller badge override */
+    .bestseller-badge {
+      position:absolute !important;
+      top:12px !important;
+      left:12px !important;
+      z-index:7 !important;
+      display:inline-flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      gap:0 !important;
+      min-height:32px !important;
+      padding:9px 15px !important;
+      border-radius:999px !important;
+      background:linear-gradient(135deg, #ffe7a3 0%, #ffc247 52%, #f59e0b 100%) !important;
+      color:#281400 !important;
+      border:1px solid rgba(255,255,255,.72) !important;
+      font-weight:900 !important;
+      font-size:13px !important;
+      line-height:1 !important;
+      letter-spacing:.08em !important;
+      text-transform:uppercase !important;
+      box-shadow:0 10px 22px rgba(245,158,11,.32) !important;
+      transform:none !important;
+    }
+    .bestseller-badge::before,
+    .bestseller-badge::after,
+    .bestseller-badge .badge-star {
+      content:none !important;
+      display:none !important;
+    }
+    @media (max-width:640px) {
+      .bestseller-badge {
+        font-size:12px !important;
+        padding:8px 13px !important;
+        transform:none !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Sample Video Preview</div>
+      <h1>Choose your favorite reveal style.</h1>
+      <p>Browse the sample videos by theme and destination. Tap any card to preview the video.</p>
+      <div class="hero-note">
+        The sample videos below are representative examples only. There are many more video styles available beyond the samples shown here, so please chat with us through <a class="inline-chat" href="https://6e2n0.channel.io" target="_blank" rel="noopener"><strong>Chat with Us</strong></a> if you have any questions or would like to ask about another style.
+        <div class="hero-actions">
+          <a class="chat-link" href="https://6e2n0.channel.io" target="_blank" rel="noopener">Chat with Us →</a>
+          <a class="order-link" href="https://shop.beacons.ai/connectingwarmhearts/d16c1c70-501e-4565-899a-814f09a50bec" target="_blank" rel="noopener">Start Your Order →</a>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class="wrap">
+    <nav class="filters" id="filters"></nav>
+    <section class="category-info" id="categoryInfo" aria-live="polite"></section>
+    <section class="grid" id="gallery"></section>
+  </main>
+
+  <button class="top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">↑</button>
+  <footer>connectingwarmhearts</footer>
+
+  <script>
+    // EDIT HERE: Paste each thumbnail image address into thumbnailUrl.
+    // Example: thumbnailUrl: "https://example.com/my-thumbnail.jpg"
+    // Updated: Christmas Cruise I/J are assigned to both Christmas and Cruise filters.
+    const videos = [
+  {
+    "id": "type-a-disney-world-orlando-florida",
+    "bestseller": true,
+    "category": "Classic",
+    "title": "Type A",
+    "park": "Disney World Orlando Florida",
+    "videoUrl": "https://youtu.be/pXMnyfMysCg",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/mvta2xi60h388qmwoly01/Everyday1.jpeg?rlkey=tf39a1oxtnz6n063il43523e3&st=7210xux1&raw=1",
+    "thumbnailAlt": "Type A sample video thumbnail for Disney World Orlando Florida"
+  },
+  {
+    "id": "type-a-disneyland-paris",
+    "category": "Classic",
+    "title": "Type A",
+    "park": "Disneyland Paris",
+    "videoUrl": "https://youtu.be/qg4nwayjAP4",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/mvta2xi60h388qmwoly01/Everyday1.jpeg?rlkey=tf39a1oxtnz6n063il43523e3&st=7210xux1&raw=1",
+    "thumbnailAlt": "Type A sample video thumbnail for Disneyland Paris"
+  },
+  {
+    "id": "type-a-disneyland-california",
+    "category": "Classic",
+    "title": "Type A",
+    "park": "Disneyland California",
+    "videoUrl": "https://youtu.be/Thij8oALoB4",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/mvta2xi60h388qmwoly01/Everyday1.jpeg?rlkey=tf39a1oxtnz6n063il43523e3&st=7210xux1&raw=1",
+    "thumbnailAlt": "Type A sample video thumbnail for Disneyland California"
+  },
+  {
+    "id": "type-b-disney-world-orlando-florida",
+    "bestseller": true,
+    "category": "Classic",
+    "title": "Type B",
+    "park": "Disney World Orlando Florida",
+    "videoUrl": "https://youtu.be/TxKMW-TOaXw",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/dv3wmtkemia0db70c8aeo/everyday-2.jpg?rlkey=1il37ef5d21ozvxz5tq7xa76j&st=ctmt8kkk&raw=1",
+    "thumbnailAlt": "Type B sample video thumbnail for Disney World Orlando Florida"
+  },
+  {
+    "id": "type-b-disneyland-paris",
+    "category": "Classic",
+    "title": "Type B",
+    "park": "Disneyland Paris",
+    "videoUrl": "https://youtu.be/zhaCO8cz0wM",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/dv3wmtkemia0db70c8aeo/everyday-2.jpg?rlkey=1il37ef5d21ozvxz5tq7xa76j&st=ctmt8kkk&raw=1",
+    "thumbnailAlt": "Type B sample video thumbnail for Disneyland Paris"
+  },
+  {
+    "id": "type-b-disneyland-california",
+    "category": "Classic",
+    "title": "Type B",
+    "park": "Disneyland California",
+    "videoUrl": "https://youtu.be/t8kQnvsq8Ak",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/dv3wmtkemia0db70c8aeo/everyday-2.jpg?rlkey=1il37ef5d21ozvxz5tq7xa76j&st=ctmt8kkk&raw=1",
+    "thumbnailAlt": "Type B sample video thumbnail for Disneyland California"
+  },
+  {
+    "id": "type-c-disney-world-orlando-florida",
+    "category": "Classic",
+    "title": "Type C",
+    "park": "Disney World Orlando Florida",
+    "videoUrl": "https://youtu.be/fE1ycWGJb98",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/cy3k8r64oxgxv9scc033j/everyday3.jpg?rlkey=y6hx0au4w133mm0mx0sbd6utq&st=gkxo0p53&raw=1",
+    "thumbnailAlt": "Type C sample video thumbnail for Disney World Orlando Florida"
+  },
+  {
+    "id": "type-c-disneyland-paris",
+    "category": "Classic",
+    "title": "Type C",
+    "park": "Disneyland Paris",
+    "videoUrl": "https://youtu.be/jxXVKdjyyOU",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/cy3k8r64oxgxv9scc033j/everyday3.jpg?rlkey=y6hx0au4w133mm0mx0sbd6utq&st=gkxo0p53&raw=1",
+    "thumbnailAlt": "Type C sample video thumbnail for Disneyland Paris"
+  },
+  {
+    "id": "type-c-disneyland-california",
+    "category": "Classic",
+    "title": "Type C",
+    "park": "Disneyland California",
+    "videoUrl": "https://youtu.be/j07wlDn3Dxc",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/cy3k8r64oxgxv9scc033j/everyday3.jpg?rlkey=y6hx0au4w133mm0mx0sbd6utq&st=gkxo0p53&raw=1",
+    "thumbnailAlt": "Type C sample video thumbnail for Disneyland California"
+  },
+  {
+    "id": "christmas-type-c-disney-world-orlando-florida",
+    "bestseller": true,
+    "category": "Christmas",
+    "title": "Christmas Type C",
+    "park": "Disney World Orlando Florida",
+    "videoUrl": "https://youtu.be/ElY5rRpHIVI",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/xg2v2d55eg621zsju3zgk/Christmas1.jpg?rlkey=mn01ylfs9ryjdeh4qbyrqre15&st=nl8ozf3x&raw=1",
+    "thumbnailAlt": "Christmas Type C sample video thumbnail for Disney World Orlando Florida"
+  },
+  {
+    "id": "christmas-type-c-disneyland-paris",
+    "category": "Christmas",
+    "title": "Christmas Type C",
+    "park": "Disneyland Paris",
+    "videoUrl": "https://youtu.be/07TRTFFJY9E",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/xg2v2d55eg621zsju3zgk/Christmas1.jpg?rlkey=mn01ylfs9ryjdeh4qbyrqre15&st=nl8ozf3x&raw=1",
+    "thumbnailAlt": "Christmas Type C sample video thumbnail for Disneyland Paris"
+  },
+  {
+    "id": "christmas-type-c-disneyland-california",
+    "category": "Christmas",
+    "title": "Christmas Type C",
+    "park": "Disneyland California",
+    "videoUrl": "https://youtu.be/mgaxVEFsnxk",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/xg2v2d55eg621zsju3zgk/Christmas1.jpg?rlkey=mn01ylfs9ryjdeh4qbyrqre15&st=nl8ozf3x&raw=1",
+    "thumbnailAlt": "Christmas Type C sample video thumbnail for Disneyland California"
+  },
+  {
+    "id": "christmas-type-d-disney-world-orlando-florida",
+    "category": "Christmas",
+    "title": "Christmas Type D",
+    "park": "Disney World Orlando Florida",
+    "videoUrl": "https://youtu.be/EUq6SOD3MK0",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/xg2v2d55eg621zsju3zgk/Christmas1.jpg?rlkey=mn01ylfs9ryjdeh4qbyrqre15&st=nl8ozf3x&raw=1",
+    "thumbnailAlt": "Christmas Type D sample video thumbnail for Disney World Orlando Florida"
+  },
+  {
+    "id": "christmas-type-e-disney-world-orlando-florida",
+    "category": "Christmas",
+    "title": "Christmas Type E",
+    "park": "Disney World Orlando Florida",
+    "videoUrl": "https://youtu.be/qo_WDGrVHdM",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/7tvqolcsf0mm3vflwtwgq/Christmas2.jpg?rlkey=mviut8mhy5dq26lfgw86irsm6&st=feomrgkg&raw=1",
+    "thumbnailAlt": "Christmas Type E sample video thumbnail for Disney World Orlando Florida"
+  },
+
+  {
+    "id": "christmas-cruise-i-disney-cruise",
+    "bestseller": true,
+    "category": "Christmas",
+    "categories": ["Christmas", "Cruise"],
+    "title": "Christmas Cruise I",
+    "park": "Disney Cruise",
+    "videoUrl": "https://youtu.be/B1sqnlnbgrc",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/8itxfz7mausddgaznd2la/Christmas-Cruise.png?rlkey=q7jg5r9wlo8xvn08ul5mkaqx9&st=g0cpg252&raw=1",
+    "thumbnailAlt": "Christmas Cruise I sample video thumbnail for Disney Cruise"
+  },
+  {
+    "id": "christmas-cruise-j-disney-cruise",
+    "category": "Christmas",
+    "categories": ["Christmas", "Cruise"],
+    "title": "Christmas Cruise J",
+    "park": "Disney Cruise",
+    "videoUrl": "https://youtu.be/KtWx3Shmb3k",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/8itxfz7mausddgaznd2la/Christmas-Cruise.png?rlkey=q7jg5r9wlo8xvn08ul5mkaqx9&st=g0cpg252&raw=1",
+    "thumbnailAlt": "Christmas Cruise J sample video thumbnail for Disney Cruise"
+  },
+  {
+    "id": "cruise-type-f-disney-cruise",
+    "bestseller": true,
+    "category": "Cruise",
+    "title": "Cruise Type F",
+    "park": "Disney Cruise",
+    "videoUrl": "https://youtu.be/qtw5sqTuK50",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/fqro1zfz8cyiuegy0f0sv/Cruise.jpg?rlkey=kzb6lpnxku86jz91n3h6iwhz1&st=a1wa43od&raw=1",
+    "thumbnailAlt": "Cruise Type F sample video thumbnail for Disney Cruise"
+  },
+  {
+    "id": "cruise-type-g-disney-cruise",
+    "category": "Cruise",
+    "title": "Cruise Type G",
+    "park": "Disney Cruise",
+    "videoUrl": "https://youtu.be/9yOKxjarpQA",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/fqro1zfz8cyiuegy0f0sv/Cruise.jpg?rlkey=kzb6lpnxku86jz91n3h6iwhz1&st=a1wa43od&raw=1",
+    "thumbnailAlt": "Cruise Type G sample video thumbnail for Disney Cruise"
+  },
+  {
+    "id": "halloween-type-h-disney-world-orlando-florida",
+    "category": "Halloween",
+    "title": "Halloween Type H",
+    "park": "Disney World Orlando Florida",
+    "videoUrl": "https://youtu.be/-nNRE8aZe-k",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/wxskyue2qouk1khqxdz6g/Halloween.jpg?rlkey=0xm7n0kthiftcbr1yag2xd27j&st=3x8uzlgv&raw=1",
+    "thumbnailAlt": "Halloween Type H sample video thumbnail for Disney World Orlando Florida"
+  },
+  {
+    "id": "woody-disney-world-orlando-florida",
+    "category": "Special",
+    "title": "Woody & Buzz",
+    "park": "Disney World Orlando Florida",
+    "videoUrl": "https://youtu.be/GVg_rz5WskQ",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/zeufh707yep0w6zpwfc3c/Woody-Buzz.jpg?rlkey=0rn87iahudwc5alkcugulk2r1&st=20swj91k&raw=1",
+    "thumbnailAlt": "Woody and Buzz sample video thumbnail for Disney World Orlando Florida"
+  },
+  {
+    "id": "spiderman-universal-studio-orlando",
+    "category": "Universal",
+    "title": "Spiderman",
+    "park": "Universal Studio Orlando",
+    "videoUrl": "https://youtu.be/GQ6rMPthRv0",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/nr9c0lq4lhv0p8glbq61x/Spiderman.jpg?rlkey=huovgcq4y70o62a25obqyly9e&st=1q17thpt&raw=1",
+    "thumbnailAlt": "Spiderman sample video thumbnail for Universal Studio Orlando"
+  },
+  {
+    "id": "epic-universe-epic-universe",
+    "category": "Universal",
+    "title": "Epic Universe",
+    "park": "Epic Universe",
+    "videoUrl": "https://youtu.be/zJ0Umc8S4A8",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/udkc7rdt62r0iuujx38oe/Epic-Universe.jpg?rlkey=fv14qjirhxlr957vi1xy15h6g&st=t6f3in2d&raw=1",
+    "thumbnailAlt": "Epic Universe sample video thumbnail for Epic Universe"
+  },
+  {
+    "id": "hawaii-hawaii",
+    "category": "Special",
+    "title": "Hawaii",
+    "park": "Hawaii",
+    "videoUrl": "https://youtu.be/wG9tSj1wCjk",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/zxvu3pokiqnrxgr19u8d5/Hawaii-Mickey-Minnie.jpg?rlkey=u8btz4nbk9gfvoyzu9ca8c5lw&st=mwanzsql&raw=1",
+    "thumbnailAlt": "Hawaii sample video thumbnail for Hawaii"
+  },
+  {
+    "id": "tokyo-tokyo",
+    "category": "Special",
+    "title": "Tokyo",
+    "park": "Tokyo",
+    "videoUrl": "https://youtu.be/LDVHGNFqPik",
+    "thumbnailUrl": "https://www.dropbox.com/scl/fi/ye35a1oven612ao5d759j/Tokyo-Mickey-Minnie.jpg?rlkey=3auehhd247q6t9etnr0p9wef7&st=lqq9vgxf&raw=1",
+    "thumbnailAlt": "Tokyo sample video thumbnail for Tokyo"
+  }
+];
+
+    const categories = ['All', 'Bestseller', ...Array.from(new Set(videos.flatMap(v => v.categories || [v.category]))).filter(cat => cat !== 'Bestseller')];
+    const filters = document.getElementById('filters');
+    const gallery = document.getElementById('gallery');
+    const categoryInfo = document.getElementById('categoryInfo');
+
+    const categoryDetails = {
+      All: {
+        title: 'All Representative Sample Videos',
+        items: [
+          'Videos for parks other than <strong>Disney World</strong> are also available.',
+          '<strong>Mickey-Only</strong> or <strong>Minnie-Only</strong> announcement videos can also be created.',
+          '<strong>Stitch</strong>, <strong>Bluey</strong>, <strong>Elsa</strong>, and more character-inspired styles are also available. Sample videos will be updated soon.',
+          '<strong>Two Or More Parks</strong> can be combined in one video, such as <strong>Disney World + Disney Cruise</strong> or <strong>Disney World + Epic Universe</strong>.'
+        ]
+      },
+      Bestseller: {
+        title: 'Bestseller Sample Videos',
+        items: [
+          'These are the <strong>Most Popular</strong> sample videos that customers often choose first.',
+          'They are great starting points if you are not sure which <strong>Reveal Style</strong> to choose.'
+        ]
+      },
+      Classic: {
+        title: 'Classic Sample Videos',
+        items: [
+          'Difference between <strong>Type A</strong> and <strong>Type B</strong>: <strong>Outfit</strong> and <strong>Script</strong>.',
+          'Difference between <strong>Type A/B</strong> and <strong>Type C</strong>: <strong>Intro Length</strong> and <strong>Park Footage Length</strong>.'
+        ]
+      },
+      Christmas: {
+        title: 'Christmas Sample Videos',
+        items: [
+          'Difference between <strong>Type C</strong> and <strong>Type D</strong>: <strong>Park Footage</strong> — <strong>Christmas Season</strong> vs. <strong>Non-Season</strong> footage.',
+          'Difference between <strong>Type C/D</strong> and <strong>Type E</strong>: <strong>Intro</strong>, <strong>Outfit</strong>, <strong>Script</strong>, and <strong>Outro</strong>.',
+          '<strong>Intro</strong> can be changed to the <strong>Classic Story Intro</strong>.'
+        ]
+      },
+      Cruise: {
+        title: 'Cruise Sample Videos',
+        items: [
+          'Difference between <strong>Type F</strong> and <strong>Type G</strong>: <strong>Background Music</strong> during the <strong>Cruise Footage</strong> section.',
+          'Difference between <strong>Type I</strong> and <strong>Type J</strong>: <strong>Background Music</strong> during the <strong>Cruise Footage</strong> section.',
+          '<strong>Cruise Footage</strong> can be switched between the <strong>Regular Version</strong> and the <strong>Christmas Version</strong>.'
+        ]
+      },
+      Halloween: {
+        title: 'Halloween Sample Videos',
+        items: [
+          '<strong>Mickey-Only</strong> or <strong>Minnie-Only</strong> versions are available.',
+          'The videos below are <strong>Representative Sample Videos</strong>. <strong>Disneyland Paris</strong> and <strong>Disneyland California</strong> versions are also available.'
+        ]
+      },
+      Special: {
+        title: 'Special Sample Videos',
+        items: [
+          '<strong>Disneyland Paris</strong> and <strong>Disneyland California</strong> versions are available.',
+          'For parks not shown below, please chat with us through <a class="inline-chat" href="https://6e2n0.channel.io" target="_blank" rel="noopener"><strong>Chat With Us</strong></a> to check availability.'
+        ]
+      },
+      Universal: {
+        title: 'Universal Sample Videos',
+        items: [
+          'This style can be combined with <strong>Other Parks</strong> in one video.'
+        ]
+      }
+    };
+    let current = 'All';
+
+    function renderFilters() {
+      filters.innerHTML = categories.map(cat => `
+        <button class="filter-btn ${cat === current ? 'active' : ''}" data-cat="${cat}">${cat}</button>
+      `).join('');
+      filters.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          current = btn.dataset.cat;
+          renderFilters();
+          renderGallery();
+        });
+      });
+    }
+
+    function renderCategoryInfo() {
+      const details = categoryDetails[current];
+      if (!details) {
+        categoryInfo.className = 'category-info';
+        categoryInfo.innerHTML = '';
+        return;
+      }
+      const className = current.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      categoryInfo.className = `category-info show ${className}`;
+      const infoItems = (details.items || []).map(item => `<li>${item}</li>`).join('');
+      categoryInfo.innerHTML = `<h2>${details.title}</h2><ul>${infoItems}</ul>`;
+    }
+
+    function escapeAttr(value) {
+      return String(value || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function lazyLoadThumbnails() {
+      const lazyItems = gallery.querySelectorAll('[data-src], [data-bg]');
+
+      if (!('IntersectionObserver' in window)) {
+        lazyItems.forEach(el => {
+          if (el.dataset.src) el.src = el.dataset.src;
+          if (el.dataset.bg) el.style.backgroundImage = `url('${el.dataset.bg}')`;
+        });
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          if (el.dataset.src) {
+            el.src = el.dataset.src;
+            el.removeAttribute('data-src');
+          }
+          if (el.dataset.bg) {
+            el.style.backgroundImage = `url('${el.dataset.bg}')`;
+            el.removeAttribute('data-bg');
+          }
+          obs.unobserve(el);
+        });
+      }, { rootMargin: '250px 0px', threshold: 0.01 });
+
+      lazyItems.forEach(el => observer.observe(el));
+    }
+
+    function renderGallery() {
+      renderCategoryInfo();
+      const list = current === 'All' ? videos : current === 'Bestseller' ? videos.filter(v => v.bestseller) : videos.filter(v => (v.categories || [v.category]).includes(current));
+      gallery.innerHTML = list.map((v, index) => {
+        const shouldLoadNow = index < 6;
+        const thumbUrl = escapeAttr(v.thumbnailUrl);
+        const thumbAlt = escapeAttr(v.thumbnailAlt);
+        const bgAttr = shouldLoadNow ? `style="background-image:url('${thumbUrl}')"` : `data-bg="${thumbUrl}"`;
+        const imgAttr = shouldLoadNow
+          ? `src="${thumbUrl}" loading="eager" fetchpriority="high"`
+          : `data-src="${thumbUrl}" loading="lazy" fetchpriority="low"`;
+        return `
+        <article class="card">
+          <a class="thumb" href="${v.videoUrl}" target="_blank" rel="noopener">
+            ${v.thumbnailUrl
+              ? `<span class="thumb-bg" ${bgAttr}></span><img class="thumb-main" ${imgAttr} decoding="async" alt="${thumbAlt}" onerror="this.remove(); this.parentElement.querySelector('.thumb-bg')?.remove(); this.parentElement.querySelector('.placeholder').classList.remove('hide');">`
+              : ''}
+            <div class="placeholder ${v.thumbnailUrl ? 'hide' : ''}"><span>Paste thumbnail URL</span></div>
+            ${v.bestseller ? '<div class="bestseller-badge">BESTSELLER</div>' : ''}
+            <div class="park-badge">${v.park}</div>
+            <div class="play">▶</div>
+          </a>
+          <div class="body">
+            <div class="tag ${v.category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}">${v.category}</div>
+            <h2>${v.title}</h2>
+            <div class="meta">${v.park}</div>
+            <a class="watch" href="${v.videoUrl}" target="_blank" rel="noopener">Watch Sample</a>
+          </div>
+        </article>
+      `}).join('');
+      lazyLoadThumbnails();
+    }
+
+    renderFilters();
+    renderGallery();
+  </script>
+</body>
+</html>
