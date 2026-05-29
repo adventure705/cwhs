@@ -1,0 +1,171 @@
+<!doctype html>
+<!-- Updated: removed how-to block + footer chat button + editable thumbnail URL fields -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gender Reveal Video Preview | Connecting Warm Hearts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --cream:#efebe2;
+      --ink:#1612d3;
+      --ink-dark:#0f0b99;
+      --soft:#fffaf0;
+      --card:#fffdf8;
+      --line:rgba(22,18,211,.14);
+      --shadow:0 18px 45px rgba(22,18,211,.13);
+      --pink:#ff6fae;
+      --blue:#6f9dff;
+      --gold:#f7bf3f;
+      --mint:#54c6a3;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Poppins,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:#17143a;}
+    a{color:inherit}
+    .page{min-height:100vh;overflow:hidden;position:relative;}
+    .bg-dot{position:absolute;border-radius:999px;filter:blur(1px);opacity:.55;pointer-events:none;}
+    .d1{width:260px;height:260px;background:#fff7cc;top:-70px;right:-80px}.d2{width:210px;height:210px;background:#ffd7e7;top:240px;left:-90px}.d3{width:190px;height:190px;background:#d9e4ff;bottom:90px;right:-70px}
+    .wrap{width:min(1120px,calc(100% - 34px));margin:0 auto;position:relative;z-index:1;}
+    header{padding:36px 0 24px}.brand{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:34px}.logo{font-weight:800;letter-spacing:-.04em;color:var(--ink);font-size:clamp(21px,3vw,32px)}.pill{border:1px solid var(--line);background:rgba(255,255,255,.52);padding:10px 16px;border-radius:999px;color:var(--ink);font-weight:700;font-size:13px;white-space:nowrap;box-shadow:0 10px 22px rgba(255,255,255,.45)}
+    .hero{display:grid;grid-template-columns:1fr;gap:28px;align-items:stretch}.hero-main{background:linear-gradient(135deg,rgba(255,253,248,.96),rgba(255,248,225,.9));border:1px solid var(--line);box-shadow:var(--shadow);border-radius:34px;padding:clamp(26px,5vw,54px);position:relative;overflow:hidden}.hero-main:after{content:"";position:absolute;right:-70px;bottom:-80px;width:230px;height:230px;background:radial-gradient(circle,rgba(255,111,174,.22),transparent 68%);border-radius:50%}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;color:var(--ink);font-weight:800;font-size:13px;padding:9px 14px;margin-bottom:20px}.spark{color:var(--gold)}h1{margin:0;color:var(--ink);font-size:clamp(36px,6.3vw,72px);line-height:.95;letter-spacing:-.065em}h1 span{display:block;color:#17143a}.lead{font-size:clamp(15px,2vw,18px);line-height:1.75;max-width:690px;margin:24px 0 0;color:#3f3a5f}.hero-side{display:grid;gap:16px}.info-card{background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:0 15px 35px rgba(22,18,211,.08)}.info-card strong{display:block;color:var(--ink);font-size:18px;margin-bottom:8px}.info-card p{margin:0;line-height:1.6;color:#4a4566;font-size:14px}.mini-note{margin-top:16px;padding:14px 15px;border-radius:18px;background:#fff;border:1px solid var(--line);color:#4a4566;font-size:13px;line-height:1.6}.mini-note b{color:var(--ink)}.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{border:none;cursor:pointer;text-decoration:none;border-radius:999px;padding:14px 20px;font-weight:800;font-size:14px;display:inline-flex;align-items:center;gap:9px;transition:.22s ease}.btn-primary{background:var(--ink);color:white;box-shadow:0 12px 22px rgba(22,18,211,.25)}.btn-primary:hover{transform:translateY(-2px);background:var(--ink-dark)}.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .toolbar{margin:30px 0 22px;background:rgba(255,255,255,.62);border:1px solid var(--line);border-radius:28px;padding:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:0 12px 28px rgba(22,18,211,.07)}.filters{display:flex;gap:9px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:11px 15px;font-weight:800;font-size:13px;cursor:pointer;transition:.2s}.filter.active,.filter:hover{background:var(--ink);color:#fff}.filter-girl{background:var(--pink);border-color:rgba(255,111,174,.45);color:#fff}.filter-girl.active,.filter-girl:hover{background:#ff4f9c;border-color:rgba(255,111,174,.65);color:#fff}.filter-boy{background:var(--blue);border-color:rgba(111,157,255,.45);color:#fff}.filter-boy.active,.filter-boy:hover{background:#4f82f5;border-color:rgba(111,157,255,.65);color:#fff}.filter-neutral{background:#8b6cff;border-color:rgba(139,108,255,.45);color:#fff}.filter-neutral.active,.filter-neutral:hover{background:#6e4fff;border-color:rgba(139,108,255,.65);color:#fff}.filter-bestseller{background:linear-gradient(135deg,#ffe08a,#ff9f5a);border-color:rgba(255,159,90,.55);color:#17143a}.filter-bestseller.active,.filter-bestseller:hover{background:#17143a;color:#fff;border-color:#17143a}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:22px 0 16px}.section-title h2{font-size:clamp(25px,4vw,42px);line-height:1.05;letter-spacing:-.045em;color:var(--ink);margin:0}.section-title p{margin:0;color:#5e5974;font-size:14px;line-height:1.5;max-width:430px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:70px}.card{background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 14px 32px rgba(22,18,211,.08);transition:.22s ease;display:flex;flex-direction:column}.card:hover{transform:translateY(-4px);box-shadow:0 24px 45px rgba(22,18,211,.14)}.thumb{position:relative;aspect-ratio:16/9;background:#e7e2d9;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:.25s}.card:hover .thumb img{transform:scale(1.07)}.play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,transparent,rgba(15,11,153,.2))}.play span{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.92);color:var(--ink);font-weight:900;box-shadow:0 12px 28px rgba(0,0,0,.15)}.badge-row{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:8px;justify-content:space-between;align-items:flex-start}.badge{border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900;color:#fff;box-shadow:0 8px 18px rgba(0,0,0,.12)}.badge.girl{background:var(--pink)}.badge.boy{background:var(--blue)}.badge.neutral{background:var(--mint)}.badge.bestseller{background:linear-gradient(135deg,#ffe08a,#ff9f5a);color:#17143a;border:1px solid rgba(255,255,255,.85);font-size:13px;padding:8px 12px;letter-spacing:.01em}.body{padding:18px;display:flex;flex-direction:column;gap:14px;flex:1}.body h3{margin:0;color:#17143a;font-size:18px;letter-spacing:-.025em}.body small{display:block;color:#6a657c;font-weight:600}.actions{display:flex;gap:10px;margin-top:auto}.watch{flex:1;justify-content:center;text-align:center;background:var(--ink);color:#fff;border-radius:16px;text-decoration:none;font-weight:900;font-size:13px;padding:12px 13px}.watch.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}.note{margin:0 0 50px;background:#fff;border:1px solid var(--line);border-radius:28px;padding:22px;color:#4e4968;line-height:1.65;text-align:center;box-shadow:0 12px 28px rgba(22,18,211,.07)}.note b{color:var(--ink)}.hero-personalization{margin-top:18px;max-width:560px}.footer-chat{margin-top:-34px;margin-bottom:8px}.footer-chat-card{background:var(--ink);color:#fff;border-radius:28px;padding:26px 28px;box-shadow:0 18px 38px rgba(22,18,211,.22);text-align:center}.footer-chat-card strong{display:block;font-size:22px;margin-bottom:8px}.footer-chat-card p{margin:0;line-height:1.65;color:rgba(255,255,255,.88);font-size:14px}.chat-button{margin-top:16px;background:#fff;color:var(--ink);border-radius:999px;padding:13px 22px;font-weight:900;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 10px 22px rgba(0,0,0,.13);transition:.2s}.chat-button:hover{transform:translateY(-2px);background:#fffaf0}footer{text-align:center;color:var(--ink);font-weight:800;padding:28px 0 42px}.top{position:fixed;right:18px;bottom:18px;width:48px;height:48px;border-radius:50%;background:var(--ink);color:white;display:grid;place-items:center;text-decoration:none;font-weight:900;box-shadow:0 14px 28px rgba(22,18,211,.24);z-index:20}.hidden{display:none!important}
+    @media(max-width:920px){.hero{grid-template-columns:1fr}.hero-side{grid-template-columns:1fr 1fr}.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.wrap{width:min(100% - 24px,1120px)}header{padding-top:22px}.brand{align-items:flex-start;flex-direction:column;margin-bottom:18px}.pill{font-size:12px}.hero-main{border-radius:26px;padding:26px 20px}.hero-side{grid-template-columns:1fr}.info-card{border-radius:22px;padding:18px}.toolbar{border-radius:22px;align-items:stretch}.filters{width:100%;max-width:none}.filter{flex:1;text-align:center}.section-title{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr;gap:16px}.actions{flex-direction:column}.top{width:44px;height:44px}}
+  </style>
+</head>
+<body>
+<div class="page" id="top">
+  <span class="bg-dot d1"></span><span class="bg-dot d2"></span><span class="bg-dot d3"></span>
+  <header class="wrap">
+    <div class="brand">
+      <div class="logo">connectingwarmhearts</div>
+      <div class="pill">Gender Reveal Video Preview</div>
+    </div>
+    <section class="hero">
+      <div class="hero-main">
+        <div class="eyebrow"><span class="spark">✦</span> Personalized Reveal Video Samples</div>
+        <h1>Choose your <span>favorite style.</span></h1>
+        <p class="lead">Preview the available gender reveal video styles below. Each sample opens in a new tab, so you can easily compare the girl and boy versions before placing your order.</p>
+        <div class="mini-note hero-personalization"><b>Basic personalization includes:</b><br>Parents name, Baby last name, Gender, and Due date.</div>
+        
+<p style="font-size:clamp(15px,2vw,18px);line-height:1.75;max-width:690px;margin:24px 0 0;color:#3f3a5f;">
+Looking for another theme? Please contact us via 
+<a href="https://6e2n0.channel.io" target="_blank" rel="noopener" style="color:#1612d3;font-weight:700;text-decoration:none;">Chat with Us</a>!
+</p>
+
+<div class="cta-row">
+          <a class="btn btn-primary" href="#previews">View Samples ↓</a>
+          <a class="btn btn-ghost" href="https://shop.beacons.ai/connectingwarmhearts/6162ee08-dc21-460e-8fcd-cb9d61c8f865" target="_blank" rel="noopener">Start Your Order ↗</a>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class="wrap" id="previews">
+    <div class="toolbar">
+      <div class="filters" aria-label="Filter samples">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter filter-bestseller" data-filter="bestseller">Bestseller</button>
+        <button class="filter filter-girl" data-filter="girl">Girl</button>
+        <button class="filter filter-boy" data-filter="boy">Boy</button>
+        <button class="filter filter-neutral" data-filter="neutral">Single Preview</button>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <h2>Preview Gallery</h2>
+    </div>
+
+    <section class="grid" id="grid">
+      <!-- Cards injected by JavaScript -->
+    </section>
+
+  </main>
+
+  <section class="wrap footer-chat">
+    <div class="footer-chat-card">
+      <p>We’ll be happy to guide you.</p>
+      <a class="chat-button" href="https://6e2n0.channel.io" target="_blank" rel="noopener">Chat with Us ↗</a>
+    </div>
+  </section>
+
+  <footer class="wrap">connectingwarmhearts</footer>
+  <a class="top" href="#top" aria-label="Back to top">↑</a>
+</div>
+
+<script>
+const samples = [
+  // Add your custom thumbnail image URL inside thumbnailUrl: '' for each video.
+  // Example: thumbnailUrl:'https://example.com/my-thumbnail.jpg'
+  {theme:'The Princess and The Frog', type:'girl', label:'Girl', url:'https://youtu.be/_rVgiUjWlmo', thumbnailUrl:'https://www.dropbox.com/scl/fi/qyjr7871ma3c4be7kzih0/The-Princess-and-Frog.jpg?rlkey=bt1uqzhovq127e1g685ltr4iz&raw=1'},
+  {theme:'The Princess and The Frog', type:'boy', label:'Boy', url:'https://youtu.be/lyMOYJi-qqA', thumbnailUrl:'https://www.dropbox.com/scl/fi/qyjr7871ma3c4be7kzih0/The-Princess-and-Frog.jpg?rlkey=bt1uqzhovq127e1g685ltr4iz&raw=1'},
+  {theme:'Pooh', type:'girl', label:'Girl', url:'https://youtu.be/BjPewJcu5QU', thumbnailUrl:'https://www.dropbox.com/scl/fi/wt4md9n1d9pv42k0bl5qh/Pooh.jpg?rlkey=sx8tcjs8h0jblml42m5rl9vre&raw=1'},
+  {theme:'Pooh', type:'boy', label:'Boy', url:'https://youtu.be/tjMtN4fmJPU', thumbnailUrl:'https://www.dropbox.com/scl/fi/wt4md9n1d9pv42k0bl5qh/Pooh.jpg?rlkey=sx8tcjs8h0jblml42m5rl9vre&raw=1'},
+  {theme:'Enchanted', type:'girl', label:'Girl', url:'https://youtu.be/6Fkp4fAkjWM', thumbnailUrl:'https://www.dropbox.com/scl/fi/zb5se498ducosgtu8emh1/Enchanted.jpg?rlkey=en4oqcd3zvsxxjh0i09vg6bzs&raw=1'},
+  {theme:'Enchanted', type:'boy', label:'Boy', url:'https://youtu.be/LUOiXJJbFlY', thumbnailUrl:'https://www.dropbox.com/scl/fi/zb5se498ducosgtu8emh1/Enchanted.jpg?rlkey=en4oqcd3zvsxxjh0i09vg6bzs&raw=1'},
+  {theme:'Toy Story', type:'girl', label:'Girl', url:'https://youtu.be/gA3TAN6-kRc', thumbnailUrl:'https://www.dropbox.com/scl/fi/kec2a0rbygbeixqklvkvb/ToyStory-Girl.jpg?rlkey=0z2om4axlzkqoi3ci8nfpt4pq&raw=1'},
+  {theme:'Toy Story', type:'boy', label:'Boy', url:'https://youtu.be/HJbMauoeuLw', thumbnailUrl:'https://www.dropbox.com/scl/fi/ttgoviy9zp68weeleoz05/ToyStory-Boy.jpg?rlkey=735nj72ga2vetq3xcxg4taxey&raw=1'},
+  {theme:'Lion King', type:'girl', label:'Girl', url:'https://youtu.be/6vk_0KOGavY', thumbnailUrl:'https://www.dropbox.com/scl/fi/x9n3g7tx3zckfc56xinya/LionKing-Girl.jpg?rlkey=uio4n9o2r6crd8ngd0935nx8b&raw=1'},
+  {theme:'Lion King', type:'boy', label:'Boy', url:'https://youtu.be/qqRHwjWw_nQ', thumbnailUrl:'https://www.dropbox.com/scl/fi/1q2dmyb5vmr5h0cv7b79m/LionKing-Boy.jpg?rlkey=z2vqkoh43617e8oi2ycietwxd&raw=1'},
+  {theme:'Harry Potter', type:'girl', label:'Girl', url:'https://youtu.be/-5c7pTpYljY', thumbnailUrl:'https://www.dropbox.com/scl/fi/x1v6gitthtywkjq27jf4x/Harry-Potter-Girl.jpg?rlkey=eoiqx2gap0bqgu7kwow80g7f0&raw=1'},
+  {theme:'Harry Potter', type:'boy', label:'Boy', url:'https://youtu.be/OTkxabZMZQU', thumbnailUrl:'https://www.dropbox.com/scl/fi/2x4jdqaafpggtlx9xs5a4/Harry-Potter-Boy.jpg?rlkey=l29uktvou0cvake2hqkk3r2hg&raw=1'},
+  {theme:'Nemo', type:'neutral', label:'Preview', url:'https://youtu.be/wcsaWjc22R0', thumbnailUrl:'https://www.dropbox.com/scl/fi/fsc5953uo4r8eggq6n1zc/Nemo.jpg?rlkey=s00woa1gkxzp7wtqr2dvrzjih&raw=1'},
+  {theme:'Car', type:'neutral', label:'Preview', url:'https://youtu.be/k_chXh0XhbQ', thumbnailUrl:'https://www.dropbox.com/scl/fi/owdets0qswtareu7f9fa2/Car.jpg?rlkey=77e8q13wflz7xjzvl2pvqxk8h&raw=1'},
+  {theme:'Mermaid', type:'neutral', label:'Preview', url:'https://youtu.be/niKWlRJZzjo', thumbnailUrl:'https://www.dropbox.com/scl/fi/rf7nz3sxsctk4glz3143f/Mermaid.jpg?rlkey=cydqizwjgxo7f0me4ow3r89rj&raw=1'},
+  {theme:'Rapunzel', type:'neutral', label:'Preview', url:'https://youtu.be/Ds28D7OFoxM', thumbnailUrl:'https://www.dropbox.com/scl/fi/jvvvjc1p1m71924gd6y2y/Rapunzel.jpg?rlkey=8bwbsgs1iau32qbtsjgx94tg8&raw=1'}
+];
+
+function videoId(url){
+  const m = url.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{6,})/);
+  return m ? m[1] : '';
+}
+function thumb(item){
+  if (item.thumbnailUrl && item.thumbnailUrl.trim() !== '') return item.thumbnailUrl.trim();
+  const id = videoId(item.url);
+  return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '';
+}
+function cardHTML(item){
+  const badgeClass = item.type === 'girl' ? 'girl' : item.type === 'boy' ? 'boy' : 'neutral';
+  const normalizedTheme = item.theme.toLowerCase().replace(/\s+/g,'');
+  const isBestseller = ['enchanted','toystory','lionking'].includes(normalizedTheme);
+  return `<article class="card" data-type="${item.type}" data-bestseller="${isBestseller ? 'true' : 'false'}" data-theme="${item.theme.toLowerCase()}">
+    <a class="thumb" href="${item.url}" target="_blank" rel="noopener" aria-label="Watch ${item.theme} ${item.label} preview">
+      <img src="${thumb(item)}" alt="${item.theme} ${item.label} preview thumbnail" loading="lazy" onerror="this.style.display='none'">
+      <div class="badge-row"><span class="badge ${badgeClass}">${item.label}</span>${isBestseller ? '<span class="badge bestseller">Bestseller</span>' : ''}</div>
+      <div class="play"><span>▶</span></div>
+    </a>
+    <div class="body">
+      <div><h3>${item.theme}</h3><small>${item.label} sample video</small></div>
+      <div class="actions">
+        <a class="watch" href="${item.url}" target="_blank" rel="noopener">Watch Preview ↗</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+const grid = document.getElementById('grid');
+grid.innerHTML = samples.map(cardHTML).join('');
+let currentFilter = 'all';
+function applyFilters(){
+  document.querySelectorAll('.card').forEach(card=>{
+    const type = card.dataset.type;
+    const okFilter = currentFilter === 'all' || type === currentFilter || (currentFilter === 'bestseller' && card.dataset.bestseller === 'true');
+    card.classList.toggle('hidden', !okFilter);
+  });
+}
+document.querySelectorAll('.filter').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    applyFilters();
+  });
+});
+</script>
+</body>
+</html>
