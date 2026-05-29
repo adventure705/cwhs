@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Reaction Wall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #efebe2;
+      --blue: #1612d3;
+      --ink: #17151f;
+      --muted: #6f6a7a;
+      --white: #fffaf2;
+      --card: rgba(255, 250, 242, 0.92);
+      --shadow: 0 22px 60px rgba(22, 18, 211, 0.13);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(22, 18, 211, 0.13), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.7), transparent 24%),
+        var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 42px;
+    }
+
+    .hero {
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(22, 18, 211, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, 0.78);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(36px, 6vw, 76px);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      color: var(--blue);
+    }
+
+    .hero p {
+      margin: 18px 0 0;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height: 1.65;
+    }
+
+    .slider-shell {
+      position: relative;
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 36px;
+      background: rgba(255, 250, 242, 0.58);
+      border: 1px solid rgba(22, 18, 211, 0.12);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .slider-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding: 0 4px;
+    }
+
+    .slider-header h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(19px, 3vw, 28px);
+      letter-spacing: -0.04em;
+    }
+
+    .slider-tip {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .reaction-slider {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 330px);
+      gap: 18px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 4px;
+      padding: 4px 4px 18px;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .reaction-slider::-webkit-scrollbar { height: 8px; }
+    .reaction-slider::-webkit-scrollbar-track {
+      background: rgba(22, 18, 211, 0.08);
+      border-radius: 999px;
+    }
+    .reaction-slider::-webkit-scrollbar-thumb {
+      background: rgba(22, 18, 211, 0.4);
+      border-radius: 999px;
+    }
+
+    .reaction-card {
+      scroll-snap-align: start;
+      background: var(--white);
+      border: 1px solid rgba(22, 18, 211, 0.12);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(20, 18, 45, 0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .reaction-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 46px rgba(20, 18, 45, 0.15);
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #111;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #111;
+    }
+
+    .card-copy {
+      padding: 16px 17px 18px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .card-copy h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    .final-cta {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 28px 28px;
+      border-radius: 28px;
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 22px 44px rgba(22, 18, 211, 0.24);
+    }
+
+    .final-cta-copy h2 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      color: white;
+    }
+
+    .final-cta-copy p {
+      margin: 8px 0 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .final-cta a {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 26px;
+      border-radius: 999px;
+      background: #fffaf2;
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+      white-space: nowrap;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 22px, 680px);
+        padding-top: 24px;
+      }
+
+      .slider-shell {
+        border-radius: 28px;
+        padding: 13px;
+      }
+
+      .slider-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .slider-tip { white-space: normal; }
+
+      .reaction-slider {
+        grid-auto-columns: minmax(235px, 78vw);
+        gap: 14px;
+        padding-bottom: 14px;
+      }
+
+      .card-copy h3 { font-size: 16px; }
+
+      .final-cta {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 24px;
+        border-radius: 24px;
+      }
+
+      .final-cta a {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="badge">✨ Real customer reactions</div>
+      <h1>Watch the moment they found out.</h1>
+      <p>A collection of real reaction videos shared by our customers — happy tears, surprised faces, and magical family moments, all in one place.</p>
+    </section>
+
+    <section class="slider-shell" aria-label="Customer reaction videos">
+      <div class="slider-header">
+        <h2>Real Reactions</h2>
+        <div class="slider-tip">← Swipe or scroll sideways →</div>
+      </div>
+
+      <div class="reaction-slider">
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/p4lultqjr193u0j5yqmxr/torigarrison_.mp4?rlkey=2u2zdonwoolc1517488o8o3jj" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Torigarrison</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/li3lm74rcrcb2i0npzjpx/san_den1.mp4?rlkey=vvdcxs4bmo6wteamb9269mcgw" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>San Den1</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/foxa1zy8vcn6n5n02kotj/nikfoxx.mp4?rlkey=753jh4veavq6natknw9h079j6" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Nikfoxx</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/kfwdhqapivbc0ru22yp08/iamcaradenise1.mp4?rlkey=kkvdf59igqjpux1f6n1euw555" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Iamcaradenise1</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/uljo50ihem9i8mt7tseog/girlmomtribe.mp4?rlkey=qbqlf5kk7p4j2e8pqao3suqld" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Girlmomtribe</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/uates94rxvpphfbdm3qfw/disneyparis-suprise-niece-nephews-happykids.mp4?rlkey=7vbix1ppk4or3z8kydcm6bbip" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Disneyparis Suprise Niece Nephews Happykids</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/1208l0cjhs9otvmdd2qea/sweet.n.bitchy.mp4?rlkey=x0lrsywshdibycrujmzll29le" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Sweet.N.Bitchy</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/wbica2ugw20kj0clbzv4q/sophiel206.mp4?rlkey=7zvx2halnir59xnmgfva38gvb" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Sophiel206</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/qsru9j54v9prw557w1tie/shelldunnill.mp4?rlkey=tbaw6bzcqqr35zbe7x3mderx0" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Shelldunnill</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/n802k7hbpyppg35mv6i11/serena_beth.mp4?rlkey=mmlxs1qw8fj6yww7bek3pdl5o" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Serena Beth</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/h02n4i6x53s817ssky2ws/serannepirie.mp4?rlkey=yyd4bdex8p420ujtqgyy1zv6c" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Serannepirie</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/gb60qzp6f781vjkxgvby4/racheljanehullah.mp4?rlkey=7map0lrlhahw77hcodapa5m54" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Racheljanehullah</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/9nt18zmlp441u05ruggo0/neneleigh.mp4?rlkey=p987jizcc8qc8ajhzqy58vi4j" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Neneleigh</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/91mngyvz7rh2ym4wfkvh3/nells1995.mp4?rlkey=os5q5b9mguhkd2fmypq398cn9" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Nells1995</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/2lbogli2arp1iz0y0mpgj/mrscooperx.mp4?rlkey=12qc065x8rim4vgi8tgy2vjsn" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Mrscooperx</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/vbwtnif2kflnj9zryxcyi/mom2cna.mp4?rlkey=c104za0fwtu4t4zkd0honj9zo" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Mom2Cna</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/zjnwwnhf4li0p32xr6rec/melaniemcewan4.mp4?rlkey=lvliw8v2zp1jdx060p13d07g4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Melaniemcewan4</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/gj2g2j3u5vkl1z6mc0iwq/mariellatrantham.mp4?rlkey=8hsbnbr96efonye1hycjoq3su" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Mariellatrantham</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/cnqojam3l49lgae4tqmys/lucyphx.mp4?rlkey=d65r9437jrecij59pzvkgzbqc" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Lucyphx</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/hgyua5c46319vrsgtgx08/kristinalise.mp4?rlkey=jckfonyu9rrm29sts9zvyz41d" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Kristinalise</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/yjewudpmd7m1zes24wk02/kimjadef29.mp4?rlkey=3oyr46l1vvzva1qbh6i8x8rgw" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Kimjadef29</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/byedjey3cbbft2j2yuez4/keyahslifestyle.mp4?rlkey=5t4pglvhp9y6323ljvp6crck8" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Keyahslifestyle</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/hxzfdst234gjfh03n0dis/kayleigh_199.mp4?rlkey=83cbrcsvvc3ijo6qnssjdayfq" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Kayleigh 199</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/8o8fta32ylcklsxm8prc9/jemmaleigh1988.mp4?rlkey=n7qfaqqznxzmrvckxuqpu0586" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Jemmaleigh1988</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/khh1a3nppoui48ho2lgvq/gateauxaufildutemps.mp4?rlkey=vlk70ox3x1c0sbgv03jt640q6" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Gateauxaufildutemps</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/157wlg2m3kygzjn8yvdu7/francinemccormick.mp4?rlkey=ucxnk54yh3i4djcr5cl3l4n6a" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Francinemccormick</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/lfl631svjyet3klej8mwl/demilouisemiles.mp4?rlkey=ihfbgivpi9wolkadg2ctumvtg" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Demilouisemiles</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/v13nxk34mrpfxayt6uup4/dayz8a.mp4?rlkey=w6omdk3wj7yd5yn84qgkwq76j" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Dayz8A</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/ypb3cji01beuhj2gb7ikb/daniellemelissaar.mp4?rlkey=6cr88z4pdp2mazn1ighiq3nsg" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Daniellemelissaar</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/65lqo16x9e9ceha3wylo9/daniellejohnstonex.mp4?rlkey=mroslcrff0xvh8b3g7n9kiywi" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Daniellejohnstonex</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/2ny02z75gbbsl15td9y0k/dani2020x.mp4?rlkey=wcvzgk0xji6026d190039817x" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Dani2020X</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/mf1zeym462ngb93pxsls5/daisyfontenot.mp4?rlkey=kagatff8d8yel94hdl3jtse97" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Daisyfontenot</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/stpp3lfpud2b4xzzfhfuz/christiek1122.mp4?rlkey=mot0ov51bfsqca8gw249w3hwc" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Christiek1122</h3>
+          </div>
+        </article>
+
+        <article class="reaction-card">
+          <div class="video-frame">
+            <video autoplay muted loop playsinline controls preload="metadata">
+              <source src="https://dl.dropboxusercontent.com/scl/fi/40kg6vcfq2pqals7tum1g/autumnyeager88.mp4?rlkey=2khgssg1y0vje2747smni83ms" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="card-copy">
+            <span class="eyebrow">Real Customer Reaction</span>
+            <h3>Autumnyeager88</h3>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-cta-copy">
+        <h2>Ready to create your own magical moment?</h2>
+        <p>Order a personalized reveal video and make the surprise unforgettable.</p>
+      </div>
+      <a href="https://shop.beacons.ai/connectingwarmhearts/d16c1c70-501e-4565-899a-814f09a50bec" aria-label="Start your order" target="_blank" rel="noopener noreferrer">Start Your Order</a>
+    </section>
+
+    <footer>connectingwarmhearts</footer>
+  </main>
+</body>
+</html>
