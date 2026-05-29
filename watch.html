@@ -1,192 +1,2639 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📺 Guide: How to Watch the Video on Your TV</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Define Brand Colors */
-        :root {
-            --color-brand-light: #efebe2; /* EFEBE2 */
-            --color-brand-primary: #1612d3; /* 1612D3 (Deep Blue/Indigo) */
-            --color-brand-highlight: #D32F2F; /* D32F2F (Highlight Red) */
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Watch Your Video on TV</title>
 
-        body {
-            /* Changed font to Arial as requested */
-            font-family: 'Arial', sans-serif;
-            background-color: var(--color-brand-light); /* Apply Brand Light */
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        /* Custom icon styling for size and color */
-        .step-icon {
-            /* Adjust size to match text size (1.125rem for text-lg) */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem; /* Padding for circular shape */
-            min-width: 1.75rem; 
-            min-height: 1.75rem; 
-            border-radius: 9999px; /* full rounded */
-            font-weight: bold;
-            color: white;
-            font-size: 1.125rem; /* text-lg size */
-            line-height: 1; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* YouTube steps use Highlight Red */
-        .youtube-step .step-icon { background-color: var(--color-brand-highlight); } 
-        
-        /* Drive steps use Brand Primary Blue */
-        .drive-step .step-icon { background-color: var(--color-brand-primary); } 
-    </style>
+<style>
+:root{
+  --cream:#efebe2;
+  --blue:#1612d3;
+  --white:#ffffff;
+  --red:#d93025;
+  --soft-blue:rgba(22,18,211,.08);
+  --border:rgba(22,18,211,.18);
+  --shadow:0 18px 45px rgba(22,18,211,.10);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:var(--cream);
+  color:var(--blue);
+  line-height:1.65;
+}
+
+.page{
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px 24px 42px;
+}
+
+.hero{
+  text-align:center;
+  padding:42px 26px;
+  border:2px solid var(--blue);
+  border-radius:34px;
+  background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.28));
+  box-shadow:var(--shadow);
+}
+
+.hero .eyebrow{
+  display:inline-block;
+  padding:8px 16px;
+  border-radius:999px;
+  background:var(--blue);
+  color:var(--cream);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:clamp(34px, 6vw, 66px);
+  line-height:1.05;
+  margin:0 0 16px;
+  font-weight:800;
+}
+
+.hero p{
+  max-width:760px;
+  margin:0 auto;
+  font-size:18px;
+  font-weight:500;
+}
+
+.section{
+  margin-top:34px;
+  background:var(--white);
+  border-radius:30px;
+  padding:34px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+}
+
+.section-title{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.section-icon{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  background:var(--blue);
+  color:var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  flex:0 0 auto;
+}
+
+h2{
+  font-size:clamp(24px, 3vw, 34px);
+  line-height:1.2;
+  margin:0;
+  font-weight:800;
+}
+
+.notice{
+  background:var(--soft-blue);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:18px 20px;
+  font-weight:600;
+  margin:20px 0 0;
+}
+
+.notice strong{font-weight:800}
+
+.steps{
+  display:grid;
+  gap:24px;
+  margin-top:26px;
+}
+
+.step{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:26px;
+  align-items:center;
+  border:1px solid var(--border);
+  border-radius:26px;
+  padding:24px;
+  background:#fff;
+}
+
+.step-copy{
+  min-width:0;
+}
+
+.step-number{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  background:var(--blue);
+  color:var(--cream);
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+h3{
+  font-size:23px;
+  line-height:1.25;
+  margin:0 0 10px;
+  font-weight:800;
+}
+
+p{
+  margin:0;
+  font-size:16px;
+  font-weight:500;
+}
+
+.small{
+  margin-top:10px;
+  font-size:14px;
+  opacity:.88;
+}
+
+.red{
+  color:var(--red);
+  font-weight:800;
+}
+
+.mockup{
+  background:var(--cream);
+  border:2px solid var(--blue);
+  border-radius:28px;
+  padding:18px;
+  min-height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.phone{
+  width:190px;
+  height:330px;
+  border:8px solid var(--blue);
+  border-radius:28px;
+  background:#fff;
+  position:relative;
+  box-shadow:0 12px 25px rgba(22,18,211,.12);
+  overflow:hidden;
+}
+
+.phone:before{
+  content:"";
+  position:absolute;
+  top:8px;
+  left:50%;
+  transform:translateX(-50%);
+  width:58px;
+  height:7px;
+  border-radius:99px;
+  background:var(--blue);
+  opacity:.25;
+  z-index:4;
+}
+
+.phone-screen{
+  padding:30px 14px 14px;
+  height:100%;
+}
+
+.fake-bar{
+  height:13px;
+  width:70%;
+  background:var(--soft-blue);
+  border-radius:99px;
+  margin-bottom:10px;
+}
+
+.fake-video{
+  height:86px;
+  border-radius:16px;
+  background:var(--blue);
+  color:var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  margin-bottom:14px;
+}
+
+.fake-button{
+  background:var(--blue);
+  color:var(--cream);
+  border-radius:14px;
+  padding:11px;
+  text-align:center;
+  font-weight:800;
+  margin-top:12px;
+}
+
+.fake-button.red-button{
+  background:var(--red);
+}
+
+.fake-list{
+  display:grid;
+  gap:9px;
+}
+
+.fake-list div{
+  height:14px;
+  border-radius:99px;
+  background:var(--soft-blue);
+}
+
+.fake-list div:nth-child(2){width:86%}
+.fake-list div:nth-child(3){width:62%}
+
+.arrow-label{
+  position:absolute;
+  right:18px;
+  top:18px;
+  background:var(--blue);
+  color:var(--cream);
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.computer{
+  width:330px;
+}
+
+.monitor{
+  height:190px;
+  border:7px solid var(--blue);
+  border-radius:20px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 12px 25px rgba(22,18,211,.12);
+}
+
+.monitor-top{
+  height:34px;
+  background:var(--blue);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding-left:14px;
+}
+
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--cream);
+  opacity:.8;
+}
+
+.monitor-content{
+  padding:16px;
+}
+
+.upload-box{
+  border:2px dashed var(--blue);
+  border-radius:18px;
+  height:105px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-weight:800;
+  gap:8px;
+}
+
+.upload-icon{
+  font-size:34px;
+}
+
+.monitor-stand{
+  width:80px;
+  height:26px;
+  background:var(--blue);
+  margin:0 auto;
+}
+
+.monitor-base{
+  width:150px;
+  height:12px;
+  border-radius:99px;
+  background:var(--blue);
+  margin:0 auto;
+}
+
+.tv{
+  width:350px;
+}
+
+.tv-screen{
+  height:205px;
+  border:8px solid var(--blue);
+  border-radius:26px;
+  background:#fff;
+  padding:18px;
+  box-shadow:0 12px 25px rgba(22,18,211,.12);
+}
+
+.tv-header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:18px;
+  font-weight:800;
+}
+
+.video-thumb{
+  height:92px;
+  border-radius:18px;
+  background:var(--blue);
+  color:var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.tv-lines{
+  display:grid;
+  gap:8px;
+}
+
+.tv-lines span{
+  display:block;
+  height:12px;
+  border-radius:99px;
+  background:var(--soft-blue);
+}
+
+.tv-lines span:nth-child(2){width:70%}
+
+.tv-leg-wrap{
+  display:flex;
+  justify-content:center;
+  gap:80px;
+}
+
+.tv-leg{
+  width:12px;
+  height:32px;
+  background:var(--blue);
+}
+
+.usb{
+  width:260px;
+  height:82px;
+  border:4px solid var(--blue);
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  padding:14px;
+  background:#fff;
+  box-shadow:0 12px 25px rgba(22,18,211,.12);
+}
+
+.usb-head{
+  width:48px;
+  height:34px;
+  background:var(--blue);
+  border-radius:8px;
+  margin-right:18px;
+}
+
+.usb-body{
+  flex:1;
+}
+
+.usb-body div{
+  height:13px;
+  background:var(--soft-blue);
+  border-radius:99px;
+  margin:8px 0;
+}
+
+.footer{
+  text-align:center;
+  margin-top:38px;
+  font-size:13px;
+  font-weight:600;
+  opacity:.8;
+}
+
+@media(max-width:860px){
+  .page{padding:30px 16px}
+  .hero{padding:34px 18px}
+  .section{padding:24px 18px}
+  .step{
+    grid-template-columns:1fr;
+    padding:20px;
+  }
+  .mockup{min-height:230px}
+  .computer,.tv{width:100%; max-width:350px}
+}
+
+@media(max-width:480px){
+  h3{font-size:20px}
+  .phone{transform:scale(.9)}
+  .mockup{padding:10px}
+}
+
+/* Updated mockup label positioning */
+.arrow-label{
+  position:static;
+  display:inline-flex;
+  align-self:flex-start;
+  margin-bottom:14px;
+  background:#ff4f4f;
+  color:#ffffff;
+  border-radius:999px;
+  padding:9px 15px;
+  font-size:13px;
+  font-weight:800;
+  box-shadow:0 8px 18px rgba(255,79,79,.22);
+  z-index:5;
+}
+
+.mockup{
+  flex-direction:column;
+  gap:4px;
+  padding:22px;
+}
+
+/* More visible action buttons inside mockup */
+.fake-button{
+  background:#ff4f4f;
+  color:#ffffff;
+  border-radius:14px;
+  padding:11px;
+  text-align:center;
+  font-weight:800;
+  margin-top:12px;
+  box-shadow:0 8px 18px rgba(255,79,79,.18);
+}
+
+.fake-button.blue-button{
+  background:var(--blue);
+  color:var(--cream);
+}
+
+.fake-button.red-button{
+  background:#ff4f4f;
+  color:#ffffff;
+}
+
+/* Contact section */
+.contact-box{
+  margin-top:34px;
+  background:var(--blue);
+  color:var(--cream);
+  border-radius:30px;
+  padding:34px 24px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.contact-box h2{
+  color:var(--cream);
+  margin:0 0 10px;
+  font-size:clamp(24px, 3vw, 34px);
+}
+
+.contact-box p{
+  margin:0 0 18px;
+  font-size:17px;
+  font-weight:600;
+}
+
+.contact-box a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:170px;
+  padding:13px 22px;
+  border-radius:999px;
+  background:#ff4f4f;
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:800;
+  box-shadow:0 12px 24px rgba(0,0,0,.15);
+}
+
+.footer-logo{
+  text-align:center;
+  margin-top:28px;
+}
+
+.footer-logo img{
+  width:76px;
+  max-width:35%;
+  height:auto;
+  object-fit:contain;
+}
+
+@media(max-width:480px){
+  .footer-logo img{
+    width:58px;
+    max-width:45%;
+  }
+}
+
+
+/* ===== Final UX/UI polish overrides ===== */
+
+.page{
+  max-width:1160px;
+  padding:56px 22px 46px;
+}
+
+.section{
+  padding:clamp(22px, 4vw, 38px);
+}
+
+.steps{
+  gap:clamp(18px, 3vw, 28px);
+}
+
+.step{
+  grid-template-columns:minmax(0, 1fr) minmax(300px, 430px);
+  gap:clamp(20px, 4vw, 34px);
+  align-items:stretch;
+  padding:clamp(20px, 3vw, 28px);
+}
+
+.step-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.mockup{
+  min-height:330px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  padding:24px;
+}
+
+.arrow-label{
+  position:static !important;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  max-width:100%;
+  margin:0;
+  line-height:1.25;
+  background:#ff4f4f;
+  color:#ffffff;
+  white-space:normal;
+}
+
+.phone,
+.computer,
+.tv,
+.usb{
+  margin:0 auto;
+}
+
+.phone{
+  width:188px;
+  height:326px;
+  flex:0 0 auto;
+}
+
+.phone-screen{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  padding:31px 14px 14px;
+}
+
+.fake-video{
+  flex:0 0 86px;
+}
+
+.fake-list{
+  flex:0 0 auto;
+}
+
+.fake-button{
+  width:100%;
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1.25;
+  margin-top:auto;
+  background:#ff4f4f;
+  color:#ffffff;
+}
+
+.fake-button.blue-button{
+  background:var(--blue);
+  color:var(--cream);
+}
+
+.computer{
+  width:min(100%, 340px);
+}
+
+.monitor{
+  height:196px;
+}
+
+.upload-box{
+  min-height:108px;
+}
+
+.tv{
+  width:min(100%, 360px);
+}
+
+.tv-screen{
+  height:210px;
+}
+
+.usb{
+  width:min(100%, 270px);
+}
+
+.contact-box{
+  margin-top:38px;
+  padding:clamp(28px, 4vw, 40px) 22px;
+}
+
+.contact-box a{
+  background:#ffffff !important;
+  color:var(--blue) !important;
+  border:2px solid #ffffff;
+  min-width:180px;
+  box-shadow:none;
+}
+
+.contact-box a:hover{
+  transform:translateY(-1px);
+}
+
+.footer-logo{
+  text-align:center;
+  margin-top:22px;
+}
+
+.footer-logo img{
+  width:76px !important;
+  max-width:22% !important;
+  height:auto;
+  object-fit:contain;
+  display:inline-block;
+}
+
+@media(max-width:980px){
+  .step{
+    grid-template-columns:1fr;
+  }
+
+  .step-copy{
+    text-align:left;
+  }
+
+  .mockup{
+    min-height:300px;
+  }
+}
+
+@media(max-width:640px){
+  .page{
+    padding:28px 14px 34px;
+  }
+
+  .hero{
+    border-radius:26px;
+    padding:32px 18px;
+  }
+
+  .hero p{
+    font-size:15.5px;
+  }
+
+  .section{
+    border-radius:24px;
+    margin-top:22px;
+  }
+
+  .section-title{
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .section-icon{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    font-size:21px;
+  }
+
+  .step{
+    border-radius:22px;
+    padding:18px;
+    gap:18px;
+  }
+
+  .step-number{
+    width:38px;
+    height:38px;
+    margin-bottom:10px;
+  }
+
+  h3{
+    font-size:19px;
+  }
+
+  p{
+    font-size:14.5px;
+  }
+
+  .small{
+    font-size:13px;
+  }
+
+  .mockup{
+    min-height:auto;
+    padding:18px 14px;
+    gap:13px;
+    border-radius:22px;
+  }
+
+  .phone{
+    width:168px;
+    height:292px;
+    border-width:7px;
+  }
+
+  .phone-screen{
+    padding:29px 12px 12px;
+  }
+
+  .fake-video{
+    flex-basis:74px;
+  }
+
+  .tv-screen{
+    height:190px;
+    border-width:7px;
+  }
+
+  .video-thumb{
+    height:78px;
+  }
+
+  .contact-box{
+    border-radius:24px;
+  }
+
+  .contact-box a{
+    width:100%;
+    max-width:260px;
+  }
+
+  .footer-logo img{
+    width:58px !important;
+    max-width:24% !important;
+  }
+}
+
+@media(max-width:380px){
+  .phone{
+    width:154px;
+    height:270px;
+  }
+
+  .tv-screen{
+    height:176px;
+  }
+
+  .arrow-label{
+    font-size:12px;
+    padding:8px 12px;
+  }
+}
+
+
+/* ===== Preserve previous layout, upgrade mockup detail only ===== */
+
+.detailed-card-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:18px;
+  margin-top:26px;
+}
+
+.detailed-card-grid.usb-grid{
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+}
+
+.detail-step-card{
+  background:#fff;
+  border:1px solid rgba(22,18,211,.16);
+  border-radius:22px;
+  padding:20px 18px;
+  box-shadow:0 10px 26px rgba(22,18,211,.07);
+  min-height:330px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.usb-grid .detail-step-card{
+  min-height:292px;
+  padding:17px 14px;
+}
+
+.detail-step-head{
+  display:flex;
+  align-items:flex-start;
+  gap:11px;
+  min-height:54px;
+}
+
+.detail-step-badge{
+  width:34px;
+  height:34px;
+  min-width:34px;
+  border-radius:50%;
+  background:var(--blue);
+  color:var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  font-weight:800;
+}
+
+.detail-step-title{
+  font-size:15px;
+  line-height:1.28;
+  font-weight:800;
+  color:var(--blue);
+}
+
+.usb-grid .detail-step-title{
+  font-size:12.5px;
+}
+
+.detail-art{
+  flex:1;
+  min-height:168px;
+  border-radius:18px;
+  background:linear-gradient(180deg, rgba(239,235,226,.55), rgba(255,255,255,.94));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  padding:16px;
+}
+
+.usb-grid .detail-art{
+  min-height:132px;
+  padding:12px;
+}
+
+.detail-caption{
+  font-size:13px;
+  line-height:1.45;
+  font-weight:600;
+  color:#12105e;
+}
+
+.usb-grid .detail-caption{
+  font-size:11.5px;
+  text-align:center;
+}
+
+/* Hide old internal step list only inside replaced sections */
+.rebuilt-option .steps{
+  display:none !important;
+}
+
+/* CSS mockup elements */
+.mk-phone{
+  width:170px;
+  height:278px;
+  border:7px solid #161616;
+  border-radius:28px;
+  background:#fff;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 14px 26px rgba(0,0,0,.15);
+}
+
+.usb-grid .mk-phone{
+  width:92px;
+  height:150px;
+  border-width:4px;
+  border-radius:18px;
+}
+
+.mk-phone::before{
+  content:"";
+  position:absolute;
+  top:8px;
+  left:50%;
+  transform:translateX(-50%);
+  width:52px;
+  height:6px;
+  border-radius:99px;
+  background:#d7d7d7;
+  z-index:5;
+}
+
+.usb-grid .mk-phone::before{
+  width:30px;
+  height:4px;
+  top:5px;
+}
+
+.mk-screen{
+  height:100%;
+  padding:30px 13px 13px;
+  display:flex;
+  flex-direction:column;
+}
+
+.usb-grid .mk-screen{
+  padding:20px 7px 7px;
+}
+
+.mk-youtube-top{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  height:22px;
+  margin-bottom:10px;
+  font-weight:800;
+  font-size:12px;
+  color:#111;
+}
+
+.usb-grid .mk-youtube-top{
+  gap:4px;
+  height:14px;
+  margin-bottom:7px;
+  font-size:7px;
+}
+
+.mk-yt-logo{
+  width:23px;
+  height:15px;
+  border-radius:4px;
+  background:#ff0000;
+  color:#fff;
+  font-size:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.usb-grid .mk-yt-logo{
+  width:15px;
+  height:10px;
+  font-size:6px;
+}
+
+.mk-video{
+  height:82px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#28205f,#b48144);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.usb-grid .mk-video{
+  height:44px;
+  border-radius:8px;
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.mk-line{
+  height:12px;
+  border-radius:99px;
+  background:#ececf5;
+  margin-bottom:8px;
+}
+
+.usb-grid .mk-line{
+  height:7px;
+  margin-bottom:5px;
+}
+
+.mk-download,
+.mk-plus{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#fff;
+  color:var(--blue);
+  border:2px solid var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:22px;
+  position:absolute;
+  right:17px;
+  top:42px;
+  box-shadow:0 8px 18px rgba(22,18,211,.16);
+}
+
+.usb-grid .mk-download{
+  width:32px;
+  height:32px;
+  font-size:17px;
+  right:12px;
+  top:13px;
+}
+
+.mk-popup{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:28px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.14);
+  border-radius:16px;
+  padding:13px;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+
+.usb-grid .mk-popup{
+  left:8px;
+  right:8px;
+  bottom:15px;
+  border-radius:10px;
+  padding:7px;
+}
+
+.mk-popup-title{
+  height:10px;
+  width:86%;
+  background:#e5e5ed;
+  border-radius:99px;
+  margin-bottom:8px;
+}
+
+.usb-grid .mk-popup-title{
+  height:5px;
+  margin-bottom:5px;
+}
+
+.mk-popup-btn{
+  height:28px;
+  border-radius:10px;
+  background:#ff4f4f;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:800;
+  margin-top:8px;
+}
+
+.usb-grid .mk-popup-btn{
+  height:16px;
+  border-radius:7px;
+  font-size:7px;
+  margin-top:5px;
+}
+
+.mk-create-menu{
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:20px;
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.16);
+}
+
+.mk-menu-item{
+  height:34px;
+  border-radius:10px;
+  background:#f8f8fc;
+  margin-bottom:9px;
+  display:flex;
+  align-items:center;
+  padding-left:12px;
+  font-size:11px;
+  font-weight:700;
+  color:#222;
+}
+
+.mk-menu-item.active{
+  border:2px solid var(--blue);
+  background:#fff;
+  color:var(--blue);
+}
+
+.mk-file-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:38px;
+}
+
+.mk-thumb{
+  width:55px;
+  height:42px;
+  border-radius:8px;
+  background:linear-gradient(135deg,#28205f,#b48144);
+}
+
+.mk-file-info{
+  flex:1;
+}
+
+.mk-file-info span{
+  display:block;
+  height:11px;
+  border-radius:99px;
+  background:#e5e5ef;
+  margin-bottom:8px;
+}
+
+.mk-file-info span:first-child{
+  width:90%;
+  background:#cfd1ff;
+}
+
+.mk-next{
+  position:absolute;
+  right:12px;
+  top:34px;
+  background:var(--blue);
+  color:#fff;
+  border-radius:10px;
+  padding:7px 11px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.mk-visibility{
+  width:210px;
+  background:#fff;
+  border:1px solid #e0e0e0;
+  border-radius:17px;
+  padding:14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.13);
+}
+
+.mk-vis-row{
+  height:42px;
+  border-radius:11px;
+  background:#fafafa;
+  margin-bottom:9px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:0 12px;
+  font-size:12px;
+  font-weight:700;
+  color:#222;
+}
+
+.mk-vis-row::before{
+  content:"";
+  width:12px;
+  height:12px;
+  border:1px solid #999;
+  border-radius:50%;
+}
+
+.mk-vis-row.active{
+  border:2px solid var(--blue);
+  color:var(--blue);
+  background:#fff;
+}
+
+.mk-vis-row.active::before{
+  border:4px solid var(--blue);
+}
+
+.mk-tv{
+  width:260px;
+}
+
+.usb-grid .mk-tv{
+  width:118px;
+}
+
+.mk-tv-screen{
+  height:150px;
+  border:7px solid #141414;
+  border-radius:13px;
+  background:#121212;
+  color:#fff;
+  padding:14px;
+  box-shadow:0 14px 26px rgba(0,0,0,.16);
+}
+
+.usb-grid .mk-tv-screen{
+  height:76px;
+  border-width:5px;
+  border-radius:8px;
+  padding:8px;
+}
+
+.mk-tv-row{
+  height:19px;
+  border-radius:7px;
+  background:rgba(255,255,255,.11);
+  margin-bottom:10px;
+}
+
+.usb-grid .mk-tv-row{
+  height:14px;
+  margin-bottom:7px;
+  border-radius:5px;
+}
+
+.mk-tv-row.active{
+  border:2px solid #fff;
+  background:rgba(255,255,255,.19);
+}
+
+.mk-tv-row.usb-active{
+  border:2px solid var(--blue);
+  background:rgba(22,18,211,.36);
+  height:18px;
+  font-size:8px;
+  display:flex;
+  align-items:center;
+  padding-left:7px;
+  font-weight:800;
+}
+
+.mk-tv-video{
+  height:78px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#28205f,#b48144);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+}
+
+.usb-grid .mk-tv-video{
+  height:36px;
+  border-radius:6px;
+  font-size:14px;
+}
+
+.mk-tv-legs{
+  display:flex;
+  justify-content:center;
+  gap:82px;
+}
+
+.usb-grid .mk-tv-legs{
+  gap:38px;
+}
+
+.mk-tv-legs span{
+  width:11px;
+  height:22px;
+  background:#141414;
+}
+
+.usb-grid .mk-tv-legs span{
+  width:8px;
+  height:14px;
+}
+
+.mk-cast-icons{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.mk-cast-icon{
+  min-height:74px;
+  border:1px solid rgba(22,18,211,.18);
+  background:#fff;
+  border-radius:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  color:var(--blue);
+  font-size:25px;
+  font-weight:900;
+  text-align:center;
+}
+
+.mk-cast-icon small{
+  font-size:8px;
+  line-height:1.1;
+  color:#12105e;
+  font-weight:800;
+}
+
+.mk-cast-flow{
+  display:flex;
+  align-items:center;
+  gap:17px;
+}
+
+.mk-small-device{
+  width:92px;
+  height:62px;
+  border:5px solid #151515;
+  border-radius:10px;
+  background:linear-gradient(135deg,#28205f,#b48144);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+.mk-dash-arrow{
+  width:48px;
+  border-top:3px dashed var(--blue);
+  position:relative;
+}
+
+.mk-dash-arrow::after{
+  content:"";
+  width:10px;
+  height:10px;
+  border-top:3px solid var(--blue);
+  border-right:3px solid var(--blue);
+  transform:rotate(45deg);
+  position:absolute;
+  right:0;
+  top:-7px;
+}
+
+/* USB details */
+.mk-laptop{
+  width:118px;
+  position:relative;
+}
+
+.mk-laptop-screen{
+  height:78px;
+  border:5px solid #222;
+  border-radius:9px 9px 3px 3px;
+  background:#fff;
+  padding:10px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.mk-folder{
+  height:27px;
+  border-radius:5px;
+  background:#ffd66e;
+  position:relative;
+}
+
+.mk-folder::before{
+  content:"";
+  position:absolute;
+  width:21px;
+  height:8px;
+  left:5px;
+  top:-4px;
+  border-radius:4px 4px 0 0;
+  background:#ffc847;
+}
+
+.mk-file{
+  height:29px;
+  border-radius:5px;
+  border:2px solid var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--blue);
+  font-size:11px;
+  font-weight:900;
+}
+
+.mk-laptop-base{
+  height:11px;
+  background:#222;
+  border-radius:0 0 14px 14px;
+}
+
+.mk-usb{
+  width:66px;
+  height:34px;
+  background:#30323a;
+  border-radius:9px;
+  position:relative;
+  box-shadow:0 8px 15px rgba(0,0,0,.20);
+}
+
+.mk-usb::before{
+  content:"";
+  position:absolute;
+  right:-17px;
+  top:9px;
+  width:20px;
+  height:16px;
+  border-radius:4px;
+  background:#b9bcc8;
+}
+
+.mk-usb::after{
+  content:"USB";
+  position:absolute;
+  left:10px;
+  top:11px;
+  color:#fff;
+  font-size:9px;
+  font-weight:800;
+}
+
+.mk-curve-arrow{
+  width:48px;
+  height:22px;
+  border-top:3px dashed var(--blue);
+  border-right:3px dashed var(--blue);
+  transform:rotate(22deg);
+  position:absolute;
+  right:43px;
+  top:62px;
+  border-radius:0 16px 0 0;
+}
+
+.mk-tv-back{
+  width:118px;
+  height:78px;
+  border-radius:8px;
+  background:#202229;
+  box-shadow:0 8px 18px rgba(0,0,0,.18);
+  position:relative;
+}
+
+.mk-tv-back::before{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:20px;
+  right:20px;
+  bottom:20px;
+  border:2px solid rgba(255,255,255,.08);
+  border-radius:6px;
+}
+
+.mk-tv-port{
+  position:absolute;
+  right:12px;
+  bottom:17px;
+  width:24px;
+  height:14px;
+  border-radius:4px;
+  background:#555b69;
+}
+
+.mk-final-file{
+  height:28px;
+  border-radius:6px;
+  background:var(--blue);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:8px;
+  font-weight:800;
+  margin-top:16px;
+}
+
+/* Footer image must remain, but blend into cream background */
+.footer-logo{
+  background:var(--cream) !important;
+  border:0 !important;
+  box-shadow:none !important;
+  padding:12px 0 0 !important;
+  margin-top:18px !important;
+  text-align:center;
+}
+
+.footer-logo img{
+  width:72px !important;
+  max-width:72px !important;
+  height:auto !important;
+  object-fit:contain !important;
+  display:inline-block !important;
+  mix-blend-mode:multiply;
+  opacity:.9;
+  filter:saturate(.92) contrast(.94);
+  border-radius:0 !important;
+}
+
+/* If image background still shows, mask it softly with cream wrapper effect */
+.footer-logo::before{
+  content:"";
+  display:block;
+  width:120px;
+  height:1px;
+  margin:0 auto 2px;
+  background:transparent;
+}
+
+/* Keep previous responsive feel */
+@media(max-width:1100px){
+  .detailed-card-grid,
+  .detailed-card-grid.usb-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+
+  .usb-grid .detail-step-card{
+    min-height:300px;
+  }
+
+  .usb-grid .detail-art{
+    min-height:148px;
+  }
+}
+
+@media(max-width:700px){
+  .detailed-card-grid,
+  .detailed-card-grid.usb-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .detail-step-card,
+  .usb-grid .detail-step-card{
+    min-height:0;
+    padding:18px;
+    border-radius:22px;
+  }
+
+  .detail-step-head{
+    min-height:0;
+  }
+
+  .detail-art,
+  .usb-grid .detail-art{
+    min-height:210px;
+  }
+
+  .usb-grid .detail-step-title{
+    font-size:15px;
+  }
+
+  .usb-grid .detail-caption{
+    font-size:13px;
+    text-align:left;
+  }
+
+  .mk-phone{
+    transform:scale(.9);
+  }
+
+  .usb-grid .mk-phone{
+    transform:scale(1.15);
+  }
+
+  .mk-cast-flow{
+    transform:scale(.88);
+  }
+
+  .footer-logo img{
+    width:58px !important;
+    max-width:58px !important;
+  }
+}
+
+@media(max-width:420px){
+  .mk-cast-icons{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .detail-art{
+    min-height:190px;
+  }
+
+  .mk-tv{
+    transform:scale(.86);
+  }
+
+  .mk-cast-flow{
+    transform:scale(.76);
+  }
+}
+
+
+/* ===== Readability update: single-column large blocks ===== */
+
+.detailed-card-grid,
+.detailed-card-grid.usb-grid{
+  grid-template-columns:1fr !important;
+  gap:24px !important;
+}
+
+.detail-step-card,
+.usb-grid .detail-step-card{
+  min-height:auto !important;
+  display:grid !important;
+  grid-template-columns:minmax(0, .95fr) minmax(320px, 1.05fr) !important;
+  gap:28px !important;
+  align-items:center !important;
+  padding:30px !important;
+  border-radius:28px !important;
+}
+
+.detail-step-head{
+  grid-column:1 / 2;
+  min-height:auto !important;
+  align-self:end;
+  margin-bottom:6px;
+}
+
+.detail-step-badge{
+  width:46px !important;
+  height:46px !important;
+  min-width:46px !important;
+  font-size:19px !important;
+}
+
+.detail-step-title,
+.usb-grid .detail-step-title{
+  font-size:23px !important;
+  line-height:1.28 !important;
+  letter-spacing:-.01em;
+}
+
+.detail-art,
+.usb-grid .detail-art{
+  grid-column:2 / 3;
+  grid-row:1 / 3;
+  min-height:360px !important;
+  padding:26px !important;
+  border-radius:24px !important;
+}
+
+.detail-caption,
+.usb-grid .detail-caption{
+  grid-column:1 / 2;
+  font-size:17px !important;
+  line-height:1.65 !important;
+  text-align:left !important;
+  align-self:start;
+}
+
+/* Make mockups slightly larger for readability */
+.mk-phone{
+  width:210px !important;
+  height:345px !important;
+  border-width:8px !important;
+  border-radius:32px !important;
+  transform:none !important;
+}
+
+.usb-grid .mk-phone{
+  width:150px !important;
+  height:246px !important;
+  border-width:7px !important;
+  border-radius:26px !important;
+  transform:none !important;
+}
+
+.mk-screen{
+  padding:38px 16px 16px !important;
+}
+
+.usb-grid .mk-screen{
+  padding:32px 13px 13px !important;
+}
+
+.mk-youtube-top{
+  font-size:14px !important;
+  height:28px !important;
+}
+
+.usb-grid .mk-youtube-top{
+  font-size:11px !important;
+  height:22px !important;
+}
+
+.mk-yt-logo{
+  width:26px !important;
+  height:18px !important;
+  font-size:10px !important;
+}
+
+.usb-grid .mk-yt-logo{
+  width:22px !important;
+  height:15px !important;
+  font-size:9px !important;
+}
+
+.mk-video{
+  height:105px !important;
+  font-size:38px !important;
+}
+
+.usb-grid .mk-video{
+  height:78px !important;
+  font-size:28px !important;
+}
+
+.mk-download,
+.mk-plus{
+  width:50px !important;
+  height:50px !important;
+  font-size:25px !important;
+}
+
+.usb-grid .mk-download{
+  width:42px !important;
+  height:42px !important;
+  font-size:22px !important;
+  right:16px !important;
+  top:34px !important;
+}
+
+.mk-popup{
+  left:17px !important;
+  right:17px !important;
+  bottom:32px !important;
+  padding:16px !important;
+}
+
+.usb-grid .mk-popup{
+  left:13px !important;
+  right:13px !important;
+  bottom:25px !important;
+  padding:12px !important;
+}
+
+.mk-popup-title{
+  height:12px !important;
+}
+
+.usb-grid .mk-popup-title{
+  height:9px !important;
+}
+
+.mk-popup-btn{
+  height:34px !important;
+  font-size:13px !important;
+}
+
+.usb-grid .mk-popup-btn{
+  height:27px !important;
+  font-size:11px !important;
+}
+
+.mk-tv{
+  width:320px !important;
+  transform:none !important;
+}
+
+.usb-grid .mk-tv{
+  width:260px !important;
+  transform:none !important;
+}
+
+.mk-tv-screen{
+  height:184px !important;
+  border-width:8px !important;
+}
+
+.usb-grid .mk-tv-screen{
+  height:150px !important;
+  border-width:7px !important;
+}
+
+.mk-tv-video{
+  height:98px !important;
+  font-size:38px !important;
+}
+
+.usb-grid .mk-tv-video{
+  height:78px !important;
+  font-size:28px !important;
+}
+
+.mk-tv-legs{
+  gap:100px !important;
+}
+
+.usb-grid .mk-tv-legs{
+  gap:82px !important;
+}
+
+.mk-tv-legs span{
+  width:12px !important;
+  height:24px !important;
+}
+
+.usb-grid .mk-tv-legs span{
+  width:11px !important;
+  height:22px !important;
+}
+
+.mk-cast-icons{
+  gap:14px !important;
+}
+
+.mk-cast-icon{
+  min-height:100px !important;
+  font-size:34px !important;
+}
+
+.mk-cast-icon small{
+  font-size:11px !important;
+}
+
+.mk-cast-flow{
+  transform:none !important;
+}
+
+.mk-small-device{
+  width:120px !important;
+  height:82px !important;
+}
+
+.mk-laptop{
+  width:210px !important;
+}
+
+.mk-laptop-screen{
+  height:138px !important;
+  border-width:7px !important;
+  padding:17px !important;
+  gap:13px !important;
+}
+
+.mk-folder{
+  height:48px !important;
+}
+
+.mk-file{
+  height:50px !important;
+  font-size:18px !important;
+}
+
+.mk-laptop-base{
+  height:16px !important;
+}
+
+.mk-usb{
+  width:92px !important;
+  height:46px !important;
+}
+
+.mk-usb::before{
+  right:-24px !important;
+  top:12px !important;
+  width:28px !important;
+  height:22px !important;
+}
+
+.mk-usb::after{
+  font-size:13px !important;
+  left:15px !important;
+  top:14px !important;
+}
+
+.mk-curve-arrow{
+  width:74px !important;
+  height:34px !important;
+  right:82px !important;
+  top:126px !important;
+}
+
+.mk-tv-back{
+  width:240px !important;
+  height:155px !important;
+}
+
+.mk-tv-port{
+  width:42px !important;
+  height:24px !important;
+  right:24px !important;
+  bottom:32px !important;
+}
+
+.mk-final-file{
+  height:44px !important;
+  font-size:14px !important;
+  margin-top:32px !important;
+}
+
+.mk-tv-row{
+  height:24px !important;
+  margin-bottom:12px !important;
+}
+
+.mk-tv-row.usb-active{
+  height:30px !important;
+  font-size:13px !important;
+  padding-left:14px !important;
+}
+
+/* Remove footer image completely */
+.footer-logo{
+  display:none !important;
+}
+
+/* Mobile: still single-column, with image below text */
+@media(max-width:860px){
+  .detail-step-card,
+  .usb-grid .detail-step-card{
+    grid-template-columns:1fr !important;
+    gap:18px !important;
+    padding:22px !important;
+  }
+
+  .detail-step-head,
+  .detail-caption,
+  .detail-art,
+  .usb-grid .detail-art{
+    grid-column:1 / 2 !important;
+    grid-row:auto !important;
+  }
+
+  .detail-art,
+  .usb-grid .detail-art{
+    min-height:300px !important;
+    padding:18px !important;
+  }
+
+  .detail-step-title,
+  .usb-grid .detail-step-title{
+    font-size:21px !important;
+  }
+
+  .detail-caption,
+  .usb-grid .detail-caption{
+    font-size:16px !important;
+  }
+}
+
+@media(max-width:520px){
+  .detail-art,
+  .usb-grid .detail-art{
+    min-height:260px !important;
+  }
+
+  .mk-phone{
+    transform:scale(.82) !important;
+  }
+
+  .usb-grid .mk-phone{
+    transform:scale(.9) !important;
+  }
+
+  .mk-tv,
+  .usb-grid .mk-tv{
+    transform:scale(.82) !important;
+  }
+
+  .mk-laptop{
+    transform:scale(.82) !important;
+  }
+
+  .mk-tv-back{
+    transform:scale(.78) !important;
+  }
+
+  .mk-cast-flow{
+    transform:scale(.74) !important;
+  }
+
+  .detail-step-title,
+  .usb-grid .detail-step-title{
+    font-size:19px !important;
+  }
+
+  .detail-caption,
+  .usb-grid .detail-caption{
+    font-size:15px !important;
+  }
+}
+
+
+/* ===== Final footer logo embedded in HTML ===== */
+.footer-logo{
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  margin-top:28px;
+  padding:12px 0 4px;
+  background:transparent;
+}
+
+.footer-logo img{
+  width:64px !important;
+  max-width:64px !important;
+  height:auto !important;
+  display:block;
+  object-fit:contain;
+}
+
+/* ===== Option 3 Step 2 refined mockup ===== */
+.usb-transfer-clean{
+  width:100%;
+  min-height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:54px;
+  position:relative;
+}
+
+.usb-transfer-clean .mk-laptop{
+  transform:none !important;
+}
+
+.usb-transfer-clean .mk-usb{
+  position:relative !important;
+  right:auto !important;
+  bottom:auto !important;
+  transform:rotate(8deg) !important;
+}
+
+.usb-transfer-clean .transfer-arrow{
+  width:78px;
+  height:38px;
+  border-top:4px dashed var(--blue);
+  border-right:4px dashed var(--blue);
+  border-radius:0 22px 0 0;
+  transform:rotate(18deg);
+  position:relative;
+}
+
+.usb-transfer-clean .transfer-arrow::after{
+  content:"";
+  position:absolute;
+  right:-6px;
+  bottom:-3px;
+  width:12px;
+  height:12px;
+  border-right:4px solid var(--blue);
+  border-bottom:4px solid var(--blue);
+  transform:rotate(-20deg);
+}
+
+@media(max-width:860px){
+  .usb-transfer-clean{
+    gap:30px;
+    min-height:230px;
+  }
+}
+
+@media(max-width:520px){
+  .usb-transfer-clean{
+    flex-direction:column;
+    gap:14px;
+    min-height:320px;
+  }
+
+  .usb-transfer-clean .transfer-arrow{
+    transform:rotate(90deg);
+    width:54px;
+    height:28px;
+  }
+}
+
+
+/* ===== Simple text footer ===== */
+.simple-footer{
+  text-align:center;
+  margin-top:26px;
+  padding:12px 0 8px;
+  color:var(--blue);
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.04em;
+  opacity:.75;
+}
+
+/* ===== USB transfer mockup cleaner ===== */
+.usb-transfer-clean{
+  width:100%;
+  min-height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:58px;
+  position:relative;
+}
+
+.usb-transfer-clean .transfer-arrow{
+  display:none !important;
+}
+
+.usb-transfer-clean .mk-laptop{
+  transform:none !important;
+}
+
+.usb-transfer-clean .mk-usb{
+  position:relative !important;
+  right:auto !important;
+  bottom:auto !important;
+  transform:rotate(8deg) !important;
+}
+
+@media(max-width:520px){
+  .usb-transfer-clean{
+    flex-direction:column;
+    gap:18px;
+    min-height:320px;
+  }
+}
+
+
+/* ===== Floating back-to-top button ===== */
+.back-to-top{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:var(--blue);
+  color:var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-size:24px;
+  font-weight:800;
+  box-shadow:0 12px 26px rgba(22,18,211,.25);
+  z-index:999;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.back-to-top:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 34px rgba(22,18,211,.32);
+}
+
+@media(max-width:520px){
+  .back-to-top{
+    right:16px;
+    bottom:16px;
+    width:46px;
+    height:46px;
+    font-size:21px;
+  }
+}
+
+</style>
 </head>
+
 <body>
+<main class="page" id="top">
 
-    <div class="max-w-4xl mx-auto p-4 sm:p-8">
-        <!-- Header -->
-        <header class="text-center mb-10">
-            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight" style="color: var(--color-brand-primary);">
-                📺 Guide: How to Watch the Video on Your TV
-            </h1>
-            <p class="mt-3 text-lg text-gray-700">
-                Here are two ways to play your video from Our Youtube Channel on your TV.
-            </p>
-        </header>
+  <section class="hero">
+    <span class="eyebrow">TV Guide</span>
+    <h1>How to Watch Your Video on TV</h1>
+    <p>
+      Your final video will be delivered through a <strong>Google Drive download link</strong>.
+      Follow one of the easy options below to watch your magical surprise video on your TV.
+    </p>
+  </section>
 
-        <!-- Final Delivery Section -->
-        <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
-            <h2 class="text-2xl font-bold mb-4 flex items-center" style="color: var(--color-brand-primary);">
-                <span class="mr-2" style="color: var(--color-brand-highlight);">&#x2705;</span> Final Video Delivery Method
-            </h2>
-            <div class="space-y-3 text-gray-700">
-                <p>Once the video is finalized, you will receive both of the following links:</p>
-                <ul class="list-disc list-inside ml-4 space-y-1">
-                    <li class="font-semibold" style="color: var(--color-brand-highlight);">YouTube Link</li>
-                    <li class="font-semibold" style="color: var(--color-brand-primary);">Google Drive Download Link</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Method 1: YouTube Link (Highlight Red Accent) -->
-        <div class="mb-10 p-6 rounded-xl shadow-lg" style="background-color: #fcfcf9; border-left: 4px solid var(--color-brand-highlight);">
-            <h2 class="text-3xl font-bold mb-6 flex items-center" style="color: var(--color-brand-highlight);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3" style="color: var(--color-brand-highlight);"><path d="M2.5 17A.5.5 0 0 1 2 16.5v-9A.5.5 0 0 1 2.5 7h19A.5.5 0 0 1 22 7.5v9a.5.5 0 0 1-.5.5z"/><path d="m10 13 4-2-4-2z"/></svg>
-                Method 1: Watching via the YouTube Link
-            </h2>
-
-            <!-- Unlisted Info Box -->
-            <div class="p-4 rounded-lg mb-6 text-gray-700" style="background-color: #f0f0f0;">
-                <p class="font-semibold flex items-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2" style="color: var(--color-brand-highlight);"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                    What does "Unlisted" Mean?
-                </p>
-                <p class="text-sm">
-                    To protect your privacy, the video is set to 'Unlisted.' It will not appear on the channel or in search results, and is only accessible via the link provided.
-                </p>
-            </div>
-
-            <!-- Sub-Method 1: Casting/Mirroring -->
-            <div class="youtube-step bg-white p-5 rounded-lg shadow-md mb-6">
-                <h3 class="text-xl font-semibold mb-4 border-b pb-2" style="color: var(--color-brand-primary); border-color: #e0e0e0;">1-1. Using a Phone or Tablet (Screen Mirroring/Casting)</h3>
-                <ol class="space-y-4 text-lg"> <!-- Set text-lg for alignment with step-icon -->
-                    <li class="flex items-start">
-                        <span class="step-icon">1</span>
-                        <p class="ml-3 text-gray-800"><strong>Step 1:</strong> Open the YouTube link on your mobile device (phone or tablet).</p>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="step-icon">2</span>
-                        <p class="ml-3 text-gray-800"><strong>Step 2:</strong> Use Screen Mirroring or Casting to play the video on your TV.</p>
-                    </li>
-                </ol>
-            </div>
-
-            <!-- Sub-Method 2: Logged-in Account -->
-            <div class="youtube-step bg-white p-5 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold mb-4 border-b pb-2" style="color: var(--color-brand-primary); border-color: #e0e0e0;">1-2. Watching with a Logged-In YouTube Account</h3>
-                <ol class="space-y-4 text-lg"> <!-- Set text-lg for alignment with step-icon -->
-                    <li class="flex items-start">
-                        <span class="step-icon">1</span>
-                        <p class="ml-3 text-gray-800"><strong>Step 1:</strong> Log into the same YouTube account on both your phone and your TV.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="step-icon">2</span>
-                        <p class="ml-3 text-gray-800"><strong>Step 2:</strong> Start playing the video once on your phone.</p>
-                    </li>
-                    <li class="flex items-start flex-col">
-                        <div class="flex items-start w-full">
-                            <span class="step-icon">3</span>
-                            <p class="ml-3 text-gray-800"><strong>Step 3:</strong> Check your TV's watch history (Library > History) to access and play the video directly.</p>
-                        </div>
-                        <!-- Image to clarify the Library > History step. Adjusted padding for better mobile view. -->
-                        <div class="mt-4 w-full pl-4 sm:pl-12">
-                            <img src="https://i.ibb.co/99y73X69/guide-image.png" 
-                                 alt="Screenshot of YouTube TV interface highlighting the Library and History sections." 
-                                 class="rounded-lg shadow-xl w-full max-w-sm mx-auto sm:max-w-md border border-gray-200">
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </div>
-
-        <!-- Method 2: Google Drive Link (Brand Primary Blue Accent) -->
-        <div class="mb-10 p-6 rounded-xl shadow-lg" style="background-color: #fcfcf9; border-left: 4px solid var(--color-brand-primary);">
-            <h2 class="text-3xl font-bold mb-6 flex items-center" style="color: var(--color-brand-primary);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3" style="color: var(--color-brand-primary);"><path d="M19.46 12.92a.5.5 0 0 1-.22-.05L12 10.97l-7.24 1.9a.5.5 0 0 1-.58-.46V7.48a.5.5 0 0 1 .2-.39l7.24-4.82a.5.5 0 0 1 .58 0l7.24 4.82a.5.5 0 0 1 .2.39z"/><path d="m19.46 12.92-7.24 1.9-7.24-1.9"/><path d="m19.46 16.42-7.24 1.9-7.24-1.9"/><path d="M12 21.82v-2"/></svg>
-                Method 2: Downloading from Google Drive (USB Required)
-            </h2>
-            <p class="text-gray-700 mb-4">You can use the Google Drive link to download the video and play it directly on your TV via a USB flash drive.</p>
-
-            <div class="drive-step bg-white p-5 rounded-lg shadow-md">
-                <ol class="space-y-5 text-lg"> <!-- Set text-lg for alignment with step-icon -->
-                    <li class="flex items-start flex-col">
-                        <div class="flex items-start w-full">
-                            <span class="step-icon">1</span>
-                            <div class="ml-3">
-                                <h4 class="font-bold text-lg mb-1" style="color: var(--color-brand-primary);">Download the MP4 File</h4>
-                                <p class="text-gray-700">
-                                    After accessing the provided Google Drive link, tap the <strong style="color: var(--color-brand-primary);">download icon</strong> 
-                                    <!-- Download Icon SVG -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mb-1 align-middle" style="color: var(--color-brand-primary);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                                    .
-                                </p>
-                                <div class="mt-2 text-sm p-2 rounded" style="color: var(--color-brand-highlight); background-color: #fff0f0;">
-                                    📌 When a pop-up appears, select <strong class="font-semibold">"Ignore and Download."</strong> The MP4 file will be saved to your photo gallery or downloads folder.
-                                </div>
-                                <!-- New Image for Download Step (Updated with new URL) -->
-                                <div class="mt-4 w-full">
-                                    <img src="https://i.ibb.co/CZQCR23/download.png" 
-                                         alt="Screenshot showing Google Drive download icon highlighted." 
-                                         class="rounded-lg shadow-xl w-full max-w-sm mx-auto border border-gray-200">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="step-icon">2</span>
-                        <p class="ml-3 text-gray-800"><strong>Step 2:</strong> Transfer the downloaded MP4 file to a USB flash drive.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="step-icon">3</span>
-                        <p class="ml-3 text-gray-800"><strong>Step 3:</strong> Connect the USB flash drive to your TV’s USB port.</p>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="step-icon">4</span>
-                        <p class="ml-3 text-gray-800">
-                            <strong>Step 4:</strong> Use your TV’s external input settings to select the USB port. Navigate to the file and press play.
-                        </p>
-                    </li>
-                </ol>
-            </div>
-        </div>
-
-        <footer class="text-center mt-10 text-sm" style="color: var(--color-brand-primary);">
-            <p>Authored by Moon</p>
-        </footer>
-
+  <section class="section">
+    <div class="section-title">
+      <div class="section-icon">🎬</div>
+      <h2>Final Video Delivery</h2>
     </div>
+    <p>
+      Once your video is finalized, you will receive:
+      <br><strong>✅ A Google Drive Download Link</strong>
+    </p>
+    <div class="notice">
+      The final video will be delivered as an <strong>MP4 file</strong> that you can download and watch on your phone, tablet, computer, or TV.
+    </div>
+  </section>
+
+  
+<section class="section rebuilt-option">
+  <div class="section-title">
+    <div class="section-icon">📱</div>
+    <h2>Option 1 — Watch on Your TV Using YouTube</h2>
+  </div>
+  <p>
+    This is one of the easiest ways to watch your video directly on a Smart TV.
+    You will upload the downloaded video to your own YouTube account as <strong>Unlisted</strong>.
+  </p>
+  <div class="notice">
+    <strong>Important:</strong> Please use your personal YouTube account. Setting the video to <strong>Unlisted</strong> keeps it hidden from public search and your public channel page.
+  </div>
+
+  <div class="detailed-card-grid">
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">1</div>
+        <div class="detail-step-title">Download the MP4 video from Google Drive.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-phone">
+          <div class="mk-screen">
+            <div class="mk-youtube-top"><span class="mk-yt-logo">▶</span> Final Video.mp4</div>
+            <div class="mk-video">▶</div>
+            <div class="mk-line"></div>
+            <div class="mk-line" style="width:70%"></div>
+          </div>
+          <div class="mk-download">↓</div>
+          <div class="mk-popup">
+            <div class="mk-popup-title"></div>
+            <div class="mk-popup-title" style="width:58%"></div>
+            <div class="mk-popup-btn">Download</div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-caption">Tap the download icon. If a pop-up appears, select “Ignore and Download.”</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">2</div>
+        <div class="detail-step-title">Open your personal YouTube account.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-phone">
+          <div class="mk-screen">
+            <div class="mk-youtube-top"><span class="mk-yt-logo">▶</span> YouTube</div>
+            <div class="mk-line" style="width:64%"></div>
+            <div class="mk-video">▶</div>
+            <div class="mk-line"></div>
+            <div class="mk-line" style="width:60%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-caption">Open YouTube and make sure you are logged into your own account.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">3</div>
+        <div class="detail-step-title">Tap the “+” Create button.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-phone">
+          <div class="mk-screen">
+            <div class="mk-youtube-top"><span class="mk-yt-logo">▶</span> YouTube</div>
+            <div class="mk-line" style="width:70%"></div>
+            <div class="mk-video">▶</div>
+          </div>
+          <div class="mk-plus">+</div>
+        </div>
+      </div>
+      <div class="detail-caption">Tap the “+” or Create button in the YouTube app.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">4</div>
+        <div class="detail-step-title">Select “Upload Video.”</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-phone">
+          <div class="mk-create-menu">
+            <div class="mk-menu-item">Create a Short</div>
+            <div class="mk-menu-item active">Upload a video</div>
+            <div class="mk-menu-item">Go live</div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-caption">Choose “Upload Video” from the Create menu.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">5</div>
+        <div class="detail-step-title">Choose the downloaded MP4 video and upload it.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-phone">
+          <div class="mk-screen">
+            <div class="mk-youtube-top">Add details</div>
+            <div class="mk-next">Next</div>
+            <div class="mk-file-row">
+              <div class="mk-thumb"></div>
+              <div class="mk-file-info">
+                <span></span>
+                <span style="width:56%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-caption">Select the MP4 file you downloaded from Google Drive.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">6</div>
+        <div class="detail-step-title">Select “Unlisted” for visibility.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-visibility">
+          <div class="mk-vis-row">Public</div>
+          <div class="mk-vis-row active">Unlisted</div>
+          <div class="mk-vis-row">Private</div>
+        </div>
+      </div>
+      <div class="detail-caption">“Unlisted” keeps your video hidden from public search. Only people with the link can watch it.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">7</div>
+        <div class="detail-step-title">After upload is complete, open YouTube on your TV.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-tv">
+          <div class="mk-tv-screen">
+            <div class="mk-tv-row"></div>
+            <div class="mk-tv-row"></div>
+            <div class="mk-tv-row active"></div>
+          </div>
+          <div class="mk-tv-legs"><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="detail-caption">Make sure you’re logged in with the same YouTube account on your TV.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">8</div>
+        <div class="detail-step-title">Go to Library → Your Videos.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-tv">
+          <div class="mk-tv-screen">
+            <div class="mk-tv-row"></div>
+            <div class="mk-tv-row active"></div>
+            <div class="mk-tv-video">▶</div>
+          </div>
+          <div class="mk-tv-legs"><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="detail-caption">Open Library, then choose “Your Videos.”</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">9</div>
+        <div class="detail-step-title">Select your video and enjoy!</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-tv">
+          <div class="mk-tv-screen">
+            <div class="mk-tv-video">▶</div>
+            <div class="mk-tv-row" style="margin-top:10px; width:85%"></div>
+          </div>
+          <div class="mk-tv-legs"><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="detail-caption">Play your uploaded video directly on your TV.</div>
+    </article>
+
+  </div>
+</section>
+
+
+  
+<section class="section rebuilt-option">
+  <div class="section-title">
+    <div class="section-icon">📺</div>
+    <h2>Option 2 — Screen Mirroring / Casting</h2>
+  </div>
+
+  <div class="detailed-card-grid">
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">1</div>
+        <div class="detail-step-title">Open the downloaded video on your phone or tablet.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-phone">
+          <div class="mk-screen">
+            <div class="mk-video">▶</div>
+            <div class="mk-line" style="margin-top:12px"></div>
+            <div class="mk-line" style="width:62%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-caption">Find the MP4 file in your Photos, Gallery, Files, or Downloads folder.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">2</div>
+        <div class="detail-step-title">Use Screen Mirroring or Casting.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-cast-icons">
+          <div class="mk-cast-icon">▣<small>AirPlay</small></div>
+          <div class="mk-cast-icon">◎<small>Smart View</small></div>
+          <div class="mk-cast-icon">▱<small>Chromecast</small></div>
+          <div class="mk-cast-icon">⌁<small>Screen Mirroring</small></div>
+        </div>
+      </div>
+      <div class="detail-caption">Depending on your device, choose AirPlay, Smart View, Chromecast, Cast, or Screen Mirroring.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">3</div>
+        <div class="detail-step-title">Display the video on your TV.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-cast-flow">
+          <div class="mk-small-device">▶</div>
+          <div class="mk-dash-arrow"></div>
+          <div class="mk-tv">
+            <div class="mk-tv-screen">
+              <div class="mk-tv-video">▶</div>
+            </div>
+            <div class="mk-tv-legs"><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-caption">Select your TV from the device list and play the video.</div>
+    </article>
+
+  </div>
+</section>
+
+
+  
+<section class="section rebuilt-option">
+  <div class="section-title">
+    <div class="section-icon">💾</div>
+    <h2>Option 3 — Save MP4 to USB and Watch on TV</h2>
+  </div>
+  <p>
+    This option works well if you prefer to play the video directly from your TV using a USB stick.
+  </p>
+
+  <div class="detailed-card-grid usb-grid">
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">1</div>
+        <div class="detail-step-title">Download the MP4 video from Google Drive.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-phone">
+          <div class="mk-screen">
+            <div class="mk-youtube-top"><span class="mk-yt-logo">▶</span> Final Video.mp4</div>
+            <div class="mk-video">▶</div>
+          </div>
+          <div class="mk-download">↓</div>
+          <div class="mk-popup">
+            <div class="mk-popup-title"></div>
+            <div class="mk-popup-title" style="width:58%"></div>
+            <div class="mk-popup-btn">Download</div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-caption">Tap the download icon. If a pop-up appears, select “Ignore and Download.”</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">2</div>
+        <div class="detail-step-title">Transfer the video file to a USB stick.</div>
+      </div>
+      
+<div class="detail-art">
+  <div class="usb-transfer-clean">
+    <div class="mk-laptop">
+      <div class="mk-laptop-screen">
+        <div class="mk-folder"></div>
+        <div class="mk-file">MP4</div>
+        <div class="mk-folder"></div>
+        <div class="mk-file">↓</div>
+      </div>
+      <div class="mk-laptop-base"></div>
+    </div>
+<div class="mk-usb"></div>
+  </div>
+</div>
+<div class="detail-caption">Move or copy the downloaded MP4 file from your computer to your USB stick.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">3</div>
+        <div class="detail-step-title">Insert the USB stick into your TV’s USB port.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-tv-back">
+          <div class="mk-tv-port"></div>
+        </div>
+        <div class="mk-usb" style="position:absolute; right:30px; bottom:38px; transform:rotate(-14deg);"></div>
+      </div>
+      <div class="detail-caption">Plug the USB stick into the USB port on the back or side of your TV.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">4</div>
+        <div class="detail-step-title">Open your TV’s input/source menu.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-tv">
+          <div class="mk-tv-screen">
+            <div class="mk-tv-row"></div>
+            <div class="mk-tv-row"></div>
+            <div class="mk-tv-row usb-active">USB Device</div>
+          </div>
+          <div class="mk-tv-legs"><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="detail-caption">Select the USB device from your TV’s Source, Input, or Media menu.</div>
+    </article>
+
+    <article class="detail-step-card">
+      <div class="detail-step-head">
+        <div class="detail-step-badge">5</div>
+        <div class="detail-step-title">Select the video file and press Play.</div>
+      </div>
+      <div class="detail-art">
+        <div class="mk-tv">
+          <div class="mk-tv-screen">
+            <div class="mk-final-file">▶ Final Video.mp4</div>
+          </div>
+          <div class="mk-tv-legs"><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="detail-caption">Choose the MP4 file from the USB folder and enjoy your video on TV.</div>
+    </article>
+
+  </div>
+</section>
+
+
+  <section class="contact-box">
+<h2>Still have a question?</h2>
+<p>I’ll be happy to help.</p>
+<a href="https://6e2n0.channel.io" rel="noopener" target="_blank">Chat with Us</a>
+</section>
+
+
+
+
+<footer class="simple-footer">
+  connectingwarmhearts
+</footer>
+
+</main>
+
+<a href="#top" class="back-to-top" aria-label="Back to top">↑</a>
 
 </body>
 </html>
