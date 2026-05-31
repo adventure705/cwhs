@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etsy Reviews Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="brand-container">
+                    <img src="logo.png" alt="ConnectingWarmHearts Logo" class="brand-logo" onerror="this.style.display='none';">
+                    <h1 class="brand-name">ConnectingWarmHearts</h1>
+                </div>
+                
+                <h2 class="page-title">Customer Reviews</h2>
+                <p>Bringing magical reveals to life — See what our families are saying.</p>
+                
+                <div class="trust-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10" stroke="white" stroke-width="3"></polyline></svg>
+                    Trusted by 100% of our verified families
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-value" id="total-reviews">0</div>
+                        <div class="stat-label">Total Reviews</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="average-rating">0.0</div>
+                        <div class="stat-label">Average Rating</div>
+                        <div class="stars" id="header-stars"></div>
+                    </div>
+                </div>
+        </header>
+
+        <!-- Purchase Section -->
+        <section class="purchase-buttons-container">
+            <a href="https://shop.beacons.ai/connectingwarmhearts/d16c1c70-501e-4565-899a-814f09a50bec" target="_blank" class="purchase-btn btn-trip">
+                ✈️ Order Trip Reveal
+            </a>
+            <a href="https://shop.beacons.ai/connectingwarmhearts/6162ee08-dc21-460e-8fcd-cb9d61c8f865" target="_blank" class="purchase-btn btn-gender">
+                👶 Order Gender Reveal
+            </a>
+        </section>
+
+        <div class="filters">
+            <button class="filter-btn active" data-sort="newest">Newest First</button>
+            <button class="filter-btn" data-sort="rating">Highest Rated</button>
+        </div>
+
+        <div id="loader" class="loader">
+            <div class="spinner"></div>
+            <p>Loading magical reviews...</p>
+        </div>
+
+        <div id="reviews-grid" class="reviews-grid">
+            <!-- Reviews will be injected here by JavaScript -->
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
