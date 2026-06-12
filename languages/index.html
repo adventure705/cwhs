@@ -93,24 +93,75 @@
     }
 
     .thumb-emoji {
-      font-size: 3.5rem;
+      font-size: 5rem;
       line-height: 1;
       filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
     }
 
-    .thumb-lang {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: var(--blue);
-      letter-spacing: -0.02em;
-      text-shadow: 0 2px 10px rgba(255,255,255,0.8);
-      text-align: center;
-    }
-
     .body { padding:24px; flex-grow:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
-    .tag { color:var(--blue); font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
-    h2 { margin:8px 0 20px; font-size:20px; line-height:1.2; letter-spacing:-.02em; }
+    .tag { font-size:24px; margin-bottom: 4px; }
+    h2 { margin:4px 0 20px; font-size:20px; line-height:1.2; letter-spacing:-.02em; }
+    
+    .hero-note {
+      margin-top:24px;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:24px;
+      padding:24px;
+      color:#26235f;
+      font-size:14px;
+      line-height:1.7;
+      box-shadow:0 14px 32px rgba(0,0,0,.12);
+      display: inline-block;
+    }
+    .hero-actions {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+    }
+    .chat-link {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--blue);
+      color:#fff;
+      text-decoration:none;
+      border-radius:999px;
+      padding:12px 20px;
+      font-weight:800;
+      font-size:13px;
+      box-shadow:0 10px 24px rgba(22,18,211,.18);
+      transition: transform .18s ease;
+    }
+    .chat-link:hover { transform: translateY(-2px); }
+    .order-link {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      background:linear-gradient(135deg, #ff3b30 0%, #e11d48 52%, #b91c1c 100%);
+      color:#fff;
+      text-decoration:none;
+      border-radius:999px;
+      padding:12px 20px;
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.02em;
+      box-shadow:0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      animation:orderPulse 1.8s ease-in-out infinite;
+    }
+    .order-link:hover {
+      transform:translateY(-2px) scale(1.03);
+      box-shadow:0 16px 34px rgba(225,29,72,.48), 0 0 0 5px rgba(255,255,255,.28);
+      filter:saturate(1.08);
+    }
+    @keyframes orderPulse {
+      0%, 100% { box-shadow:0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22); }
+      50% { box-shadow:0 16px 36px rgba(225,29,72,.54), 0 0 0 7px rgba(255,255,255,.18); }
+    }
     
     .open-btn {
       display:inline-flex;
@@ -142,8 +193,7 @@
       header { padding-top:20px; }
       .hero { padding:24px 20px; border-radius:24px; }
       .grid { grid-template-columns:1fr; gap:16px; }
-      .thumb-emoji { font-size: 3rem; }
-      .thumb-lang { font-size: 1.4rem; }
+      .thumb-emoji { font-size: 4rem; }
     }
   </style>
 </head>
@@ -153,6 +203,12 @@
       <div class="eyebrow">Language Resources</div>
       <h1>Choose your language.</h1>
       <p>View the translated links for your reveal script. Find your preferred language below.</p>
+      <div class="hero-note">
+        <div class="hero-actions">
+          <a class="chat-link" href="https://6e2n0.channel.io" target="_blank" rel="noopener">Chat with Us →</a>
+          <a class="order-link" href="https://shop.beacons.ai/connectingwarmhearts/d16c1c70-501e-4565-899a-814f09a50bec" target="_blank" rel="noopener">Start Your Order →</a>
+        </div>
+      </div>
     </section>
   </header>
 
@@ -231,12 +287,11 @@
             <div class="thumb-bg-decor"></div>
             <div class="thumb-content">
               <span class="thumb-emoji">${lang.emoji}</span>
-              <span class="thumb-lang">${lang.language}</span>
             </div>
           </div>
           <div class="body">
-            <div class="tag">${lang.language}</div>
-            <h2>${lang.nativeName}</h2>
+            <div class="tag">${lang.emoji}</div>
+            <h2>${lang.language} ${lang.id.includes('christmas') ? '🎄' : ''}</h2>
             <a href="${lang.csvLink}" class="open-btn" target="_blank" rel="noopener noreferrer">Watch sample →</a>
           </div>
         </article>
