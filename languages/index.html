@@ -163,63 +163,62 @@
   <footer>connectingwarmhearts</footer>
 
   <script>
-    // EDIT HERE: Update the csvLink with your actual URLs.
     const languages = [
       {
-        id: "english",
-        language: "English",
-        nativeName: "English",
-        emoji: "🇺🇸",
-        csvLink: "#link-to-english"
+        id: "german",
+        language: "German",
+        nativeName: "Deutsch",
+        emoji: "🇩🇪",
+        csvLink: "https://youtu.be/bIa9LlUuH-4"
       },
       {
-        id: "spanish",
-        language: "Spanish",
-        nativeName: "Español",
-        emoji: "🇪🇸",
-        csvLink: "#link-to-spanish"
+        id: "german-christmas",
+        language: "German",
+        nativeName: "Deutsch (Christmas)",
+        emoji: "🎄",
+        csvLink: "https://youtu.be/e3sP_I4HwCo"
+      },
+      {
+        id: "dutch",
+        language: "Dutch",
+        nativeName: "Nederlands",
+        emoji: "🇳🇱",
+        csvLink: "https://youtu.be/O-5XzjZmWO8"
       },
       {
         id: "french",
         language: "French",
         nativeName: "Français",
         emoji: "🇫🇷",
-        csvLink: "#link-to-french"
+        csvLink: "https://youtu.be/TeAK8yGEEcs"
       },
       {
-        id: "german",
-        language: "German",
-        nativeName: "Deutsch",
-        emoji: "🇩🇪",
-        csvLink: "#link-to-german"
+        id: "spanish",
+        language: "Spanish",
+        nativeName: "Español",
+        emoji: "🇪🇸",
+        csvLink: "https://youtu.be/UOqWd8k1irI"
+      },
+      {
+        id: "spanish-christmas",
+        language: "Spanish",
+        nativeName: "Español (Christmas)",
+        emoji: "🎄",
+        csvLink: "https://youtu.be/q06oKfmWNBs"
+      },
+      {
+        id: "portuguese",
+        language: "Portuguese",
+        nativeName: "Português",
+        emoji: "🇧🇷",
+        csvLink: "https://youtu.be/SM4eVOt_mgc"
       },
       {
         id: "italian",
         language: "Italian",
         nativeName: "Italiano",
         emoji: "🇮🇹",
-        csvLink: "#link-to-italian"
-      },
-      {
-        id: "portuguese",
-        language: "Portuguese",
-        nativeName: "Português",
-        emoji: "🇵🇹",
-        csvLink: "#link-to-portuguese"
-      },
-      {
-        id: "korean",
-        language: "Korean",
-        nativeName: "한국어",
-        emoji: "🇰🇷",
-        csvLink: "#link-to-korean"
-      },
-      {
-        id: "japanese",
-        language: "Japanese",
-        nativeName: "日本語",
-        emoji: "🇯🇵",
-        csvLink: "#link-to-japanese"
+        csvLink: "https://youtu.be/JUN9GVzXwWY"
       }
     ];
 
@@ -238,8 +237,7 @@
           <div class="body">
             <div class="tag">${lang.language}</div>
             <h2>${lang.nativeName}</h2>
-            <!-- Remove 'download' attribute to open the link normally -->
-            <a href="${lang.csvLink}" class="open-btn" target="_blank" rel="noopener noreferrer">Open Link →</a>
+            <a href="${lang.csvLink}" class="open-btn" target="_blank" rel="noopener noreferrer">Watch sample →</a>
           </div>
         </article>
       `).join('');
