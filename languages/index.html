@@ -9,296 +9,268 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream:#efebe2;
-      --blue:#1c14d9;
-      --ink:#151515;
-      --muted:#68645f;
-      --card:#fffdf8;
-      --line:rgba(28,20,217,.14);
-      --shadow:0 18px 45px rgba(28,20,217,.12);
-      --radius:26px;
+      --cream: #efebe2;
+      --blue:  #1612d3;
+      --ink:   #151515;
+      --muted: #68645f;
+      --card:  #fffdf8;
+      --radius: 26px;
     }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      margin:0;
-      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-      background:radial-gradient(circle at top left, #fff9ea 0, var(--cream) 34%, #f8f3ea 100%);
-      color:var(--ink);
+      margin: 0;
+      font-family: 'Poppins', system-ui, sans-serif;
+      background: radial-gradient(circle at top left, #fff9ea 0, var(--cream) 34%, #f8f3ea 100%);
+      color: var(--ink);
     }
-    .wrap { width:min(1180px, calc(100% - 32px)); margin:0 auto; }
-    header { padding:44px 0 24px; }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 44px 0 24px; }
+
+    /* ── HERO ── */
     .hero {
-      background:linear-gradient(135deg, #1612d3 0%, #2520ee 58%, #443ff8 100%);
-      border:1px solid rgba(255,255,255,.28);
-      border-radius:32px;
-      padding:34px;
-      box-shadow:0 22px 54px rgba(22,18,211,.28);
-      color:#fff;
-      text-align:center;
+      background: linear-gradient(135deg, #1612d3 0%, #2520ee 58%, #443ff8 100%);
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 32px;
+      padding: 34px;
+      box-shadow: 0 22px 54px rgba(22,18,211,.28);
+      color: #fff;
+      text-align: center;
     }
-    .eyebrow { color:rgba(255,255,255,.78); font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
-    h1 { margin:8px 0 10px; font-size:clamp(30px, 5vw, 58px); line-height:1.02; letter-spacing:-.04em; }
-    .hero h1 {
-      color:#fff;
-      text-shadow:0 3px 14px rgba(0,0,0,.22);
-    }
-    .hero p { margin:0 auto; color:rgba(255,255,255,.86); font-size:16px; line-height:1.75; max-width:760px; }
-    
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:24px;
-      padding:22px 0 60px;
-    }
-    .card {
-      background:var(--card);
-      border:1px solid rgba(22,18,211,.12);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow:0 12px 32px rgba(26,24,18,.08);
-      transition:.2s ease;
-      display:flex;
-      flex-direction:column;
-    }
-    .card:hover { transform:translateY(-5px); box-shadow:0 20px 45px rgba(28,20,217,.16); }
-    
-    /* CSS Thumbnail styling */
-    .thumb {
-      position:relative;
-      aspect-ratio:4/3;
-      background:linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-    
-    .thumb-bg-decor {
-      position: absolute;
-      width: 150%;
-      height: 150%;
-      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-      opacity: 0.6;
-    }
-
-    .thumb-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .thumb-emoji {
-      font-size: 5rem;
-      line-height: 1;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
-    }
-
-    .body { padding:24px; flex-grow:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
-    .tag { font-size:24px; margin-bottom: 4px; }
-    h2 { margin:4px 0 20px; font-size:20px; line-height:1.2; letter-spacing:-.02em; }
-    
+    .eyebrow { color: rgba(255,255,255,.78); font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 8px 0 10px; font-size: clamp(28px, 5vw, 54px); line-height: 1.02; letter-spacing: -.04em; color: #fff; text-shadow: 0 3px 14px rgba(0,0,0,.22); }
+    .hero > p { margin: 0 auto; color: rgba(255,255,255,.86); font-size: 16px; line-height: 1.75; max-width: 760px; }
     .hero-note {
-      margin-top:24px;
-      background:rgba(255,255,255,.94);
-      border:1px solid rgba(255,255,255,.55);
-      border-radius:24px;
-      padding:24px;
-      color:#26235f;
-      font-size:14px;
-      line-height:1.7;
-      box-shadow:0 14px 32px rgba(0,0,0,.12);
-      display: inline-block;
+      margin-top: 24px;
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 24px;
+      padding: 20px 24px;
+      box-shadow: 0 14px 32px rgba(0,0,0,.12);
     }
-    .hero-actions {
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      align-items:center;
-      justify-content:center;
-    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
     .chat-link {
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:var(--blue);
-      color:#fff;
-      text-decoration:none;
-      border-radius:999px;
-      padding:12px 20px;
-      font-weight:800;
-      font-size:13px;
-      box-shadow:0 10px 24px rgba(22,18,211,.18);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff; text-decoration: none;
+      border-radius: 999px; padding: 12px 20px;
+      font-weight: 800; font-size: 13px;
+      box-shadow: 0 10px 24px rgba(22,18,211,.18);
       transition: transform .18s ease;
     }
     .chat-link:hover { transform: translateY(-2px); }
     .order-link {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      background:linear-gradient(135deg, #ff3b30 0%, #e11d48 52%, #b91c1c 100%);
-      color:#fff;
-      text-decoration:none;
-      border-radius:999px;
-      padding:12px 20px;
-      font-weight:900;
-      font-size:13px;
-      letter-spacing:.02em;
-      box-shadow:0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22);
-      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
-      animation:orderPulse 1.8s ease-in-out infinite;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: linear-gradient(135deg, #ff3b30 0%, #e11d48 52%, #b91c1c 100%);
+      color: #fff; text-decoration: none; border-radius: 999px; padding: 12px 20px;
+      font-weight: 900; font-size: 13px; letter-spacing: .02em;
+      box-shadow: 0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22);
+      transition: transform .18s ease, box-shadow .18s ease;
+      animation: orderPulse 1.8s ease-in-out infinite;
     }
-    .order-link:hover {
-      transform:translateY(-2px) scale(1.03);
-      box-shadow:0 16px 34px rgba(225,29,72,.48), 0 0 0 5px rgba(255,255,255,.28);
-      filter:saturate(1.08);
-    }
+    .order-link:hover { transform: translateY(-2px) scale(1.03); filter: saturate(1.08); }
     @keyframes orderPulse {
-      0%, 100% { box-shadow:0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22); }
-      50% { box-shadow:0 16px 36px rgba(225,29,72,.54), 0 0 0 7px rgba(255,255,255,.18); }
+      0%, 100% { box-shadow: 0 12px 28px rgba(225,29,72,.36), 0 0 0 4px rgba(255,255,255,.22); }
+      50%       { box-shadow: 0 16px 36px rgba(225,29,72,.54), 0 0 0 7px rgba(255,255,255,.18); }
     }
-    
-    .open-btn {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      margin-top:auto;
-      width:100%;
-      border-radius:16px;
-      background:linear-gradient(135deg, #1c14d9 0%, #4f46e5 100%);
-      color:#fff;
-      text-decoration:none;
-      padding:14px;
-      font-weight:800;
-      font-size:14px;
-      box-shadow:0 8px 20px rgba(28,20,217,.25);
-      transition:transform .18s ease, box-shadow .18s ease;
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+      padding: 22px 0 60px;
     }
-    .open-btn:hover {
-      transform:translateY(-2px);
-      box-shadow:0 12px 28px rgba(28,20,217,.35);
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(22,18,211,.12);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(26,24,18,.08);
+      transition: .2s ease;
+      display: flex; flex-direction: column;
     }
-    
-    footer { text-align:center; padding:0 0 34px; color:var(--blue); font-size:13px; font-weight:800; letter-spacing:.02em; }
-    
-    @media (max-width:1024px) { .grid { grid-template-columns:repeat(3, minmax(0, 1fr)); } }
-    @media (max-width:768px) { .grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
-    @media (max-width:480px) {
-      .wrap { width:min(100% - 24px, 1180px); }
-      header { padding-top:20px; }
-      .hero { padding:24px 20px; border-radius:24px; }
-      .grid { grid-template-columns:1fr; gap:16px; }
-      .thumb-emoji { font-size: 4rem; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(22,18,211,.16); }
+
+    /* ── THUMBNAIL ── */
+    .thumb {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+
+    /* Normal gradient */
+    .thumb.normal {
+      background: linear-gradient(135deg, #1c14d9 0%, #4f46e5 55%, #7c73f1 100%);
+    }
+    .thumb.normal::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,.18) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Christmas gradient */
+    .thumb.christmas {
+      background: linear-gradient(135deg, #0d5c2b 0%, #1e8c44 35%, #b91c0c 70%, #7a0000 100%);
+    }
+    .thumb.christmas::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(255,215,60,.15) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Snowflakes */
+    .snowflakes { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .snowflake {
+      position: absolute;
+      color: rgba(255,255,255,.75);
+      font-size: .95rem;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(200px)  rotate(400deg); opacity: 0; }
+    }
+
+    /* Christmas badge */
+    .xmas-badge {
+      position: absolute; top: 10px; right: 10px; z-index: 6;
+      background: linear-gradient(135deg, #e8231a, #a80000);
+      color: #fff; font-size: 11px; font-weight: 800;
+      padding: 5px 10px; border-radius: 999px;
+      text-transform: uppercase; letter-spacing: .07em;
+      box-shadow: 0 4px 14px rgba(0,0,0,.3);
+    }
+
+    /* Flag & name inside thumb */
+    .thumb-flag {
+      font-size: 4.5rem;
+      line-height: 1;
+      filter: drop-shadow(0 4px 14px rgba(0,0,0,.25));
+      position: relative; z-index: 2;
+    }
+    .thumb-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.45rem;
+      color: #fff;
+      letter-spacing: -.01em;
+      text-shadow: 0 2px 12px rgba(0,0,0,.35);
+      position: relative; z-index: 2;
+      text-align: center;
+      padding: 0 12px;
+    }
+
+    /* ── CARD BODY ── */
+    .body { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    h2 { margin: 0 0 18px; font-size: 20px; line-height: 1.2; letter-spacing: -.02em; }
+
+    .watch-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-top: auto; width: 100%;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1c14d9 0%, #4f46e5 100%);
+      color: #fff; text-decoration: none;
+      padding: 14px; font-weight: 800; font-size: 14px;
+      box-shadow: 0 8px 20px rgba(28,20,217,.25);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .watch-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(28,20,217,.35); }
+    .watch-btn.xmas { background: linear-gradient(135deg, #1a7a3e 0%, #b91c0c 100%); box-shadow: 0 8px 20px rgba(185,28,12,.3); }
+
+    footer { text-align: center; padding: 0 0 34px; color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .02em; }
+
+    @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+    @media (max-width: 768px)  { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 480px) {
+      .wrap { width: calc(100% - 24px); }
+      header { padding-top: 20px; }
+      .hero { padding: 24px 20px; border-radius: 24px; }
+      .grid { grid-template-columns: 1fr; gap: 16px; }
+      .thumb-flag { font-size: 3.5rem; }
+      .thumb-name { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <section class="hero">
-      <div class="eyebrow">Language Resources</div>
-      <h1>Choose your language.</h1>
-      <p>View the translated links for your reveal script. Find your preferred language below.</p>
-      <div class="hero-note">
-        <div class="hero-actions">
-          <a class="chat-link" href="https://6e2n0.channel.io" target="_blank" rel="noopener">Chat with Us →</a>
-          <a class="order-link" href="https://shop.beacons.ai/connectingwarmhearts/d16c1c70-501e-4565-899a-814f09a50bec" target="_blank" rel="noopener">Start Your Order →</a>
-        </div>
+
+<header class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Language Resources</div>
+    <h1>Choose your language.</h1>
+    <p>View the translated links for your reveal script. Find your preferred language below.</p>
+    <div class="hero-note">
+      <div class="hero-actions">
+        <a class="chat-link" href="https://6e2n0.channel.io" target="_blank" rel="noopener">Chat with Us →</a>
+        <a class="order-link" href="https://shop.beacons.ai/connectingwarmhearts/d16c1c70-501e-4565-899a-814f09a50bec" target="_blank" rel="noopener">Start Your Order →</a>
       </div>
-    </section>
-  </header>
+    </div>
+  </section>
+</header>
 
-  <main class="wrap">
-    <section class="grid" id="gallery"></section>
-  </main>
+<main class="wrap">
+  <section class="grid" id="gallery"></section>
+</main>
 
-  <footer>connectingwarmhearts</footer>
+<footer>connectingwarmhearts</footer>
 
-  <script>
-    const languages = [
-      {
-        id: "german",
-        language: "German",
-        nativeName: "Deutsch",
-        emoji: "🇩🇪",
-        csvLink: "https://youtu.be/bIa9LlUuH-4"
-      },
-      {
-        id: "german-christmas",
-        language: "German",
-        nativeName: "Deutsch (Christmas)",
-        emoji: "🎄",
-        csvLink: "https://youtu.be/e3sP_I4HwCo"
-      },
-      {
-        id: "dutch",
-        language: "Dutch",
-        nativeName: "Nederlands",
-        emoji: "🇳🇱",
-        csvLink: "https://youtu.be/O-5XzjZmWO8"
-      },
-      {
-        id: "french",
-        language: "French",
-        nativeName: "Français",
-        emoji: "🇫🇷",
-        csvLink: "https://youtu.be/TeAK8yGEEcs"
-      },
-      {
-        id: "spanish",
-        language: "Spanish",
-        nativeName: "Español",
-        emoji: "🇪🇸",
-        csvLink: "https://youtu.be/UOqWd8k1irI"
-      },
-      {
-        id: "spanish-christmas",
-        language: "Spanish",
-        nativeName: "Español (Christmas)",
-        emoji: "🎄",
-        csvLink: "https://youtu.be/q06oKfmWNBs"
-      },
-      {
-        id: "portuguese",
-        language: "Portuguese",
-        nativeName: "Português",
-        emoji: "🇧🇷",
-        csvLink: "https://youtu.be/SM4eVOt_mgc"
-      },
-      {
-        id: "italian",
-        language: "Italian",
-        nativeName: "Italiano",
-        emoji: "🇮🇹",
-        csvLink: "https://youtu.be/JUN9GVzXwWY"
-      }
+<script>
+  const languages = [
+    { id:"german",            title:"German",               flag:"🇩🇪", christmas:false, link:"https://youtu.be/bIa9LlUuH-4"   },
+    { id:"german-christmas",  title:"German (Christmas)",   flag:"🇩🇪", christmas:true,  link:"https://youtu.be/e3sP_I4HwCo"   },
+    { id:"dutch",             title:"Dutch",                flag:"🇳🇱", christmas:false, link:"https://youtu.be/O-5XzjZmWO8"   },
+    { id:"french",            title:"French",               flag:"🇫🇷", christmas:false, link:"https://youtu.be/TeAK8yGEEcs"   },
+    { id:"spanish",           title:"Spanish",              flag:"🇪🇸", christmas:false, link:"https://youtu.be/UOqWd8k1irI"   },
+    { id:"spanish-christmas", title:"Spanish (Christmas)",  flag:"🇪🇸", christmas:true,  link:"https://youtu.be/q06oKfmWNBs"   },
+    { id:"portuguese",        title:"Portuguese",           flag:"🇧🇷", christmas:false, link:"https://youtu.be/SM4eVOt_mgc"   },
+    { id:"italian",           title:"Italian",              flag:"🇮🇹", christmas:false, link:"https://youtu.be/JUN9GVzXwWY"   }
+  ];
+
+  function snowflakesHTML() {
+    const flakes = [
+      {l:8,  d:0,   dur:2.4},
+      {l:20, d:0.5, dur:3.1},
+      {l:35, d:1.0, dur:2.7},
+      {l:50, d:0.3, dur:3.3},
+      {l:63, d:1.5, dur:2.5},
+      {l:78, d:0.8, dur:3.0},
+      {l:90, d:1.9, dur:2.8},
     ];
+    return `<div class="snowflakes">${flakes.map(f =>
+      `<span class="snowflake" style="left:${f.l}%;animation-delay:${f.d}s;animation-duration:${f.dur}s">❄</span>`
+    ).join('')}</div>`;
+  }
 
-    const gallery = document.getElementById('gallery');
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = languages.map(lang => {
+    const cls   = lang.christmas ? 'christmas' : 'normal';
+    const snow  = lang.christmas ? snowflakesHTML() : '';
+    const badge = lang.christmas ? `<span class="xmas-badge">🎄 Christmas</span>` : '';
+    const btnCls = lang.christmas ? 'watch-btn xmas' : 'watch-btn';
+    const thumbLabel = lang.title.replace(' (Christmas)', '');
 
-    function renderLanguages() {
-      gallery.innerHTML = languages.map(lang => `
-        <article class="card">
-          <div class="thumb">
-            <div class="thumb-bg-decor"></div>
-            <div class="thumb-content">
-              <span class="thumb-emoji">${lang.emoji}</span>
-            </div>
-          </div>
-          <div class="body">
-            <div class="tag">${lang.emoji}</div>
-            <h2>${lang.language} ${lang.id.includes('christmas') ? '🎄' : ''}</h2>
-            <a href="${lang.csvLink}" class="open-btn" target="_blank" rel="noopener noreferrer">Watch sample →</a>
-          </div>
-        </article>
-      `).join('');
-    }
+    return `
+    <article class="card">
+      <div class="thumb ${cls}">
+        ${badge}
+        ${snow}
+        <span class="thumb-flag">${lang.flag}</span>
+        <span class="thumb-name">${thumbLabel}</span>
+      </div>
+      <div class="body">
+        <h2>${lang.title}</h2>
+        <a href="${lang.link}" class="${btnCls}" target="_blank" rel="noopener">Watch Sample →</a>
+      </div>
+    </article>`;
+  }).join('');
+</script>
 
-    renderLanguages();
-  </script>
 </body>
 </html>
