@@ -171,7 +171,7 @@ body {
 
 .brand-name {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(1rem, 6vw, 2.6rem);
+    font-size: clamp(12px, 7.5vw, 2.6rem);
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.5px;
@@ -545,8 +545,28 @@ body {
     .stats-container { gap: 1rem; }
     .stat-box { padding: 1rem; }
     .stat-value { font-size: 2rem; }
-    .reviews-grid { grid-template-columns: 1fr; }
-    .review-card { padding: 1.25rem; }
+    .reviews-grid { 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .review-card { 
+        padding: 1.25rem; 
+        width: 100%;
+        max-width: 100%;
+    }
+    .purchase-buttons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+    .purchase-btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.85rem 1.2rem;
+        font-size: 0.9rem;
+    }
 }
 /* Purchase Buttons Styles */
 .purchase-buttons-container {
@@ -645,20 +665,7 @@ body {
     box-shadow: 0 10px 25px rgba(245, 158, 11, 0.45);
 }
 
-@media (max-width: 500px) {
-    .purchase-buttons-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-    }
-    .purchase-btn {
-        width: 100%;
-        max-width: 100%;
-        padding: 0.85rem 1.2rem;
-        font-size: 0.9rem;
-    }
-}
+/* Button responsive styles merged into max-width: 768px */
 
 /* Review Images Slider */
 .review-images-slider {
