@@ -55,6 +55,44 @@
             </a>
         </section>
 
+        <!-- Review Images Slider -->
+        <section class="review-images-slider">
+            <div class="slider-track">
+                <!-- Original set -->
+                <div class="slide"><img src="Review Image/Amanda.jpg" alt="Amanda" loading="lazy"><p class="slide-name">Amanda</p></div>
+                <div class="slide"><img src="Review Image/Amanda_.jpg" alt="Amanda" loading="lazy"><p class="slide-name">Amanda</p></div>
+                <div class="slide"><img src="Review Image/Andy.jpg" alt="Andy" loading="lazy"><p class="slide-name">Andy</p></div>
+                <div class="slide"><img src="Review Image/Ashley.jpg" alt="Ashley" loading="lazy"><p class="slide-name">Ashley</p></div>
+                <div class="slide"><img src="Review Image/Claire.jpg" alt="Claire" loading="lazy"><p class="slide-name">Claire</p></div>
+                <div class="slide"><img src="Review Image/Despina.jpg" alt="Despina" loading="lazy"><p class="slide-name">Despina</p></div>
+                <div class="slide"><img src="Review Image/Erin.jpg" alt="Erin" loading="lazy"><p class="slide-name">Erin</p></div>
+                <div class="slide"><img src="Review Image/Etsy Buyer.jpg" alt="Etsy Buyer" loading="lazy"><p class="slide-name">Etsy Buyer</p></div>
+                <div class="slide"><img src="Review Image/Gabriella.jpg" alt="Gabriella" loading="lazy"><p class="slide-name">Gabriella</p></div>
+                <div class="slide"><img src="Review Image/Johnita.jpg" alt="Johnita" loading="lazy"><p class="slide-name">Johnita</p></div>
+                <div class="slide"><img src="Review Image/Julie.webp" alt="Julie" loading="lazy"><p class="slide-name">Julie</p></div>
+                <div class="slide"><img src="Review Image/Latrice.jpg" alt="Latrice" loading="lazy"><p class="slide-name">Latrice</p></div>
+                <div class="slide"><img src="Review Image/Luis.jpg" alt="Luis" loading="lazy"><p class="slide-name">Luis</p></div>
+                <div class="slide"><img src="Review Image/Teara.jpg" alt="Teara" loading="lazy"><p class="slide-name">Teara</p></div>
+                <div class="slide"><img src="Review Image/Teresa_GenderReveal.webp" alt="Teresa" loading="lazy"><p class="slide-name">Teresa</p></div>
+                <!-- Duplicated for infinite scroll -->
+                <div class="slide"><img src="Review Image/Amanda.jpg" alt="Amanda" loading="lazy"><p class="slide-name">Amanda</p></div>
+                <div class="slide"><img src="Review Image/Amanda_.jpg" alt="Amanda" loading="lazy"><p class="slide-name">Amanda</p></div>
+                <div class="slide"><img src="Review Image/Andy.jpg" alt="Andy" loading="lazy"><p class="slide-name">Andy</p></div>
+                <div class="slide"><img src="Review Image/Ashley.jpg" alt="Ashley" loading="lazy"><p class="slide-name">Ashley</p></div>
+                <div class="slide"><img src="Review Image/Claire.jpg" alt="Claire" loading="lazy"><p class="slide-name">Claire</p></div>
+                <div class="slide"><img src="Review Image/Despina.jpg" alt="Despina" loading="lazy"><p class="slide-name">Despina</p></div>
+                <div class="slide"><img src="Review Image/Erin.jpg" alt="Erin" loading="lazy"><p class="slide-name">Erin</p></div>
+                <div class="slide"><img src="Review Image/Etsy Buyer.jpg" alt="Etsy Buyer" loading="lazy"><p class="slide-name">Etsy Buyer</p></div>
+                <div class="slide"><img src="Review Image/Gabriella.jpg" alt="Gabriella" loading="lazy"><p class="slide-name">Gabriella</p></div>
+                <div class="slide"><img src="Review Image/Johnita.jpg" alt="Johnita" loading="lazy"><p class="slide-name">Johnita</p></div>
+                <div class="slide"><img src="Review Image/Julie.webp" alt="Julie" loading="lazy"><p class="slide-name">Julie</p></div>
+                <div class="slide"><img src="Review Image/Latrice.jpg" alt="Latrice" loading="lazy"><p class="slide-name">Latrice</p></div>
+                <div class="slide"><img src="Review Image/Luis.jpg" alt="Luis" loading="lazy"><p class="slide-name">Luis</p></div>
+                <div class="slide"><img src="Review Image/Teara.jpg" alt="Teara" loading="lazy"><p class="slide-name">Teara</p></div>
+                <div class="slide"><img src="Review Image/Teresa_GenderReveal.webp" alt="Teresa" loading="lazy"><p class="slide-name">Teresa</p></div>
+            </div>
+        </section>
+
         <div class="filters">
             <button class="filter-btn active" data-sort="newest">Newest First</button>
             <button class="filter-btn" data-sort="rating">Highest Rated</button>
@@ -69,6 +107,13 @@
             <!-- Reviews will be injected here by JavaScript -->
         </div>
     </main>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="modal-caption"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>

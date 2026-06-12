@@ -260,4 +260,75 @@ document.addEventListener('DOMContentLoaded', () => {
             renderReviews(sortedReviews);
         });
     });
+
+    // Image Slider Auto-Scroll and Modal Logic
+    const sliderTrack = document.querySelector('.slider-track');
+    const slides = document.querySelectorAll('.slide');
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalClose = document.querySelector('.modal-close');
+
+    let isHovering = false;
+    let autoScrollInterval;
+
+    // Start auto-scroll
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            if (!isHovering && sliderTrack) {
+                sliderTrack.scrollLeft += 1;
+                // Infinite scroll loop reset
+                if (sliderTrack.scrollLeft >= (sliderTrack.scrollWidth - sliderTrack.clientWidth) - 1) {
+                    sliderTrack.scrollLeft = 0;
+                }
+            }
+        }, 30); // Speed of auto-scroll
+    }
+
+    if (sliderTrack) {
+        startAutoScroll();
+        
+        // Pause on interaction
+        sliderTrack.addEventListener('mouseenter', () => isHovering = true);
+        sliderTrack.addEventListener('mouseleave', () => isHovering = false);
+        sliderTrack.addEventListener('touchstart', () => isHovering = true, {passive: true});
+        sliderTrack.addEventListener('touchend', () => {
+            setTimeout(() => { isHovering = false; }, 1000);
+        });
+    }
+
+    // Modal click events
+    slides.forEach(slide => {
+        slide.addEventListener('click', () => {
+            const img = slide.querySelector('img');
+            const name = slide.querySelector('.slide-name').textContent;
+            
+            modalImg.src = img.src;
+            modalCaption.textContent = name;
+            modal.classList.add('show');
+            isHovering = true; // Pause slider when modal is open
+        });
+    });
+
+    // Close modal
+    function closeModal() {
+        modal.classList.remove('show');
+        isHovering = false;
+        setTimeout(() => {
+            modalImg.src = '';
+        }, 300); // Clear after fade out
+    }
+
+    if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+    }
+    
+    // Close on click outside image
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
 });
