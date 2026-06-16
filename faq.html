@@ -104,11 +104,11 @@ a { color: var(--blue); font-weight: 700; text-decoration: underline; text-under
 @media (max-width: 900px) { .category-nav { grid-template-columns: repeat(2, 1fr); margin: 22px 0 36px; }
 }
 @media (max-width: 520px) { .category-nav { grid-template-columns: 1fr; gap: 10px; } .category-card { border-radius: 18px; padding: 16px; }
-} .scroll-top-btn { position: fixed; right: 22px; bottom: 22px; width: 54px; height: 54px; border-radius: 50%; background: var(--blue); color: var(--cream); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.4rem; font-weight: 800; box-shadow: 0 14px 30px rgba(22,18,211,.25); z-index: 999; transition: transform .18s ease, opacity .18s ease, background .18s ease;
+} .scroll-top-btn { position: fixed; left: 22px; bottom: 22px; width: 54px; height: 54px; border-radius: 50%; background: var(--blue); color: var(--cream); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.4rem; font-weight: 800; box-shadow: 0 14px 30px rgba(22,18,211,.25); z-index: 999; transition: transform .18s ease, opacity .18s ease, background .18s ease;
 }
 .scroll-top-btn:hover { transform: translateY(-3px); background: #0f0cb5;
 }
-@media (max-width: 640px) { .scroll-top-btn { width: 50px; height: 50px; right: 16px; bottom: 16px; font-size: 1.25rem; }
+@media (max-width: 640px) { .scroll-top-btn { width: 50px; height: 50px; left: 16px; bottom: 16px; font-size: 1.25rem; }
 }
 html { scroll-behavior: smooth;
 } .faq-item summary { word-break: keep-all;
