@@ -408,19 +408,42 @@ html { scroll-behavior: smooth;
 <a aria-label="Back to top" class="scroll-top-btn" href="#top">↑</a>
 
 <script>
-  (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+(function(){
+  var w=window;
+  if(w.ChannelIO){return;}
+  var ch=function(){ch.c(arguments);};
+  ch.q=[];
+  ch.c=function(args){ch.q.push(args);};
+  w.ChannelIO=ch;
 
-  ChannelIO('boot', {
-    "pluginKey": "4875562e-547e-4bc3-a347-968bd97b4576",
-    "memberId": "USER_MEMBER_ID", // fill user's member id
-    "profile": { // fill user's profile
-      "name": "USER_NAME", // fill user's name
-      "mobileNumber": "USER_MOBILE_NUMBER", // fill user's mobile number
-      "landlineNumber": "USER_LANDLINE_NUMBER", // fill user's landline number  
-      "CUSTOM_VALUE_1": "VALUE_1", // custom property
-      "CUSTOM_VALUE_2": "VALUE_2" // custom property
+  function l(){
+    if(w.ChannelIOInitialized){return;}
+    w.ChannelIOInitialized=true;
+
+    var s=document.createElement("script");
+    s.type="text/javascript";
+    s.async=true;
+    s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";
+
+    var x=document.getElementsByTagName("script")[0];
+    if(x.parentNode){
+      x.parentNode.insertBefore(s,x);
     }
-  });
+  }
+
+  if(document.readyState==="complete"){
+    l();
+  } else {
+    w.addEventListener("DOMContentLoaded",l);
+    w.addEventListener("load",l);
+  }
+})();
+</script>
+
+<script>
+ChannelIO('boot', {
+  pluginKey: '4875562e-547e-4bc3-a347-968bd97b4576'
+});
 </script>
 
 </body>
