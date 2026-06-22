@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Important Information | ConnectingWarmHearts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-blue: #1612d3;
+      --brand-cream: #efebe2;
+      --soft-cream: #faf7f1;
+      --white: #ffffff;
+      --text: #19162f;
+      --muted: #666177;
+      --pink: #ff8fa3;
+      --alert-red: #ff3b30;
+      --border: rgba(22, 18, 211, 0.13);
+      --shadow: 0 18px 50px rgba(22, 18, 211, 0.11);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255, 143, 163, 0.23), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(22, 18, 211, 0.14), transparent 32%),
+        var(--brand-cream);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .page-wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 34px 0 70px;
+    }
+
+    .hero {
+      background: var(--brand-blue);
+      color: var(--white);
+      border-radius: 34px;
+      padding: clamp(34px, 6vw, 72px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-height: 330px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 280px;
+      height: 280px;
+      background: rgba(239, 235, 226, 0.13);
+      right: -70px;
+      top: -80px;
+    }
+
+    .hero::after {
+      width: 180px;
+      height: 180px;
+      background: rgba(255, 143, 163, 0.22);
+      left: -50px;
+      bottom: -60px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 6vw, 4.6rem);
+      line-height: 1.04;
+      margin: 0 0 20px;
+      letter-spacing: -0.05em;
+      position: relative;
+      z-index: 1;
+      max-width: 850px;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      max-width: 760px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.86);
+      position: relative;
+      z-index: 1;
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 22px 0 34px;
+    }
+
+    .quick-link {
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 18px;
+      font-weight: 700;
+      color: var(--brand-blue);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .quick-link:hover {
+      transform: translateY(-2px);
+      background: var(--white);
+    }
+
+
+
+    .quick-link.highlight-action {
+      background: var(--brand-blue);
+      color: var(--white);
+      border-color: rgba(22, 18, 211, 0.35);
+      box-shadow: 0 12px 26px rgba(22, 18, 211, 0.23);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(-1px);
+    }
+
+    .quick-link.highlight-action::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.36), transparent);
+      animation: shineSweep 2.8s ease-in-out infinite;
+    }
+
+    .quick-link.highlight-action:hover {
+      background: #0f0bb8;
+      transform: translateY(-3px);
+    }
+
+
+    .quick-link.highlight-email {
+      background: var(--alert-red);
+      color: var(--white);
+      border-color: rgba(255, 59, 48, 0.35);
+      box-shadow: 0 12px 26px rgba(255, 59, 48, 0.25);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(-1px);
+      animation: emailPulse 1.9s ease-in-out infinite;
+    }
+
+    .quick-link.highlight-email::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.36), transparent);
+      animation: shineSweep 2.8s ease-in-out infinite;
+    }
+
+    .quick-link.highlight-email:hover {
+      background: #dc2626;
+      transform: translateY(-3px);
+    }
+
+    @keyframes emailPulse {
+      0%, 100% { box-shadow: 0 12px 26px rgba(255, 59, 48, 0.25); }
+      50% { box-shadow: 0 16px 34px rgba(255, 59, 48, 0.42); }
+    }
+
+    .action-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--brand-blue);
+      color: var(--white);
+      padding: 14px 18px;
+      border-radius: 18px;
+      box-shadow: 0 12px 26px rgba(22, 18, 211, 0.22);
+      margin-bottom: 18px;
+    }
+
+    .priority-card {
+      border: 2px solid rgba(22, 18, 211, 0.25);
+      box-shadow: 0 16px 40px rgba(22, 18, 211, 0.13);
+    }
+
+    @keyframes shineSweep {
+      0%, 45% { left: -75%; }
+      70%, 100% { left: 130%; }
+    }
+
+    .section-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 4vw, 40px);
+      box-shadow: 0 12px 32px rgba(22, 18, 211, 0.07);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card::before {
+      content: attr(data-step);
+      position: absolute;
+      right: 24px;
+      top: 18px;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      color: rgba(22, 18, 211, 0.055);
+      line-height: 1;
+    }
+
+    .card-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      height: 44px;
+      padding: 0 14px;
+      background: var(--brand-blue);
+      color: var(--white);
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      margin: 0 0 12px;
+      letter-spacing: -0.035em;
+      color: var(--brand-blue);
+      position: relative;
+      z-index: 1;
+    }
+
+    p { margin: 0 0 12px; }
+
+    .note {
+      background: var(--soft-cream);
+      border: 1px solid rgba(22, 18, 211, 0.12);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    .important {
+      background: rgba(255, 143, 163, 0.16);
+      border-color: rgba(255, 143, 163, 0.34);
+    }
+
+    .very-important-label {
+      color: var(--alert-red);
+      font-weight: 800;
+    }
+
+    .folder-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      margin: 16px 0;
+      list-style: none;
+    }
+
+    .folder-list li {
+      background: var(--soft-cream);
+      border: 1px solid var(--border);
+      color: var(--brand-blue);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-weight: 700;
+      font-size: 0.93rem;
+    }
+
+    .search-terms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .term {
+      display: inline-block;
+      background: var(--alert-red);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-weight: 800;
+      font-size: 0.93rem;
+      letter-spacing: 0.01em;
+      box-shadow: 0 8px 18px rgba(255, 59, 48, 0.28);
+      animation: gentlePulse 1.9s ease-in-out infinite;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--brand-blue);
+      color: var(--white);
+    }
+
+    .btn-pink {
+      background: var(--pink);
+      color: var(--text);
+    }
+
+    .brand-name {
+      color: var(--brand-blue);
+      font-weight: 800;
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% { transform: translateY(0); box-shadow: 0 8px 18px rgba(255, 59, 48, 0.28); }
+      50% { transform: translateY(-1px); box-shadow: 0 12px 24px rgba(255, 59, 48, 0.42); }
+    }
+
+    .mini-copy {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 34px;
+    }
+
+    .back-top {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      background: var(--brand-blue);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 10px 26px rgba(22, 18, 211, 0.25);
+      z-index: 10;
+    }
+
+    @media (max-width: 820px) {
+      .quick-links { grid-template-columns: 1fr; }
+      .hero { border-radius: 26px; }
+      .info-card { border-radius: 22px; }
+      .info-card::before { right: 16px; top: 12px; }
+    }
+  </style>
+</head>
+<body id="top">
+  <main class="page-wrap">
+    <section class="hero">
+      <div class="eyebrow">✨ ConnectingWarmHearts Guide</div>
+      <h1>Important Information</h1>
+      <p>Please read this carefully after placing your order. These simple steps help me create and deliver your personalized video as smoothly and quickly as possible.</p>
+    </section>
+
+    <nav class="quick-links" aria-label="Quick links">
+      <a class="quick-link highlight-action" href="#order-form">📝 Order Form</a>
+      <a class="quick-link highlight-email" href="#email-check">📧 Email Check</a>
+      <a class="quick-link" href="#final-video">Final Delivery</a>
+    </nav>
+
+    <section class="section-stack">
+      <article class="info-card priority-card" id="order-form" data-step="01">
+        <div class="card-label">Step 1</div>
+        <h2>Complete Your Order Form</h2>
+        <p>After placing your order, please make sure to complete and submit your Order Form.</p>
+        <div class="note important">⚠️ Personalization cannot begin until your Order Form has been submitted.</div>
+      </article>
+
+      <article class="info-card priority-card" id="email-check" data-step="02">
+        <div class="card-label">Step 2</div>
+        <h2>Check Your Email Within 24–36 Hours</h2>
+        <p>After submitting your Order Form, please keep an eye on your email inbox within <strong>24–36 hours</strong>.</p>
+        <p>⚡ If you purchased <strong>Rush My Order</strong>, your first draft will typically be delivered within <strong>3–24 hours</strong>.</p>
+        <div class="note">
+          <p><strong>Please check all email folders, including:</strong></p>
+          <ul class="folder-list">
+            <li>Inbox</li>
+            <li>Spam</li>
+            <li>Junk</li>
+            <li>Promotions</li>
+          </ul>
+        </div>
+        <div class="note important">
+          <p><span class="very-important-label">🔴 Very Important:</span> If you still can't find an email from me, please search your mailbox for:</p>
+          <div class="search-terms">
+            <span class="term">ConnectingWarmHearts</span>
+            <span class="term">ConnectingWarmHeart</span>
+          </div>
+          <p class="mini-copy" style="margin-top:12px;">This is often the quickest way to locate your draft.</p>
+        </div>
+        <p style="margin-top:18px;">If you still cannot find the email after following the steps above, please contact me through <strong>Chat with Us</strong> ▶️ <strong>Chat with A Human</strong>.</p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://6e2n0.channel.io/" target="_blank" rel="noopener">Chat with Us</a>
+        </div>
+      </article>
+
+      <article class="info-card" id="final-video" data-step="03">
+        <div class="card-label">Step 3</div>
+        <h2>Please Reply After Reviewing Your First Draft</h2>
+        <p>Once you've reviewed your first draft, please reply to the email—even if no changes are needed.</p>
+        <div class="note">A quick message such as <strong>“No changes needed”</strong> is perfect.</div>
+        <p style="margin-top:16px;">💙 Once I receive your confirmation, I'll send your final video package, including your <strong>Google Drive download link</strong>.</p>
+      </article>
+
+      <article class="info-card" data-step="04">
+        <div class="card-label">Step 4</div>
+        <h2>Additional Payment, If Applicable</h2>
+        <p>If an additional payment is required, you'll receive an <strong>Additional Payment Link</strong> along with your first draft.</p>
+        <p>Once the payment is completed, I'll deliver your final video package.</p>
+      </article>
+
+      <article class="info-card" data-step="05">
+        <div class="card-label">Step 5</div>
+        <h2>How to Watch Your Video on TV</h2>
+        <p>You can find simple instructions for watching your video on TV here:</p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://cwhs.unlimitedgrowth.xyz/watch.html" target="_blank" rel="noopener">How to Watch on TV</a>
+        </div>
+      </article>
+
+      <article class="info-card" data-step="06">
+        <div class="card-label">Step 6</div>
+        <h2>Can I Upload My Video to Social Media?</h2>
+        <p><strong>Yes!</strong> 🎉 However, upload availability may vary depending on the specific video and the platform you're using.</p>
+        <p>In some cases, music copyright restrictions may prevent direct uploads.</p>
+        <div class="note">
+          <p>For <strong>Facebook</strong> and <strong>Instagram</strong>, I generally recommend sharing the video using the provided YouTube link rather than uploading the video file directly.</p>
+          <p><strong>TikTok uploads typically work without any issues.</strong></p>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer-note"><span class="brand-name">ConnectingWarmHearts</span></p>
+  </main>
+
+  <a class="back-top" href="#top" aria-label="Back to top">↑</a>
+</body>
+</html>
