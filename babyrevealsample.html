@@ -104,21 +104,15 @@ Looking for another theme? Please contact us via
 
 <script>
 const samples = [
-  {theme:"The Princess and The Frog", type:'neutral', label:'Preview', url:"https://youtu.be/-jG-mmpxksk", thumbnailUrl:"https://www.dropbox.com/scl/fi/zy3iwrqemecuxrdrri5re/Baby_Frog.png?rlkey=7b9wqn290v1izzeqnq1vutl4t&st=04ub9f6p&raw=1"},
-  {theme:"Pooh", type:'neutral', label:'Preview', url:"https://youtu.be/U1uluJrk3Mk", thumbnailUrl:"https://www.dropbox.com/scl/fi/fha7dtk4gzhtejwuvqoev/Baby-Pooh.png?rlkey=mqaubv99rhzkiehztgo22pt5l&st=oyaodbl1&raw=1"},
-  {theme:"Enchanted", type:'neutral', label:'Preview', url:"https://youtu.be/baCj8qSGOHE", thumbnailUrl:"https://www.dropbox.com/scl/fi/0fucyuxm6tflpryx2u7d5/Baby-Enchanted.png?rlkey=f25k5bgc0yks5q8umd71z8u7a&st=31rz0529&raw=1"},
-  {theme:"Toy Story", type:'neutral', label:'Preview', url:"https://youtu.be/ALClENv9JyM", thumbnailUrl:"https://www.dropbox.com/scl/fi/7xea20zfmvfh8066vw5um/Baby_ToyStory.jpg?rlkey=1gjrd6td54t1iu6tn7i388j3z&st=n5e6ea59&raw=1"},
-  {theme:"Lion King", type:'neutral', label:'Preview', url:"https://youtu.be/wGnNSJ4n2ug", thumbnailUrl:"https://www.dropbox.com/scl/fi/8yx60osbcb5n8eyzawx3r/Baby_LionKing.jpg?rlkey=es14uiu0lwq6g20g79w1tg2ft&st=2gza2wbp&raw=1"}
+  {theme:"The Princess and The Frog", type:'neutral', label:'Preview', url:"https://drive.google.com/file/d/1s5fFVy-6g1d1sTXSzfQqDVZFxwdAFzxz/view?usp=drive_link", thumbnailUrl:"https://www.dropbox.com/scl/fi/zy3iwrqemecuxrdrri5re/Baby_Frog.png?rlkey=7b9wqn290v1izzeqnq1vutl4t&st=04ub9f6p&raw=1"},
+  {theme:"Pooh", type:'neutral', label:'Preview', url:"https://drive.google.com/file/d/15ilip3RWuaSLd8IhahDdfz0Hfi6AfHIX/view?usp=drive_link", thumbnailUrl:"https://www.dropbox.com/scl/fi/fha7dtk4gzhtejwuvqoev/Baby-Pooh.png?rlkey=mqaubv99rhzkiehztgo22pt5l&st=oyaodbl1&raw=1"},
+  {theme:"Enchanted", type:'neutral', label:'Preview', url:"https://drive.google.com/file/d/1J8F_BNMUsbFkFxEJWIjAt7cM8i61jsjY/view?usp=drive_link", thumbnailUrl:"https://www.dropbox.com/scl/fi/0fucyuxm6tflpryx2u7d5/Baby-Enchanted.png?rlkey=f25k5bgc0yks5q8umd71z8u7a&st=31rz0529&raw=1"},
+  {theme:"Toy Story", type:'neutral', label:'Preview', url:"https://drive.google.com/file/d/1FFpjTQoAElgZRTycADETVaO6p3LHJKsO/view?usp=drive_link", thumbnailUrl:"https://www.dropbox.com/scl/fi/7xea20zfmvfh8066vw5um/Baby_ToyStory.jpg?rlkey=1gjrd6td54t1iu6tn7i388j3z&st=n5e6ea59&raw=1"},
+  {theme:"Lion King", type:'neutral', label:'Preview', url:"https://drive.google.com/file/d/1CVVipsK9F9neI91EYWyU715zvqkLoEpG/view?usp=drive_link", thumbnailUrl:"https://www.dropbox.com/scl/fi/8yx60osbcb5n8eyzawx3r/Baby_LionKing.jpg?rlkey=es14uiu0lwq6g20g79w1tg2ft&st=2gza2wbp&raw=1"}
 ];
 
-function videoId(url){
-  const m = url.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{6,})/);
-  return m ? m[1] : '';
-}
 function thumb(item){
-  if (item.thumbnailUrl && item.thumbnailUrl.trim() !== '') return item.thumbnailUrl.trim();
-  const id = videoId(item.url);
-  return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '';
+  return item.thumbnailUrl && item.thumbnailUrl.trim() !== '' ? item.thumbnailUrl.trim() : '';
 }
 function cardHTML(item){
   const badgeClass = item.type === 'girl' ? 'girl' : item.type === 'boy' ? 'boy' : 'neutral';
